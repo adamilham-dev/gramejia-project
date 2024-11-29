@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E10D9262CF997BB00B11046 /* gramejia.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7E10D9242CF997BB00B11046 /* gramejia.xcdatamodeld */; };
 		7E23D8952CF9963500710336 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E23D8942CF9963500710336 /* AppDelegate.swift */; };
 		7E23D8972CF9963500710336 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E23D8962CF9963500710336 /* SceneDelegate.swift */; };
 		7E23D8992CF9963500710336 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E23D8982CF9963500710336 /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E10D9252CF997BB00B11046 /* gramejia.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = gramejia.xcdatamodel; sourceTree = "<group>"; };
 		7E23D8912CF9963500710336 /* gramejia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gramejia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E23D8942CF9963500710336 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E23D8962CF9963500710336 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +65,21 @@
 			path = Asset;
 			sourceTree = "<group>";
 		};
+		7E10D9222CF997A200B11046 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		7E10D9232CF997AA00B11046 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				7E10D9242CF997BB00B11046 /* gramejia.xcdatamodeld */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
 		7E23D8882CF9963500710336 = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +99,8 @@
 		7E23D8932CF9963500710336 /* gramejia */ = {
 			isa = PBXGroup;
 			children = (
+				7E10D9232CF997AA00B11046 /* Entity */,
+				7E10D9222CF997A200B11046 /* Manager */,
 				7E10D9202CF9971B00B11046 /* Asset */,
 				7E10D91F2CF9970D00B11046 /* StoryBoard */,
 				7E10D91C2CF996E600B11046 /* Base */,
@@ -163,6 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E23D8992CF9963500710336 /* ViewController.swift in Sources */,
+				7E10D9262CF997BB00B11046 /* gramejia.xcdatamodeld in Sources */,
 				7E23D8952CF9963500710336 /* AppDelegate.swift in Sources */,
 				7E23D8972CF9963500710336 /* SceneDelegate.swift in Sources */,
 			);
@@ -387,6 +407,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7E10D9242CF997BB00B11046 /* gramejia.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7E10D9252CF997BB00B11046 /* gramejia.xcdatamodel */,
+			);
+			currentVersion = 7E10D9252CF997BB00B11046 /* gramejia.xcdatamodel */;
+			name = gramejia.xcdatamodeld;
+			path = "/Users/rivaldofez/Projects/PaidProject/AppleProject/gramejia-project/gramejia/Entity/gramejia.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 7E23D8892CF9963500710336 /* Project object */;
 }
