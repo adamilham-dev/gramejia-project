@@ -37,6 +37,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E10D91C2CF996E600B11046 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				7E23D8942CF9963500710336 /* AppDelegate.swift */,
+				7E23D8962CF9963500710336 /* SceneDelegate.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		7E10D91F2CF9970D00B11046 /* StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				7E23D89A2CF9963500710336 /* Main.storyboard */,
+				7E23D89F2CF9963600710336 /* LaunchScreen.storyboard */,
+			);
+			path = StoryBoard;
+			sourceTree = "<group>";
+		};
+		7E10D9202CF9971B00B11046 /* Asset */ = {
+			isa = PBXGroup;
+			children = (
+				7E23D89D2CF9963600710336 /* Assets.xcassets */,
+			);
+			path = Asset;
+			sourceTree = "<group>";
+		};
 		7E23D8882CF9963500710336 = {
 			isa = PBXGroup;
 			children = (
@@ -56,12 +82,10 @@
 		7E23D8932CF9963500710336 /* gramejia */ = {
 			isa = PBXGroup;
 			children = (
-				7E23D8942CF9963500710336 /* AppDelegate.swift */,
-				7E23D8962CF9963500710336 /* SceneDelegate.swift */,
+				7E10D9202CF9971B00B11046 /* Asset */,
+				7E10D91F2CF9970D00B11046 /* StoryBoard */,
+				7E10D91C2CF996E600B11046 /* Base */,
 				7E23D8982CF9963500710336 /* ViewController.swift */,
-				7E23D89A2CF9963500710336 /* Main.storyboard */,
-				7E23D89D2CF9963600710336 /* Assets.xcassets */,
-				7E23D89F2CF9963600710336 /* LaunchScreen.storyboard */,
 				7E23D8A22CF9963600710336 /* Info.plist */,
 			);
 			path = gramejia;
