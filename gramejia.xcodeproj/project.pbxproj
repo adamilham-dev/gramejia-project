@@ -10,6 +10,9 @@
 		7E10D9262CF997BB00B11046 /* gramejia.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7E10D9242CF997BB00B11046 /* gramejia.xcdatamodeld */; };
 		7E10D9282CF9990500B11046 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E10D9272CF9990500B11046 /* CoreDataManager.swift */; };
 		7E10D92B2CF9996E00B11046 /* Error+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E10D92A2CF9996E00B11046 /* Error+Ext.swift */; };
+		7E10D9302CFB638200B11046 /* BookRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E10D92F2CFB638200B11046 /* BookRepository.swift */; };
+		7E10D9332CFB64D400B11046 /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E10D9322CFB64D400B11046 /* BookModel.swift */; };
+		7E10D9362CFB693400B11046 /* BookMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E10D9352CFB693400B11046 /* BookMapper.swift */; };
 		7E23D8952CF9963500710336 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E23D8942CF9963500710336 /* AppDelegate.swift */; };
 		7E23D8972CF9963500710336 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E23D8962CF9963500710336 /* SceneDelegate.swift */; };
 		7E23D8992CF9963500710336 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E23D8982CF9963500710336 /* ViewController.swift */; };
@@ -22,6 +25,9 @@
 		7E10D9252CF997BB00B11046 /* gramejia.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = gramejia.xcdatamodel; sourceTree = "<group>"; };
 		7E10D9272CF9990500B11046 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		7E10D92A2CF9996E00B11046 /* Error+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Ext.swift"; sourceTree = "<group>"; };
+		7E10D92F2CFB638200B11046 /* BookRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRepository.swift; sourceTree = "<group>"; };
+		7E10D9322CFB64D400B11046 /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
+		7E10D9352CFB693400B11046 /* BookMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMapper.swift; sourceTree = "<group>"; };
 		7E23D8912CF9963500710336 /* gramejia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gramejia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E23D8942CF9963500710336 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E23D8962CF9963500710336 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +99,48 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		7E10D92C2CF9AD9E00B11046 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		7E10D92D2CFB61ED00B11046 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				7E10D9342CFB692B00B11046 /* Mapper */,
+				7E10D9312CFB64C800B11046 /* Domain */,
+				7E10D9222CF997A200B11046 /* Manager */,
+				7E10D92E2CFB61F100B11046 /* Repository */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		7E10D92E2CFB61F100B11046 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				7E10D92F2CFB638200B11046 /* BookRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		7E10D9312CFB64C800B11046 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				7E10D9322CFB64D400B11046 /* BookModel.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		7E10D9342CFB692B00B11046 /* Mapper */ = {
+			isa = PBXGroup;
+			children = (
+				7E10D9352CFB693400B11046 /* BookMapper.swift */,
+			);
+			path = Mapper;
+			sourceTree = "<group>";
+		};
 		7E23D8882CF9963500710336 = {
 			isa = PBXGroup;
 			children = (
@@ -112,9 +160,10 @@
 		7E23D8932CF9963500710336 /* gramejia */ = {
 			isa = PBXGroup;
 			children = (
+				7E10D92D2CFB61ED00B11046 /* Core */,
+				7E10D92C2CF9AD9E00B11046 /* Module */,
 				7E10D9292CF9996500B11046 /* Extension */,
 				7E10D9232CF997AA00B11046 /* Entity */,
-				7E10D9222CF997A200B11046 /* Manager */,
 				7E10D9202CF9971B00B11046 /* Asset */,
 				7E10D91F2CF9970D00B11046 /* StoryBoard */,
 				7E10D91C2CF996E600B11046 /* Base */,
@@ -195,11 +244,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E10D9362CFB693400B11046 /* BookMapper.swift in Sources */,
 				7E10D92B2CF9996E00B11046 /* Error+Ext.swift in Sources */,
 				7E23D8992CF9963500710336 /* ViewController.swift in Sources */,
 				7E10D9262CF997BB00B11046 /* gramejia.xcdatamodeld in Sources */,
 				7E23D8952CF9963500710336 /* AppDelegate.swift in Sources */,
 				7E10D9282CF9990500B11046 /* CoreDataManager.swift in Sources */,
+				7E10D9302CFB638200B11046 /* BookRepository.swift in Sources */,
+				7E10D9332CFB64D400B11046 /* BookModel.swift in Sources */,
 				7E23D8972CF9963500710336 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
