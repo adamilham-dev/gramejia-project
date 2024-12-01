@@ -14,6 +14,9 @@
 		7E10D9332CFB64D400B11046 /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E10D9322CFB64D400B11046 /* BookModel.swift */; };
 		7E10D9362CFB693400B11046 /* BookMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E10D9352CFB693400B11046 /* BookMapper.swift */; };
 		7E10D9392CFB76FD00B11046 /* Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E10D9382CFB76FD00B11046 /* Injection.swift */; };
+		7E10D93E2CFB782300B11046 /* AddBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E10D93D2CFB782300B11046 /* AddBookViewController.swift */; };
+		7E10D9402CFB783300B11046 /* AddBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E10D93F2CFB783300B11046 /* AddBookViewModel.swift */; };
+		7E10D9422CFB787600B11046 /* AddBookUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E10D9412CFB787600B11046 /* AddBookUseCase.swift */; };
 		7E23D8952CF9963500710336 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E23D8942CF9963500710336 /* AppDelegate.swift */; };
 		7E23D8972CF9963500710336 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E23D8962CF9963500710336 /* SceneDelegate.swift */; };
 		7E23D8992CF9963500710336 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E23D8982CF9963500710336 /* ViewController.swift */; };
@@ -30,6 +33,9 @@
 		7E10D9322CFB64D400B11046 /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
 		7E10D9352CFB693400B11046 /* BookMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMapper.swift; sourceTree = "<group>"; };
 		7E10D9382CFB76FD00B11046 /* Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injection.swift; sourceTree = "<group>"; };
+		7E10D93D2CFB782300B11046 /* AddBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookViewController.swift; sourceTree = "<group>"; };
+		7E10D93F2CFB783300B11046 /* AddBookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookViewModel.swift; sourceTree = "<group>"; };
+		7E10D9412CFB787600B11046 /* AddBookUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookUseCase.swift; sourceTree = "<group>"; };
 		7E23D8912CF9963500710336 /* gramejia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gramejia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E23D8942CF9963500710336 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E23D8962CF9963500710336 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +110,7 @@
 		7E10D92C2CF9AD9E00B11046 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				7E10D93A2CFB77F600B11046 /* AddBook */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -150,6 +157,16 @@
 				7E10D9382CFB76FD00B11046 /* Injection.swift */,
 			);
 			path = Injection;
+			sourceTree = "<group>";
+		};
+		7E10D93A2CFB77F600B11046 /* AddBook */ = {
+			isa = PBXGroup;
+			children = (
+				7E10D93D2CFB782300B11046 /* AddBookViewController.swift */,
+				7E10D93F2CFB783300B11046 /* AddBookViewModel.swift */,
+				7E10D9412CFB787600B11046 /* AddBookUseCase.swift */,
+			);
+			path = AddBook;
 			sourceTree = "<group>";
 		};
 		7E23D8882CF9963500710336 = {
@@ -256,8 +273,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E10D9362CFB693400B11046 /* BookMapper.swift in Sources */,
+				7E10D9402CFB783300B11046 /* AddBookViewModel.swift in Sources */,
 				7E10D92B2CF9996E00B11046 /* Error+Ext.swift in Sources */,
+				7E10D9422CFB787600B11046 /* AddBookUseCase.swift in Sources */,
 				7E23D8992CF9963500710336 /* ViewController.swift in Sources */,
+				7E10D93E2CFB782300B11046 /* AddBookViewController.swift in Sources */,
 				7E10D9262CF997BB00B11046 /* gramejia.xcdatamodeld in Sources */,
 				7E23D8952CF9963500710336 /* AppDelegate.swift in Sources */,
 				7E10D9392CFB76FD00B11046 /* Injection.swift in Sources */,
