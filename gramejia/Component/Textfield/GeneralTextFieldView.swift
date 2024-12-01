@@ -31,7 +31,7 @@ class GeneralTextFieldView: UIView {
         
     }
     
-    private func setupView() {
+    open func setupView() {
         guard let view = loadViewFromNib(nibName: String(describing: GeneralTextFieldView.self)) else { return }
         view.frame = bounds
         addSubview(view)
@@ -41,7 +41,7 @@ class GeneralTextFieldView: UIView {
         setActions()
     }
     
-    private func stylingView() {
+    open func stylingView() {
         mainTextField.borderStyle = .none
         rootView.backgroundColor = .clear
         self.backgroundColor = .clear
@@ -55,7 +55,7 @@ class GeneralTextFieldView: UIView {
         mainStackView.spacing = 4
     }
     
-    func setImageSize(_ size: CGFloat) {
+    open func setImageSize(_ size: CGFloat) {
         leftImageWidthConstraint.constant = size
         rightImageWidthConstraint.constant = size
     }
@@ -66,7 +66,7 @@ class GeneralTextFieldView: UIView {
         return nib.instantiate(withOwner: self, options: nil).first as? UIView
     }
     
-    private func setActions() {
+    open func setActions() {
         self.isUserInteractionEnabled = true
         let rootTappedGesture = UITapGestureRecognizer(target: self, action: #selector(rootTapped))
         self.addGestureRecognizer(rootTappedGesture)
