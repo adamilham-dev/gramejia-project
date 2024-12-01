@@ -1,19 +1,18 @@
 //
-//  ViewController.swift
+//  LoginViewController.swift
 //  gramejia
 //
-//  Created by Adam on 29/11/24.
+//  Created by Adam on 01/12/24.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view.
     }
 
-
 }
-
