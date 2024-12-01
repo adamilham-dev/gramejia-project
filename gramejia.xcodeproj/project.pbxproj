@@ -47,6 +47,8 @@
 		7EACAC1F2CFC8A330094C61B /* GeneralTextFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EACAC1E2CFC8A330094C61B /* GeneralTextFieldView.xib */; };
 		7EACAC212CFCB17C0094C61B /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACAC202CFCB17C0094C61B /* UIView+Ext.swift */; };
 		7EACAC232CFCB6D70094C61B /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACAC222CFCB6D70094C61B /* UIColor+Ext.swift */; };
+		7EE0A6B42CFCCE8F000BDEBF /* PaswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE0A6B32CFCCE8F000BDEBF /* PaswordTextField.swift */; };
+		7EE0A6B72CFCDB81000BDEBF /* MainActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE0A6B62CFCDB81000BDEBF /* MainActionButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +94,8 @@
 		7EACAC1E2CFC8A330094C61B /* GeneralTextFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralTextFieldView.xib; sourceTree = "<group>"; };
 		7EACAC202CFCB17C0094C61B /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		7EACAC222CFCB6D70094C61B /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
+		7EE0A6B32CFCCE8F000BDEBF /* PaswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaswordTextField.swift; sourceTree = "<group>"; };
+		7EE0A6B62CFCDB81000BDEBF /* MainActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainActionButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,8 +238,8 @@
 		7E10D9532CFC4A4E00B11046 /* Component */ = {
 			isa = PBXGroup;
 			children = (
-				7EACAC1C2CFC8A250094C61B /* GeneralTextFieldView.swift */,
-				7EACAC1E2CFC8A330094C61B /* GeneralTextFieldView.xib */,
+				7EE0A6B52CFCDB77000BDEBF /* Button */,
+				7EE0A6B22CFCCE7B000BDEBF /* Textfield */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -311,6 +315,24 @@
 				7E23D8A22CF9963600710336 /* Info.plist */,
 			);
 			path = gramejia;
+			sourceTree = "<group>";
+		};
+		7EE0A6B22CFCCE7B000BDEBF /* Textfield */ = {
+			isa = PBXGroup;
+			children = (
+				7EACAC1C2CFC8A250094C61B /* GeneralTextFieldView.swift */,
+				7EACAC1E2CFC8A330094C61B /* GeneralTextFieldView.xib */,
+				7EE0A6B32CFCCE8F000BDEBF /* PaswordTextField.swift */,
+			);
+			path = Textfield;
+			sourceTree = "<group>";
+		};
+		7EE0A6B52CFCDB77000BDEBF /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				7EE0A6B62CFCDB81000BDEBF /* MainActionButton.swift */,
+			);
+			path = Button;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -418,7 +440,9 @@
 				7E10D9302CFB638200B11046 /* BookRepository.swift in Sources */,
 				7E10D9332CFB64D400B11046 /* BookModel.swift in Sources */,
 				7E10D94E2CFC419800B11046 /* LoginViewController.swift in Sources */,
+				7EE0A6B42CFCCE8F000BDEBF /* PaswordTextField.swift in Sources */,
 				7EACAC232CFCB6D70094C61B /* UIColor+Ext.swift in Sources */,
+				7EE0A6B72CFCDB81000BDEBF /* MainActionButton.swift in Sources */,
 				7E23D8972CF9963500710336 /* SceneDelegate.swift in Sources */,
 				7E10D9522CFC41AA00B11046 /* LoginUseCase.swift in Sources */,
 			);

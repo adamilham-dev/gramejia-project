@@ -8,11 +8,14 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-
+    @IBOutlet weak var mainButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+//        mainButton.showsTouchWhenHighlighted = true
         // Do any additional setup after loading the view.
     }
+    
 
 }

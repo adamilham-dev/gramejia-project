@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VdG-Lm-qhn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VdG-Lm-qhn">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Nunito-ExtraBold.ttf">
-            <string>Nunito-ExtraBold</string>
+        <array key="Nunito-Bold.ttf">
+            <string>Nunito-Bold</string>
         </array>
     </customFonts>
     <scenes>
@@ -37,72 +36,103 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="h4D-Fe-3tB" userLabel="HeaderStack">
-                                <rect key="frame" x="24" y="58.999999999999993" width="345" height="109.33333333333331"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zEb-hh-JlB">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6P7-hv-spW">
-                                        <rect key="frame" x="0.0" y="0.0" width="345" height="109.33333333333333"/>
-                                        <string key="text">Welcome
-Back</string>
-                                        <fontDescription key="fontDescription" name="Nunito-ExtraBold" family="Nunito" pointSize="40"/>
-                                        <color key="textColor" name="MainAccentColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="2WJ-fz-e8Z" userLabel="MainStackView">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="848"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3HC-zB-iiR" userLabel="AnimationContainer">
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="250"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="250" id="aji-vd-erH"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YkH-fH-iiF" userLabel="HeaderContainer">
+                                                <rect key="frame" x="0.0" y="274" width="393" height="50"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="KcV-NY-MoM" userLabel="HeaderStack">
+                                                        <rect key="frame" x="24" y="0.0" width="345" height="50"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Welcome Back !" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="an2-Gm-cdA" userLabel="GreetingLabel">
+                                                                <rect key="frame" x="0.0" y="0.0" width="345" height="50"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="28"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="KcV-NY-MoM" secondAttribute="bottom" id="9lF-S3-5Pf"/>
+                                                    <constraint firstAttribute="trailing" secondItem="KcV-NY-MoM" secondAttribute="trailing" constant="24" id="ELR-XI-7IX"/>
+                                                    <constraint firstItem="KcV-NY-MoM" firstAttribute="top" secondItem="YkH-fH-iiF" secondAttribute="top" id="JWO-Mc-sNH"/>
+                                                    <constraint firstItem="KcV-NY-MoM" firstAttribute="leading" secondItem="YkH-fH-iiF" secondAttribute="leading" constant="24" id="zYO-bH-YOH"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cgK-e7-xhD" userLabel="FormContainer">
+                                                <rect key="frame" x="0.0" y="348" width="393" height="500"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="aDA-ae-CNu" userLabel="FormStack">
+                                                        <rect key="frame" x="24" y="0.0" width="345" height="426"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="345" placeholderIntrinsicHeight="80" translatesAutoresizingMaskIntoConstraints="NO" id="k3k-1O-Iqh" userLabel="UsernameField" customClass="GeneralTextFieldView" customModule="gramejia" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="345" height="330"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="345" placeholderIntrinsicHeight="80" translatesAutoresizingMaskIntoConstraints="NO" id="PNM-iW-0ZO" userLabel="PasswordField" customClass="PasswordTextFieldView" customModule="gramejia" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="346" width="345" height="80"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </view>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s6n-OA-Mvu" customClass="MainActionButton" customModule="gramejia" customModuleProvider="target">
+                                                        <rect key="frame" x="24" y="450" width="345" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="eD1-cY-cTD"/>
+                                                        </constraints>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Login"/>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="aDA-ae-CNu" firstAttribute="leading" secondItem="cgK-e7-xhD" secondAttribute="leading" constant="24" id="1hY-SZ-JpA"/>
+                                                    <constraint firstAttribute="bottom" secondItem="s6n-OA-Mvu" secondAttribute="bottom" id="3qc-4Q-lxl"/>
+                                                    <constraint firstAttribute="trailing" secondItem="s6n-OA-Mvu" secondAttribute="trailing" constant="24" id="Oxs-cT-cDn"/>
+                                                    <constraint firstAttribute="trailing" secondItem="aDA-ae-CNu" secondAttribute="trailing" constant="24" id="Rij-cv-5wm"/>
+                                                    <constraint firstItem="aDA-ae-CNu" firstAttribute="top" secondItem="cgK-e7-xhD" secondAttribute="top" id="YAf-Nu-tir"/>
+                                                    <constraint firstItem="s6n-OA-Mvu" firstAttribute="top" secondItem="aDA-ae-CNu" secondAttribute="bottom" constant="24" id="n2t-qL-HVg"/>
+                                                    <constraint firstItem="s6n-OA-Mvu" firstAttribute="leading" secondItem="cgK-e7-xhD" secondAttribute="leading" constant="24" id="nLF-NE-GPp"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="A3c-LW-7Yq" userLabel="FormStack">
-                                <rect key="frame" x="24" y="184.33333333333337" width="345" height="600"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="0.0" placeholderIntrinsicHeight="300" translatesAutoresizingMaskIntoConstraints="NO" id="U3E-XA-WxO" customClass="GeneralTextFieldView" customModule="gramejia" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="345" height="300"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="How to a millionaire"/>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="icon_bug"/>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="leftImageSize">
-                                                <real key="value" value="70"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="rightImage" value="icon_bug"/>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="rightImageSize">
-                                                <real key="value" value="50"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="0.0" placeholderIntrinsicHeight="300" translatesAutoresizingMaskIntoConstraints="NO" id="eKk-Vd-JfZ" customClass="GeneralTextFieldView" customModule="gramejia" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="300" width="345" height="300"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="How to a millionaire"/>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="icon_bug"/>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="leftImageSize">
-                                                <real key="value" value="70"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="rightImage" value="icon_bug"/>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="rightImageSize">
-                                                <real key="value" value="50"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                </subviews>
-                            </stackView>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="2WJ-fz-e8Z" secondAttribute="trailing" id="EqF-ic-VQs"/>
+                                    <constraint firstAttribute="bottom" secondItem="2WJ-fz-e8Z" secondAttribute="bottom" id="PBG-wE-Zbj"/>
+                                    <constraint firstItem="2WJ-fz-e8Z" firstAttribute="top" secondItem="zEb-hh-JlB" secondAttribute="top" id="cQZ-S2-rLm"/>
+                                    <constraint firstItem="2WJ-fz-e8Z" firstAttribute="leading" secondItem="zEb-hh-JlB" secondAttribute="leading" id="uRQ-Nq-0kX"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="GBI-rX-0qc"/>
-                        <color key="backgroundColor" name="MainBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="h4D-Fe-3tB" firstAttribute="leading" secondItem="QX5-fy-5PN" secondAttribute="leading" constant="24" id="Crv-gz-HKR"/>
-                            <constraint firstAttribute="trailing" secondItem="A3c-LW-7Yq" secondAttribute="trailing" constant="24" id="K4a-lj-vrS"/>
-                            <constraint firstItem="A3c-LW-7Yq" firstAttribute="top" secondItem="h4D-Fe-3tB" secondAttribute="bottom" constant="16" id="MyO-Ow-gko"/>
-                            <constraint firstItem="h4D-Fe-3tB" firstAttribute="top" secondItem="GBI-rX-0qc" secondAttribute="top" id="Nun-wa-bCb"/>
-                            <constraint firstItem="A3c-LW-7Yq" firstAttribute="leading" secondItem="QX5-fy-5PN" secondAttribute="leading" constant="24" id="Ttl-4g-ExD"/>
-                            <constraint firstAttribute="trailing" secondItem="h4D-Fe-3tB" secondAttribute="trailing" constant="24" id="nBB-tG-x31"/>
+                            <constraint firstAttribute="bottom" secondItem="zEb-hh-JlB" secondAttribute="bottom" id="G2T-4y-BWY"/>
+                            <constraint firstItem="zEb-hh-JlB" firstAttribute="top" secondItem="QX5-fy-5PN" secondAttribute="top" id="Ktl-f2-oAA"/>
+                            <constraint firstItem="zEb-hh-JlB" firstAttribute="leading" secondItem="QX5-fy-5PN" secondAttribute="leading" id="aBK-Lh-lp2"/>
+                            <constraint firstAttribute="trailing" secondItem="zEb-hh-JlB" secondAttribute="trailing" id="miE-cc-pGu"/>
+                            <constraint firstItem="2WJ-fz-e8Z" firstAttribute="width" secondItem="QX5-fy-5PN" secondAttribute="width" id="sNi-bs-fZr"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mainButton" destination="s6n-OA-Mvu" id="KEc-5j-Tbe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ju-Nr-Pz3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -110,13 +140,6 @@ Back</string>
         </scene>
     </scenes>
     <resources>
-        <image name="icon_bug" width="177" height="178"/>
-        <namedColor name="MainAccentColor">
-            <color red="0.94499999284744263" green="0.25499999523162842" blue="0.27500000596046448" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="MainBackgroundColor">
-            <color red="0.9179999828338623" green="0.9179999828338623" blue="0.9179999828338623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
