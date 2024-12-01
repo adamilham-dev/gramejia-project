@@ -13,4 +13,9 @@ final class Injection: NSObject {
         
         return BookRepository.sharedInstance(coreDataManager)
     }
+    
+    func provideAddBookUseCase() -> AddBookUseCaseProtocol {
+        let bookRepository = provideBookRepository()
+        return AddBookUseCase(bookRepository: bookRepository)
+    }
 }
