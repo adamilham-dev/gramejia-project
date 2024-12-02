@@ -47,11 +47,12 @@
 		7EACAC1F2CFC8A330094C61B /* GeneralTextFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EACAC1E2CFC8A330094C61B /* GeneralTextFieldView.xib */; };
 		7EACAC212CFCB17C0094C61B /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACAC202CFCB17C0094C61B /* UIView+Ext.swift */; };
 		7EACAC232CFCB6D70094C61B /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACAC222CFCB6D70094C61B /* UIColor+Ext.swift */; };
-		7EE0A6B42CFCCE8F000BDEBF /* PaswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE0A6B32CFCCE8F000BDEBF /* PaswordTextField.swift */; };
+		7EE0A6B42CFCCE8F000BDEBF /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE0A6B32CFCCE8F000BDEBF /* PasswordTextField.swift */; };
 		7EE0A6B72CFCDB81000BDEBF /* MainActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE0A6B62CFCDB81000BDEBF /* MainActionButton.swift */; };
 		7EE0A6BA2CFCE7A9000BDEBF /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE0A6B92CFCE7A9000BDEBF /* RegisterViewModel.swift */; };
 		7EE0A6BC2CFCE7BC000BDEBF /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE0A6BB2CFCE7BC000BDEBF /* RegisterViewController.swift */; };
 		7EE0A6BF2CFD48F4000BDEBF /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE0A6BE2CFD48F4000BDEBF /* MainNavigationController.swift */; };
+		7EE0A6C62CFD7FF7000BDEBF /* ImageActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE0A6C52CFD7FF7000BDEBF /* ImageActionButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,11 +98,12 @@
 		7EACAC1E2CFC8A330094C61B /* GeneralTextFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralTextFieldView.xib; sourceTree = "<group>"; };
 		7EACAC202CFCB17C0094C61B /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		7EACAC222CFCB6D70094C61B /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
-		7EE0A6B32CFCCE8F000BDEBF /* PaswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaswordTextField.swift; sourceTree = "<group>"; };
+		7EE0A6B32CFCCE8F000BDEBF /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
 		7EE0A6B62CFCDB81000BDEBF /* MainActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainActionButton.swift; sourceTree = "<group>"; };
 		7EE0A6B92CFCE7A9000BDEBF /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		7EE0A6BB2CFCE7BC000BDEBF /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		7EE0A6BE2CFD48F4000BDEBF /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		7EE0A6C52CFD7FF7000BDEBF /* ImageActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageActionButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -330,7 +332,7 @@
 			children = (
 				7EACAC1C2CFC8A250094C61B /* GeneralTextFieldView.swift */,
 				7EACAC1E2CFC8A330094C61B /* GeneralTextFieldView.xib */,
-				7EE0A6B32CFCCE8F000BDEBF /* PaswordTextField.swift */,
+				7EE0A6B32CFCCE8F000BDEBF /* PasswordTextField.swift */,
 			);
 			path = Textfield;
 			sourceTree = "<group>";
@@ -339,6 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				7EE0A6B62CFCDB81000BDEBF /* MainActionButton.swift */,
+				7EE0A6C52CFD7FF7000BDEBF /* ImageActionButton.swift */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -460,13 +463,14 @@
 				7E10D9502CFC41A100B11046 /* LoginViewModel.swift in Sources */,
 				7E10D9792CFC51F200B11046 /* UIFont+Ext.swift in Sources */,
 				7E23D8952CF9963500710336 /* AppDelegate.swift in Sources */,
+				7EE0A6C62CFD7FF7000BDEBF /* ImageActionButton.swift in Sources */,
 				7E10D97C2CFC53EE00B11046 /* CustomFontUtil.swift in Sources */,
 				7E10D9392CFB76FD00B11046 /* Injection.swift in Sources */,
 				7E10D9282CF9990500B11046 /* CoreDataManager.swift in Sources */,
 				7E10D9302CFB638200B11046 /* BookRepository.swift in Sources */,
 				7E10D9332CFB64D400B11046 /* BookModel.swift in Sources */,
 				7E10D94E2CFC419800B11046 /* LoginViewController.swift in Sources */,
-				7EE0A6B42CFCCE8F000BDEBF /* PaswordTextField.swift in Sources */,
+				7EE0A6B42CFCCE8F000BDEBF /* PasswordTextField.swift in Sources */,
 				7EACAC232CFCB6D70094C61B /* UIColor+Ext.swift in Sources */,
 				7EE0A6BF2CFD48F4000BDEBF /* MainNavigationController.swift in Sources */,
 				7EE0A6B72CFCDB81000BDEBF /* MainActionButton.swift in Sources */,

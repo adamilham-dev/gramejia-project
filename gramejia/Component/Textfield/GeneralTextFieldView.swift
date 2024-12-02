@@ -17,7 +17,6 @@ class GeneralTextFieldView: UIView {
     @IBOutlet weak var mainTextField: UITextField!
     @IBOutlet weak var fieldStackView: UIStackView!
     @IBOutlet weak var leftImageWidthConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var rightImageWidthConstraint: NSLayoutConstraint!
     
     override init(frame: CGRect) {
@@ -77,6 +76,21 @@ class GeneralTextFieldView: UIView {
     
     @objc private func rootTapped() {
         mainTextField.becomeFirstResponder()
+    }
+    
+    open func setTextFieldProperty(leftSystemImage: String? = nil, rightSystemImage: String? = nil, placeholder: String) {
+        if let leftImage = leftSystemImage {
+            self.leftImageView.image = UIImage(systemName: leftImage)
+            self.leftImageView.isHidden = false
+        }
+        
+        if let rightImage = rightSystemImage {
+            self.rightImageView.image = UIImage(systemName: rightImage)
+            self.rightImageView.isHidden = false
+        }
+        
+        mainTextField.placeholder = placeholder
+        
     }
 }
 
