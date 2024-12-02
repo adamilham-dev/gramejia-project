@@ -312,6 +312,7 @@
                     <connections>
                         <outlet property="backButton" destination="jTm-2i-zGw" id="2Mb-7Y-Cei"/>
                         <outlet property="confirmationField" destination="BvU-6E-6eh" id="NjZ-Wf-upT"/>
+                        <outlet property="loginButton" destination="fwY-5p-Dko" id="Lsv-ZW-d5A"/>
                         <outlet property="mainScrollView" destination="HAI-PR-FfW" id="thX-uD-JI8"/>
                         <outlet property="nameField" destination="YHz-oF-KkN" id="iPr-HU-faT"/>
                         <outlet property="passwordField" destination="njQ-5z-Ajt" id="5WP-Lw-JtU"/>
