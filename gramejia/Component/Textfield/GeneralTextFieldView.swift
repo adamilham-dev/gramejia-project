@@ -90,7 +90,16 @@ class GeneralTextFieldView: UIView {
         }
         
         mainTextField.placeholder = placeholder
-        
+    }
+    
+    open func setError(description: String) {
+        self.errorLabel.text = description
+        self.errorLabel.isHidden = false
+    }
+    
+    open func removeError(){
+        self.errorLabel.isHidden = true
+        self.errorLabel.text = nil
     }
 }
 
