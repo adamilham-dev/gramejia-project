@@ -9,6 +9,12 @@ import UIKit
 
 class MainActionButton: UIButton {
     
+    override var isEnabled: Bool {
+        didSet {
+            setButtonState(enabled: isEnabled)
+        }
+    }
+    
     var normalBackgroundColor: UIColor = .mainAccent {
         didSet {
             backgroundColor = normalBackgroundColor
@@ -47,11 +53,21 @@ class MainActionButton: UIButton {
         addTarget(self, action: #selector(buttonReleased), for: .touchUpOutside)
     }
     
-    @objc private func buttonHighlighted() {
-        UIView.animate(withDuration: 0.1) {
-            self.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-            self.alpha = 0.8
+    func setButtonState(enabled: Bool) {
+        if(enabled) {
+            setTitleColor(normalTextColor, for: .normal)
+            backgroundColor = normalBackgroundColor
+        } else {
+            setTitleColor(.gray, for: .normal)
+            backgroundColor = .lightGray
         }
+    }
+    
+    @objc private func buttonHighlighted() {
+            UIView.animate(withDuration: 0.1) {
+                self.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+                self.alpha = 0.8
+            }
     }
     
     @objc private func buttonTappedHighlight() {
