@@ -9,7 +9,6 @@ import UIKit
 
 class MainActionButton: UIButton {
     
-    // You can customize the button's colors, font, etc. through these properties.
     var normalBackgroundColor: UIColor = .mainAccent {
         didSet {
             backgroundColor = normalBackgroundColor
