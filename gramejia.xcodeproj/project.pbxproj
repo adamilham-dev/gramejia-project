@@ -49,6 +49,9 @@
 		7EACAC232CFCB6D70094C61B /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACAC222CFCB6D70094C61B /* UIColor+Ext.swift */; };
 		7EE0A6B42CFCCE8F000BDEBF /* PaswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE0A6B32CFCCE8F000BDEBF /* PaswordTextField.swift */; };
 		7EE0A6B72CFCDB81000BDEBF /* MainActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE0A6B62CFCDB81000BDEBF /* MainActionButton.swift */; };
+		7EE0A6BA2CFCE7A9000BDEBF /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE0A6B92CFCE7A9000BDEBF /* RegisterViewModel.swift */; };
+		7EE0A6BC2CFCE7BC000BDEBF /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE0A6BB2CFCE7BC000BDEBF /* RegisterViewController.swift */; };
+		7EE0A6BF2CFD48F4000BDEBF /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE0A6BE2CFD48F4000BDEBF /* MainNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +99,9 @@
 		7EACAC222CFCB6D70094C61B /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		7EE0A6B32CFCCE8F000BDEBF /* PaswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaswordTextField.swift; sourceTree = "<group>"; };
 		7EE0A6B62CFCDB81000BDEBF /* MainActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainActionButton.swift; sourceTree = "<group>"; };
+		7EE0A6B92CFCE7A9000BDEBF /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		7EE0A6BB2CFCE7BC000BDEBF /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		7EE0A6BE2CFD48F4000BDEBF /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +169,8 @@
 		7E10D92C2CF9AD9E00B11046 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				7EE0A6BD2CFD48D4000BDEBF /* NavigationController */,
+				7EE0A6B82CFCE796000BDEBF /* Register */,
 				7E10D94C2CFC418700B11046 /* Login */,
 				7E10D93A2CFB77F600B11046 /* AddBook */,
 			);
@@ -335,6 +343,23 @@
 			path = Button;
 			sourceTree = "<group>";
 		};
+		7EE0A6B82CFCE796000BDEBF /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				7EE0A6B92CFCE7A9000BDEBF /* RegisterViewModel.swift */,
+				7EE0A6BB2CFCE7BC000BDEBF /* RegisterViewController.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		7EE0A6BD2CFD48D4000BDEBF /* NavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				7EE0A6BE2CFD48F4000BDEBF /* MainNavigationController.swift */,
+			);
+			path = NavigationController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -426,6 +451,7 @@
 				7E10D9362CFB693400B11046 /* BookMapper.swift in Sources */,
 				7E10D9402CFB783300B11046 /* AddBookViewModel.swift in Sources */,
 				7E10D92B2CF9996E00B11046 /* Error+Ext.swift in Sources */,
+				7EE0A6BC2CFCE7BC000BDEBF /* RegisterViewController.swift in Sources */,
 				7EACAC1D2CFC8A250094C61B /* GeneralTextFieldView.swift in Sources */,
 				7E10D9422CFB787600B11046 /* AddBookUseCase.swift in Sources */,
 				7E10D93E2CFB782300B11046 /* AddBookViewController.swift in Sources */,
@@ -442,9 +468,11 @@
 				7E10D94E2CFC419800B11046 /* LoginViewController.swift in Sources */,
 				7EE0A6B42CFCCE8F000BDEBF /* PaswordTextField.swift in Sources */,
 				7EACAC232CFCB6D70094C61B /* UIColor+Ext.swift in Sources */,
+				7EE0A6BF2CFD48F4000BDEBF /* MainNavigationController.swift in Sources */,
 				7EE0A6B72CFCDB81000BDEBF /* MainActionButton.swift in Sources */,
 				7E23D8972CF9963500710336 /* SceneDelegate.swift in Sources */,
 				7E10D9522CFC41AA00B11046 /* LoginUseCase.swift in Sources */,
+				7EE0A6BA2CFCE7A9000BDEBF /* RegisterViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

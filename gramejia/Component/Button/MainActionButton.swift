@@ -26,7 +26,6 @@ class MainActionButton: UIButton {
     
     var highlightedTextColor: UIColor = .white
     
-    // Initialize the button with a capsule shape
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupButton()

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VdG-Lm-qhn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oTD-gJ-3N3">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
@@ -11,8 +11,27 @@
         <array key="Nunito-Bold.ttf">
             <string>Nunito-Bold</string>
         </array>
+        <array key="Nunito-SemiBold.ttf">
+            <string>Nunito-SemiBold</string>
+        </array>
     </customFonts>
     <scenes>
+        <!--Main Navigation Controller-->
+        <scene sceneID="qhN-eF-XKG">
+            <objects>
+                <navigationController id="oTD-gJ-3N3" customClass="MainNavigationController" customModule="gramejia" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ljN-vL-Npw">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="VdG-Lm-qhn" kind="relationship" relationship="rootViewController" id="A6t-8p-XaE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tpj-6A-jyd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1254" y="393"/>
+        </scene>
         <!--Add Book View Controller-->
         <scene sceneID="clX-IW-7NG">
             <objects>
@@ -36,15 +55,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zEb-hh-JlB">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zEb-hh-JlB" userLabel="MainScrollView">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="2WJ-fz-e8Z" userLabel="MainStackView">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="848"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1000"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3HC-zB-iiR" userLabel="AnimationContainer">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="250"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="250" id="aji-vd-erH"/>
                                                 </constraints>
@@ -109,6 +128,25 @@
                                                     <constraint firstItem="s6n-OA-Mvu" firstAttribute="leading" secondItem="cgK-e7-xhD" secondAttribute="leading" constant="24" id="nLF-NE-GPp"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9y5-sa-ORw" userLabel="ActionContainer">
+                                                <rect key="frame" x="0.0" y="872" width="393" height="128"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account? Create a new one." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JBg-NH-yNT">
+                                                        <rect key="frame" x="0.0" y="0.0" width="393" height="128"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="16"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="JBg-NH-yNT" secondAttribute="trailing" id="6nx-yy-PTq"/>
+                                                    <constraint firstItem="JBg-NH-yNT" firstAttribute="leading" secondItem="9y5-sa-ORw" secondAttribute="leading" id="NUS-7R-b0w"/>
+                                                    <constraint firstAttribute="bottom" secondItem="JBg-NH-yNT" secondAttribute="bottom" id="PFP-u2-fba"/>
+                                                    <constraint firstItem="JBg-NH-yNT" firstAttribute="top" secondItem="9y5-sa-ORw" secondAttribute="top" id="m99-BE-ZIS"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -130,13 +168,131 @@
                             <constraint firstItem="2WJ-fz-e8Z" firstAttribute="width" secondItem="QX5-fy-5PN" secondAttribute="width" id="sNi-bs-fZr"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="AeW-TI-zAZ"/>
                     <connections>
+                        <outlet property="hookRegisterLabel" destination="JBg-NH-yNT" id="hLn-Q7-sr0"/>
                         <outlet property="mainButton" destination="s6n-OA-Mvu" id="KEc-5j-Tbe"/>
+                        <outlet property="mainScrollView" destination="zEb-hh-JlB" id="rhc-Is-eNV"/>
+                        <outlet property="passwordTextField" destination="PNM-iW-0ZO" id="MvV-b5-g1f"/>
+                        <outlet property="usernameTextField" destination="k3k-1O-Iqh" id="E4i-n2-MX9"/>
+                        <segue destination="M2N-pz-oyh" kind="push" identifier="goToRegister" id="3JL-II-C3p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ju-Nr-Pz3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-28" y="420"/>
+            <point key="canvasLocation" x="-156" y="393"/>
+        </scene>
+        <!--Register View Controller-->
+        <scene sceneID="xpc-J8-BM8">
+            <objects>
+                <viewController id="M2N-pz-oyh" customClass="RegisterViewController" customModule="gramejia" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bgS-rY-cS3">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HAI-PR-FfW">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="RHb-yf-hfq" userLabel="MainStackView">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="848"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iSi-IA-A2b" userLabel="AnimationContainer">
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="250"/>
+                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="250" id="WzY-Ts-Fnd"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3nX-zH-ixq" userLabel="HeaderContainer">
+                                                <rect key="frame" x="0.0" y="274" width="393" height="50"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1X5-ix-RuP" userLabel="HeaderStack">
+                                                        <rect key="frame" x="24" y="0.0" width="345" height="50"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nice to know you !" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KmZ-K3-MD6" userLabel="GreetingLabel">
+                                                                <rect key="frame" x="0.0" y="0.0" width="345" height="50"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="28"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="1X5-ix-RuP" secondAttribute="bottom" id="IfE-Mq-0pP"/>
+                                                    <constraint firstAttribute="trailing" secondItem="1X5-ix-RuP" secondAttribute="trailing" constant="24" id="UDK-5h-bqQ"/>
+                                                    <constraint firstItem="1X5-ix-RuP" firstAttribute="top" secondItem="3nX-zH-ixq" secondAttribute="top" id="cdd-OT-73i"/>
+                                                    <constraint firstItem="1X5-ix-RuP" firstAttribute="leading" secondItem="3nX-zH-ixq" secondAttribute="leading" constant="24" id="xte-Io-TJG"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Kw-dH-gfi" userLabel="FormContainer">
+                                                <rect key="frame" x="0.0" y="348" width="393" height="500"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="K7A-xP-j23" userLabel="FormStack">
+                                                        <rect key="frame" x="24" y="0.0" width="345" height="426"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="345" placeholderIntrinsicHeight="80" translatesAutoresizingMaskIntoConstraints="NO" id="YHz-oF-KkN" userLabel="NameField" customClass="GeneralTextFieldView" customModule="gramejia" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="345" height="234"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="345" placeholderIntrinsicHeight="80" translatesAutoresizingMaskIntoConstraints="NO" id="9nY-wo-mxD" userLabel="UsernameField" customClass="GeneralTextFieldView" customModule="gramejia" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="250" width="345" height="80"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="345" placeholderIntrinsicHeight="80" translatesAutoresizingMaskIntoConstraints="NO" id="njQ-5z-Ajt" userLabel="PasswordField" customClass="PasswordTextFieldView" customModule="gramejia" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="346" width="345" height="80"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </view>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fwY-5p-Dko" customClass="MainActionButton" customModule="gramejia" customModuleProvider="target">
+                                                        <rect key="frame" x="24" y="450" width="345" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="lYc-sb-KoB"/>
+                                                        </constraints>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Login"/>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="K7A-xP-j23" firstAttribute="top" secondItem="6Kw-dH-gfi" secondAttribute="top" id="2qG-l3-EH4"/>
+                                                    <constraint firstAttribute="trailing" secondItem="K7A-xP-j23" secondAttribute="trailing" constant="24" id="Bes-mc-WG2"/>
+                                                    <constraint firstAttribute="bottom" secondItem="fwY-5p-Dko" secondAttribute="bottom" id="Jkt-AH-R3a"/>
+                                                    <constraint firstItem="fwY-5p-Dko" firstAttribute="leading" secondItem="6Kw-dH-gfi" secondAttribute="leading" constant="24" id="Me8-Cs-EOi"/>
+                                                    <constraint firstItem="fwY-5p-Dko" firstAttribute="top" secondItem="K7A-xP-j23" secondAttribute="bottom" constant="24" id="WTg-xt-LmI"/>
+                                                    <constraint firstItem="K7A-xP-j23" firstAttribute="leading" secondItem="6Kw-dH-gfi" secondAttribute="leading" constant="24" id="Zl3-B0-9ZA"/>
+                                                    <constraint firstAttribute="trailing" secondItem="fwY-5p-Dko" secondAttribute="trailing" constant="24" id="pfu-TY-s83"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="RHb-yf-hfq" firstAttribute="top" secondItem="HAI-PR-FfW" secondAttribute="top" id="Ho9-3m-oH3"/>
+                                    <constraint firstAttribute="bottom" secondItem="RHb-yf-hfq" secondAttribute="bottom" id="agf-OP-Zey"/>
+                                    <constraint firstAttribute="trailing" secondItem="RHb-yf-hfq" secondAttribute="trailing" id="dEB-By-lwF"/>
+                                    <constraint firstItem="RHb-yf-hfq" firstAttribute="leading" secondItem="HAI-PR-FfW" secondAttribute="leading" id="jMo-nY-ZtE"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="70r-nB-SJ6"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="HAI-PR-FfW" secondAttribute="trailing" id="463-2N-dJC"/>
+                            <constraint firstAttribute="bottom" secondItem="HAI-PR-FfW" secondAttribute="bottom" id="QYM-z4-b0N"/>
+                            <constraint firstItem="RHb-yf-hfq" firstAttribute="width" secondItem="bgS-rY-cS3" secondAttribute="width" id="gl3-Nz-prr"/>
+                            <constraint firstItem="HAI-PR-FfW" firstAttribute="top" secondItem="bgS-rY-cS3" secondAttribute="top" id="hth-dg-HNe"/>
+                            <constraint firstItem="HAI-PR-FfW" firstAttribute="leading" secondItem="bgS-rY-cS3" secondAttribute="leading" id="lyR-mj-D67"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="22W-Tm-Ybs"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SLv-xK-sO2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="906" y="393"/>
         </scene>
     </scenes>
     <resources>
