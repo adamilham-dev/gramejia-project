@@ -21,6 +21,9 @@ class PasswordTextFieldView: GeneralTextFieldView {
         self.leftImageView.isHidden = false
         self.leftImageView.image = UIImage(systemName: "key.fill")
         updateStateTextField()
+        
+        mainTextField.keyboardType = .default
+        mainTextField.textContentType = .password
     }
     
     override func setActions() {

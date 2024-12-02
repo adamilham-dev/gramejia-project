@@ -53,6 +53,9 @@ class GeneralTextFieldView: UIView {
         fieldStackView.addBorder(borderWidth: 2, borderColor: .mainBorderColor)
         fieldStackView.setCorner(cornerRadius: 16)
         mainStackView.spacing = 4
+        mainTextField.isSecureTextEntry = false
+        mainTextField.textContentType = .none
+        mainTextField.keyboardType = .asciiCapable
     }
     
     open func setImageSize(_ size: CGFloat) {
@@ -79,15 +82,12 @@ class GeneralTextFieldView: UIView {
 
 
 extension GeneralTextFieldView: UITextFieldDelegate {
-// UITextFieldDelegate method: When editing begins
     func textFieldDidBeginEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.1) { [weak self] in
             self?.fieldStackView.layer.borderColor = UIColor.black.cgColor
         }
         
     }
-    
-    // UITextFieldDelegate method: When editing ends
     func textFieldDidEndEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.1) { [weak self] in
             self?.fieldStackView.layer.borderColor = UIColor.mainBorderColor.cgColor
