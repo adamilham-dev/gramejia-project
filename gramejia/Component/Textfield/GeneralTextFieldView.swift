@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol GeneralTextFieldViewDelegate: AnyObject {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+}
+
+
 class GeneralTextFieldView: UIView {
     
     @IBOutlet var rootView: UIView!
@@ -18,6 +23,8 @@ class GeneralTextFieldView: UIView {
     @IBOutlet weak var fieldStackView: UIStackView!
     @IBOutlet weak var leftImageWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var rightImageWidthConstraint: NSLayoutConstraint!
+    
+    weak var delegate: GeneralTextFieldViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -115,5 +122,9 @@ extension GeneralTextFieldView: UITextFieldDelegate {
         UIView.animate(withDuration: 0.1) { [weak self] in
             self?.fieldStackView.layer.borderColor = UIColor.mainBorderColor.cgColor
         }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return delegate?.textField(textField, shouldChangeCharactersIn: range, replacementString: string) ?? true
     }
 }
