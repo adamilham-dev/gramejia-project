@@ -14,8 +14,19 @@ final class Injection: NSObject {
         return BookRepository.sharedInstance(coreDataManager)
     }
     
+    private func provideAuthenticationRepository() -> AuthenticationRepositoryProtocol {
+        let coreDataManager = CoreDataManager.shared
+        
+        return AuthenticationRepository.sharedInstance(coreDataManager)
+    }
+    
     func provideAddBookUseCase() -> AddBookUseCaseProtocol {
         let bookRepository = provideBookRepository()
         return AddBookUseCase(bookRepository: bookRepository)
+    }
+    
+    func provideRegisterUseCase() -> RegisterUseCaseProtocol {
+        let authenticationRepository = provideAuthenticationRepository()
+        return RegisterUseCase(authenticationRepository: authenticationRepository)
     }
 }
