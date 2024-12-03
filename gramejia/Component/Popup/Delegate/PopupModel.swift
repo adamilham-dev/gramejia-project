@@ -2,7 +2,7 @@
 //  PopupModel.swift
 //  gramejia
 //
-//  Created by Rivaldo Fernandes on 03/12/24.
+//  Created by Adam on 03/12/24.
 //
 
 import Foundation

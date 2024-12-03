@@ -19,11 +19,12 @@
         <attribute name="title" attributeType="String"/>
         <attribute name="updatedDate" attributeType="String"/>
     </entity>
-    <entity name="Customer" representedClassName="Customer" syncable="YES" codeGenerationType="class">
-        <attribute name="balance" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="id" optional="YES" attributeType="String"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="password" optional="YES" attributeType="String"/>
-        <attribute name="username" optional="YES" attributeType="String"/>
+    <entity name="CustomerEntity" representedClassName="CustomerEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="balance" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="isActive" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="password" attributeType="String"/>
+        <attribute name="username" attributeType="String"/>
     </entity>
 </model>

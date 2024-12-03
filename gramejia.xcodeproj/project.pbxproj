@@ -43,6 +43,18 @@
 		7E23D89C2CF9963500710336 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 7E23D89B2CF9963500710336 /* Base */; };
 		7E23D89E2CF9963600710336 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E23D89D2CF9963600710336 /* Assets.xcassets */; };
 		7E23D8A12CF9963600710336 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 7E23D8A02CF9963600710336 /* Base */; };
+		7E4DA5F52CFEE11000C5D7AC /* error.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E4DA5F42CFEE11000C5D7AC /* error.json */; };
+		7E4DA5F72CFEE6EA00C5D7AC /* PopupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4DA5F62CFEE6EA00C5D7AC /* PopupModel.swift */; };
+		7E7F8B292CFDF52700B61544 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7F8B282CFDF52700B61544 /* BaseViewController.swift */; };
+		7E7F8B2C2CFDFF8500B61544 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7F8B2B2CFDFF8500B61544 /* LoadingView.swift */; };
+		7E7F8B2F2CFE006400B61544 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 7E7F8B2E2CFE006400B61544 /* Lottie */; };
+		7E7F8B322CFE018400B61544 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E7F8B312CFE018400B61544 /* loading.json */; };
+		7E7F8B352CFE046200B61544 /* SnackBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7F8B342CFE046200B61544 /* SnackBarView.swift */; };
+		7E7F8B392CFE0B0400B61544 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7F8B372CFE0B0400B61544 /* PopupViewController.swift */; };
+		7E7F8B3A2CFE0B0400B61544 /* PopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E7F8B382CFE0B0400B61544 /* PopupViewController.xib */; };
+		7E7F8B3D2CFEADA000B61544 /* PopupTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7F8B3C2CFEADA000B61544 /* PopupTransitionDelegate.swift */; };
+		7E7F8B3F2CFEB55D00B61544 /* PopupViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7F8B3E2CFEB55D00B61544 /* PopupViewDelegate.swift */; };
+		7E8652FC2CFDCF4500EBF68B /* RegisterUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8652FB2CFDCF4500EBF68B /* RegisterUseCase.swift */; };
 		7EACAC1D2CFC8A250094C61B /* GeneralTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACAC1C2CFC8A250094C61B /* GeneralTextFieldView.swift */; };
 		7EACAC1F2CFC8A330094C61B /* GeneralTextFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EACAC1E2CFC8A330094C61B /* GeneralTextFieldView.xib */; };
 		7EACAC212CFCB17C0094C61B /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACAC202CFCB17C0094C61B /* UIView+Ext.swift */; };
@@ -53,6 +65,9 @@
 		7EE0A6BC2CFCE7BC000BDEBF /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE0A6BB2CFCE7BC000BDEBF /* RegisterViewController.swift */; };
 		7EE0A6BF2CFD48F4000BDEBF /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE0A6BE2CFD48F4000BDEBF /* MainNavigationController.swift */; };
 		7EE0A6C62CFD7FF7000BDEBF /* ImageActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE0A6C52CFD7FF7000BDEBF /* ImageActionButton.swift */; };
+		7EE0A6C82CFDBF50000BDEBF /* CustomerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE0A6C72CFDBF50000BDEBF /* CustomerModel.swift */; };
+		7EE0A6CA2CFDBFCC000BDEBF /* AuthenticationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE0A6C92CFDBFCC000BDEBF /* AuthenticationRepository.swift */; };
+		7EE0A6CC2CFDC1FD000BDEBF /* CustomerMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE0A6CB2CFDC1FD000BDEBF /* CustomerMapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +109,17 @@
 		7E23D89D2CF9963600710336 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7E23D8A02CF9963600710336 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7E23D8A22CF9963600710336 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E4DA5F42CFEE11000C5D7AC /* error.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = error.json; sourceTree = "<group>"; };
+		7E4DA5F62CFEE6EA00C5D7AC /* PopupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupModel.swift; sourceTree = "<group>"; };
+		7E7F8B282CFDF52700B61544 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		7E7F8B2B2CFDFF8500B61544 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		7E7F8B312CFE018400B61544 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
+		7E7F8B342CFE046200B61544 /* SnackBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackBarView.swift; sourceTree = "<group>"; };
+		7E7F8B372CFE0B0400B61544 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
+		7E7F8B382CFE0B0400B61544 /* PopupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupViewController.xib; sourceTree = "<group>"; };
+		7E7F8B3C2CFEADA000B61544 /* PopupTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupTransitionDelegate.swift; sourceTree = "<group>"; };
+		7E7F8B3E2CFEB55D00B61544 /* PopupViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewDelegate.swift; sourceTree = "<group>"; };
+		7E8652FB2CFDCF4500EBF68B /* RegisterUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUseCase.swift; sourceTree = "<group>"; };
 		7EACAC1C2CFC8A250094C61B /* GeneralTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTextFieldView.swift; sourceTree = "<group>"; };
 		7EACAC1E2CFC8A330094C61B /* GeneralTextFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralTextFieldView.xib; sourceTree = "<group>"; };
 		7EACAC202CFCB17C0094C61B /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
@@ -104,6 +130,9 @@
 		7EE0A6BB2CFCE7BC000BDEBF /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		7EE0A6BE2CFD48F4000BDEBF /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		7EE0A6C52CFD7FF7000BDEBF /* ImageActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageActionButton.swift; sourceTree = "<group>"; };
+		7EE0A6C72CFDBF50000BDEBF /* CustomerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerModel.swift; sourceTree = "<group>"; };
+		7EE0A6C92CFDBFCC000BDEBF /* AuthenticationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRepository.swift; sourceTree = "<group>"; };
+		7EE0A6CB2CFDC1FD000BDEBF /* CustomerMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E7F8B2F2CFE006400B61544 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +168,7 @@
 		7E10D9202CF9971B00B11046 /* Asset */ = {
 			isa = PBXGroup;
 			children = (
+				7E7F8B302CFE017300B61544 /* Lottie */,
 				7E10D9562CFC4F5400B11046 /* Font */,
 				7E23D89D2CF9963600710336 /* Assets.xcassets */,
 			);
@@ -197,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				7E10D92F2CFB638200B11046 /* BookRepository.swift */,
+				7EE0A6C92CFDBFCC000BDEBF /* AuthenticationRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -205,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				7E10D9322CFB64D400B11046 /* BookModel.swift */,
+				7EE0A6C72CFDBF50000BDEBF /* CustomerModel.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -213,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				7E10D9352CFB693400B11046 /* BookMapper.swift */,
+				7EE0A6CB2CFDC1FD000BDEBF /* CustomerMapper.swift */,
 			);
 			path = Mapper;
 			sourceTree = "<group>";
@@ -248,6 +282,10 @@
 		7E10D9532CFC4A4E00B11046 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				7E7F8B362CFE0AE500B61544 /* Popup */,
+				7E7F8B332CFE045700B61544 /* SnackBar */,
+				7E7F8B2A2CFDFF7A00B61544 /* Loading */,
+				7E7F8B272CFDF50E00B61544 /* Base */,
 				7EE0A6B52CFCDB77000BDEBF /* Button */,
 				7EE0A6B22CFCCE7B000BDEBF /* Textfield */,
 			);
@@ -327,6 +365,59 @@
 			path = gramejia;
 			sourceTree = "<group>";
 		};
+		7E7F8B272CFDF50E00B61544 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				7E7F8B282CFDF52700B61544 /* BaseViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		7E7F8B2A2CFDFF7A00B61544 /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				7E7F8B2B2CFDFF8500B61544 /* LoadingView.swift */,
+			);
+			path = Loading;
+			sourceTree = "<group>";
+		};
+		7E7F8B302CFE017300B61544 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				7E4DA5F42CFEE11000C5D7AC /* error.json */,
+				7E7F8B312CFE018400B61544 /* loading.json */,
+			);
+			path = Lottie;
+			sourceTree = "<group>";
+		};
+		7E7F8B332CFE045700B61544 /* SnackBar */ = {
+			isa = PBXGroup;
+			children = (
+				7E7F8B342CFE046200B61544 /* SnackBarView.swift */,
+			);
+			path = SnackBar;
+			sourceTree = "<group>";
+		};
+		7E7F8B362CFE0AE500B61544 /* Popup */ = {
+			isa = PBXGroup;
+			children = (
+				7E7F8B3B2CFEAD7200B61544 /* Delegate */,
+				7E7F8B372CFE0B0400B61544 /* PopupViewController.swift */,
+				7E7F8B382CFE0B0400B61544 /* PopupViewController.xib */,
+			);
+			path = Popup;
+			sourceTree = "<group>";
+		};
+		7E7F8B3B2CFEAD7200B61544 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				7E7F8B3C2CFEADA000B61544 /* PopupTransitionDelegate.swift */,
+				7E7F8B3E2CFEB55D00B61544 /* PopupViewDelegate.swift */,
+				7E4DA5F62CFEE6EA00C5D7AC /* PopupModel.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
 		7EE0A6B22CFCCE7B000BDEBF /* Textfield */ = {
 			isa = PBXGroup;
 			children = (
@@ -351,6 +442,7 @@
 			children = (
 				7EE0A6B92CFCE7A9000BDEBF /* RegisterViewModel.swift */,
 				7EE0A6BB2CFCE7BC000BDEBF /* RegisterViewController.swift */,
+				7E8652FB2CFDCF4500EBF68B /* RegisterUseCase.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -379,6 +471,9 @@
 			dependencies = (
 			);
 			name = gramejia;
+			packageProductDependencies = (
+				7E7F8B2E2CFE006400B61544 /* Lottie */,
+			);
 			productName = gramejia;
 			productReference = 7E23D8912CF9963500710336 /* gramejia.app */;
 			productType = "com.apple.product-type.application";
@@ -407,6 +502,9 @@
 				Base,
 			);
 			mainGroup = 7E23D8882CF9963500710336;
+			packageReferences = (
+				7E7F8B2D2CFE006400B61544 /* XCRemoteSwiftPackageReference "lottie-spm" */,
+			);
 			productRefGroup = 7E23D8922CF9963500710336 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -432,7 +530,10 @@
 				7E23D8A12CF9963600710336 /* Base in Resources */,
 				7E10D96E2CFC4F8000B11046 /* Nunito-BlackItalic.ttf in Resources */,
 				7E10D9712CFC4F8000B11046 /* Nunito-SemiBoldItalic.ttf in Resources */,
+				7E7F8B322CFE018400B61544 /* loading.json in Resources */,
+				7E4DA5F52CFEE11000C5D7AC /* error.json in Resources */,
 				7E10D9762CFC4F8000B11046 /* Nunito-ExtraLight.ttf in Resources */,
+				7E7F8B3A2CFE0B0400B61544 /* PopupViewController.xib in Resources */,
 				7E10D96A2CFC4F8000B11046 /* Nunito-LightItalic.ttf in Resources */,
 				7E10D9672CFC4F8000B11046 /* Nunito-BoldItalic.ttf in Resources */,
 				7E10D9702CFC4F8000B11046 /* Nunito-ExtraBoldItalic.ttf in Resources */,
@@ -451,9 +552,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E7F8B352CFE046200B61544 /* SnackBarView.swift in Sources */,
 				7E10D9362CFB693400B11046 /* BookMapper.swift in Sources */,
 				7E10D9402CFB783300B11046 /* AddBookViewModel.swift in Sources */,
+				7EE0A6CC2CFDC1FD000BDEBF /* CustomerMapper.swift in Sources */,
 				7E10D92B2CF9996E00B11046 /* Error+Ext.swift in Sources */,
+				7E7F8B292CFDF52700B61544 /* BaseViewController.swift in Sources */,
+				7E7F8B2C2CFDFF8500B61544 /* LoadingView.swift in Sources */,
 				7EE0A6BC2CFCE7BC000BDEBF /* RegisterViewController.swift in Sources */,
 				7EACAC1D2CFC8A250094C61B /* GeneralTextFieldView.swift in Sources */,
 				7E10D9422CFB787600B11046 /* AddBookUseCase.swift in Sources */,
@@ -463,10 +568,14 @@
 				7E10D9502CFC41A100B11046 /* LoginViewModel.swift in Sources */,
 				7E10D9792CFC51F200B11046 /* UIFont+Ext.swift in Sources */,
 				7E23D8952CF9963500710336 /* AppDelegate.swift in Sources */,
+				7E4DA5F72CFEE6EA00C5D7AC /* PopupModel.swift in Sources */,
 				7EE0A6C62CFD7FF7000BDEBF /* ImageActionButton.swift in Sources */,
+				7EE0A6CA2CFDBFCC000BDEBF /* AuthenticationRepository.swift in Sources */,
 				7E10D97C2CFC53EE00B11046 /* CustomFontUtil.swift in Sources */,
+				7E7F8B392CFE0B0400B61544 /* PopupViewController.swift in Sources */,
 				7E10D9392CFB76FD00B11046 /* Injection.swift in Sources */,
 				7E10D9282CF9990500B11046 /* CoreDataManager.swift in Sources */,
+				7E8652FC2CFDCF4500EBF68B /* RegisterUseCase.swift in Sources */,
 				7E10D9302CFB638200B11046 /* BookRepository.swift in Sources */,
 				7E10D9332CFB64D400B11046 /* BookModel.swift in Sources */,
 				7E10D94E2CFC419800B11046 /* LoginViewController.swift in Sources */,
@@ -476,6 +585,9 @@
 				7EE0A6B72CFCDB81000BDEBF /* MainActionButton.swift in Sources */,
 				7E23D8972CF9963500710336 /* SceneDelegate.swift in Sources */,
 				7E10D9522CFC41AA00B11046 /* LoginUseCase.swift in Sources */,
+				7E7F8B3F2CFEB55D00B61544 /* PopupViewDelegate.swift in Sources */,
+				7EE0A6C82CFDBF50000BDEBF /* CustomerModel.swift in Sources */,
+				7E7F8B3D2CFEADA000B61544 /* PopupTransitionDelegate.swift in Sources */,
 				7EE0A6BA2CFCE7A9000BDEBF /* RegisterViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -701,6 +813,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7E7F8B2D2CFE006400B61544 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7E7F8B2E2CFE006400B61544 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7E7F8B2D2CFE006400B61544 /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		7E10D9242CF997BB00B11046 /* gramejia.xcdatamodeld */ = {

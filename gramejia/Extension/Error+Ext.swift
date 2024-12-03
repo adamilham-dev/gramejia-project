@@ -10,4 +10,5 @@ import Foundation
 enum DatabaseError: LocalizedError {
     case dataNotFound
     case invalidDatabase
+    case dataAlreadyExist
 }
