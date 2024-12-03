@@ -170,6 +170,40 @@ class CoreDataManager {
         .eraseToAnyPublisher()
     }
     
+    func addUnique<T: NSManagedObject>(
+        predicate: NSPredicate,
+        updateHandler: @escaping (T) -> Void
+    ) ->  AnyPublisher<Bool, Error> {
+        
+        return Future<Bool, Error> { [weak self] promise in
+            guard let self = self, let context = self.context else {
+                promise(.failure(DatabaseError.invalidDatabase))
+                return
+            }
+            
+            let fetchRequest = NSFetchRequest<T>(entityName: String(describing: T.self))
+            fetchRequest.predicate = predicate
+            
+            do {
+                let results = try context.fetch(fetchRequest)
+                
+                if let existingEntity = results.first {
+                    promise(.failure(DatabaseError.dataAlreadyExist))
+                } else {
+                    let newEntity = T(context: context)
+                    updateHandler(newEntity)
+                    
+                    try context.save()
+                    promise(.success(true))
+                }
+            } catch {
+                context.rollback()
+                promise(.failure(error))
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+    
     
     func add<T: NSManagedObject>(entity: T.Type, configure: @escaping (T) -> Void) -> AnyPublisher<Bool, Error> {
         return Future<Bool, Error> { [weak self] promise in
