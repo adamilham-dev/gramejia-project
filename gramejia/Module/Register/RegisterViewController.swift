@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 class RegisterViewController: BaseViewController<RegisterViewModel> {
     
@@ -16,6 +17,7 @@ class RegisterViewController: BaseViewController<RegisterViewModel> {
     @IBOutlet weak var confirmationField: PasswordTextFieldView!
     
     @IBOutlet weak var loginButton: MainActionButton!
+    @IBOutlet weak var animationContainer: UIView!
     
     var nameValidity = false
     var usernameValidity = false
@@ -59,6 +61,7 @@ class RegisterViewController: BaseViewController<RegisterViewModel> {
     }
     
     private func setupView() {
+        setupAnimation()
         backButton.image = UIImage(systemName: "chevron.backward")
         backButton.normalBackgroundColor = .black
         backButton.imagePadding = .init(top: 8, left: 8, bottom: 8, right: 8)
@@ -71,6 +74,18 @@ class RegisterViewController: BaseViewController<RegisterViewModel> {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         loginButton.isEnabled = false
+    }
+    
+    private func setupAnimation() {
+        let registerAnimationView = LottieAnimationView(name: "register")
+        animationContainer.addSubview(registerAnimationView)
+        animationContainer.bringSubviewToFront(backButton)
+        registerAnimationView.frame = animationContainer.bounds
+        
+        registerAnimationView.contentMode = .scaleAspectFit
+        registerAnimationView.animationSpeed = 1.0
+        registerAnimationView.loopMode = .loop
+        registerAnimationView.play()
     }
     
     private func setupFields() {
@@ -122,59 +137,6 @@ class RegisterViewController: BaseViewController<RegisterViewModel> {
         self.navigationController?.popViewController(animated: true)
     }
     
-    private func validateName(textField: GeneralTextFieldView, inputText: String) -> Bool {
-        let nameRegex = "^(?=.*[A-Za-z])[A-Za-z ]{4,}$"
-        let predicate = NSPredicate(format: "SELF MATCHES %@", nameRegex)
-        let result = predicate.evaluate(with: inputText)
-        
-        if(!result) {
-            textField.setError(description: "Invalid name, minimum 4 characters of alphabet")
-            return false
-        }
-        textField.removeError()
-        return result
-    }
-    
-    private func validateUsername(textField: GeneralTextFieldView, inputText: String) -> Bool {
-        let usernameRegex = "^[A-Za-z0-9]{4,}$"
-        let predicate = NSPredicate(format: "SELF MATCHES %@", usernameRegex)
-        let result = predicate.evaluate(with: inputText)
-        
-        if(!result) {
-            textField.setError(description: "Invalid username, minimum 4 characters and not contain spaces")
-            return false
-        }
-        textField.removeError()
-        return result
-    }
-    
-    private func validatePassword(textField: GeneralTextFieldView, inputText: String) -> Bool {
-        let passwordRegex = "^.{8,}$"
-        let predicate = NSPredicate(format: "SELF MATCHES %@", passwordRegex)
-        let result = predicate.evaluate(with: inputText)
-        
-        if(!result) {
-            textField.setError(description: "Invalid password, minimum 8 characters")
-            return false
-        }
-        textField.removeError()
-        return result
-    }
-    
-    private func validateConfirmationPassword(mainTextField: GeneralTextFieldView, secondTextField: GeneralTextFieldView, inputText: String) -> Bool {
-        
-        guard let currentPassword = secondTextField.mainTextField.text else { return false }
-        
-        let result = currentPassword == inputText
-        
-        if(!result) {
-            mainTextField.setError(description: "Password not match")
-            return false
-        }
-        mainTextField.removeError()
-        return result
-    }
-    
     private func setStateMainButton(){
         loginButton.isEnabled = (nameValidity && usernameValidity && passwordValidity && confirmationValidity)
     }
@@ -190,20 +152,19 @@ class RegisterViewController: BaseViewController<RegisterViewModel> {
     }
 }
 
-
 extension RegisterViewController: GeneralTextFieldViewDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         let currentText = textField.text ?? ""
         let updatedText = (currentText as NSString).replacingCharacters(in: range, with: string)
         if(textField == nameField.mainTextField) {
-            nameValidity = validateName(textField: nameField, inputText: updatedText)
+            nameValidity = nameField.validateName(inputText: updatedText)
         } else if(textField == usernameField.mainTextField) {
-            usernameValidity = validateUsername(textField: usernameField, inputText: updatedText)
+            usernameValidity = usernameField.validateUsername(inputText: updatedText)
         } else if(textField == passwordField.mainTextField) {
-            passwordValidity = validatePassword(textField: passwordField, inputText: updatedText)
-        } else {
-            confirmationValidity = validateConfirmationPassword(mainTextField: confirmationField, secondTextField: passwordField, inputText: updatedText)
+            passwordValidity = passwordField.validatePassword(inputText: updatedText)
+        } else if(textField == confirmationField.mainTextField){
+            confirmationValidity = confirmationField.validateConfirmationPassword(secondTextField: passwordField, inputText: updatedText)
         }
         setStateMainButton()
         return true

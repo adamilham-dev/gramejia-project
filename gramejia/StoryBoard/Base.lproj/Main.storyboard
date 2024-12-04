@@ -212,7 +212,7 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="jTm-2i-zGw" firstAttribute="top" secondItem="iSi-IA-A2b" secondAttribute="top" constant="24" id="HGb-aq-FGF"/>
                                                     <constraint firstAttribute="height" constant="250" id="WzY-Ts-Fnd"/>
@@ -267,13 +267,16 @@
                                                             </view>
                                                         </subviews>
                                                     </stackView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fwY-5p-Dko" customClass="MainActionButton" customModule="gramejia" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fwY-5p-Dko" userLabel="RegisterButton" customClass="MainActionButton" customModule="gramejia" customModuleProvider="target">
                                                         <rect key="frame" x="24" y="450" width="345" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="lYc-sb-KoB"/>
                                                         </constraints>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                        <state key="normal" title="Login"/>
+                                                        <state key="normal" title="Register"/>
+                                                        <connections>
+                                                            <action selector="registerButtonTapped:" destination="M2N-pz-oyh" eventType="touchUpInside" id="GMV-Nc-HRk"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -310,6 +313,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="22W-Tm-Ybs"/>
                     <connections>
+                        <outlet property="animationContainer" destination="iSi-IA-A2b" id="zLC-DE-T5h"/>
                         <outlet property="backButton" destination="jTm-2i-zGw" id="2Mb-7Y-Cei"/>
                         <outlet property="confirmationField" destination="BvU-6E-6eh" id="NjZ-Wf-upT"/>
                         <outlet property="loginButton" destination="fwY-5p-Dko" id="Lsv-ZW-d5A"/>

@@ -10,5 +10,3 @@ import UIKit
 extension UIColor {
     static let mainBorderColor = UIColor(named: "MainBorderColor") ?? .black
 }
-
-
