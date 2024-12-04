@@ -128,3 +128,61 @@ extension GeneralTextFieldView: UITextFieldDelegate {
         return delegate?.textField(textField, shouldChangeCharactersIn: range, replacementString: string) ?? true
     }
 }
+
+extension GeneralTextFieldView {
+    func validateName(inputText: String) -> Bool {
+        let textField = self
+        let nameRegex = "^(?=.*[A-Za-z])[A-Za-z ]{4,}$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", nameRegex)
+        let result = predicate.evaluate(with: inputText)
+        
+        if(!result) {
+            textField.setError(description: "Invalid name, minimum 4 characters of alphabet")
+            return false
+        }
+        textField.removeError()
+        return result
+    }
+    
+    func validateUsername(inputText: String) -> Bool {
+        let textField = self
+        let usernameRegex = "^[A-Za-z0-9]{4,}$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", usernameRegex)
+        let result = predicate.evaluate(with: inputText)
+        
+        if(!result) {
+            textField.setError(description: "Invalid username, minimum 4 characters and not contain spaces")
+            return false
+        }
+        textField.removeError()
+        return result
+    }
+    
+    func validatePassword(inputText: String) -> Bool {
+        let textField = self
+        let passwordRegex = "^.{8,}$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", passwordRegex)
+        let result = predicate.evaluate(with: inputText)
+        
+        if(!result) {
+            textField.setError(description: "Invalid password, minimum 8 characters")
+            return false
+        }
+        textField.removeError()
+        return result
+    }
+    
+    func validateConfirmationPassword(secondTextField: GeneralTextFieldView, inputText: String) -> Bool {
+        let textField = self
+        guard let currentPassword = secondTextField.mainTextField.text else { return false }
+        
+        let result = currentPassword == inputText
+        
+        if(!result) {
+            textField.setError(description: "Password not match")
+            return false
+        }
+        textField.removeError()
+        return result
+    }
+}
