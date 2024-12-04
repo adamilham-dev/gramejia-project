@@ -10,7 +10,7 @@ import Combine
 
 class RegisterViewModel: BaseViewModel {
     private var registerUseCase: RegisterUseCaseProtocol = Injection().provideRegisterUseCase()
-
+    
     let isActionSuccess = CurrentValueSubject<Bool, Never>(false)
     
     func registerUser(customer: CustomerModel) {

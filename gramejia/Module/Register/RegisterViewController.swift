@@ -7,6 +7,7 @@
 
 import UIKit
 import Lottie
+import Combine
 
 class RegisterViewController: BaseViewController<RegisterViewModel> {
     
@@ -15,8 +16,8 @@ class RegisterViewController: BaseViewController<RegisterViewModel> {
     @IBOutlet weak var usernameField: GeneralTextFieldView!
     @IBOutlet weak var passwordField: PasswordTextFieldView!
     @IBOutlet weak var confirmationField: PasswordTextFieldView!
+    @IBOutlet weak var registerButton: MainActionButton!
     
-    @IBOutlet weak var loginButton: MainActionButton!
     @IBOutlet weak var animationContainer: UIView!
     
     var nameValidity = false
@@ -73,7 +74,7 @@ class RegisterViewController: BaseViewController<RegisterViewModel> {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        loginButton.isEnabled = false
+        registerButton.isEnabled = false
     }
     
     private func setupAnimation() {
@@ -138,7 +139,7 @@ class RegisterViewController: BaseViewController<RegisterViewModel> {
     }
     
     private func setStateMainButton(){
-        loginButton.isEnabled = (nameValidity && usernameValidity && passwordValidity && confirmationValidity)
+        registerButton.isEnabled = (nameValidity && usernameValidity && passwordValidity && confirmationValidity)
     }
     
     @IBAction func registerButtonTapped(_ sender: Any) {
