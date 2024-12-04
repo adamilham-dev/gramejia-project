@@ -8,10 +8,10 @@
 import Foundation
 
 struct CustomerModel: Identifiable {
-    let id: String
-    let name: String
-    let username: String
-    let password: String
-    let balance: Double
-    let isActive: Bool
+    var id: String = UUID().uuidString
+    var name: String
+    var username: String
+    var password: String
+    var balance: Double
+    var isActive: Bool
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: BaseViewController<RegisterViewModel> {
     
     @IBOutlet weak var backButton: ImageActionButton!
     @IBOutlet weak var nameField: GeneralTextFieldView!
@@ -28,8 +28,34 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.viewModel = RegisterViewModel()
         
         setupView()
+        bindDataViewModel()
+    }
+    
+    private func bindDataViewModel() {
+        viewModel?.isActionSuccess
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] response in
+                if response {
+                    self?.resetForm()
+                    self?.showSnackbar(message: "Account successfully registered")
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func resetForm() {
+        nameField.mainTextField.text = ""
+        usernameField.mainTextField.text = ""
+        passwordField.mainTextField.text = ""
+        confirmationField.mainTextField.text = ""
+        nameValidity = false
+        usernameValidity = false
+        passwordValidity = false
+        confirmationValidity = false
+        setStateMainButton()
     }
     
     private func setupView() {
@@ -58,10 +84,10 @@ class RegisterViewController: UIViewController {
         passwordField.mainTextField.textContentType = .password
         confirmationField.mainTextField.textContentType = .password
         
-        nameField.mainTextField.delegate = self
-        usernameField.mainTextField.delegate = self
-        passwordField.mainTextField.delegate = self
-        confirmationField.mainTextField.delegate = self
+        nameField.delegate = self
+        usernameField.delegate = self
+        passwordField.delegate = self
+        confirmationField.delegate = self
     }
     
     @objc func keyboardWillShow(notification: Notification) {
@@ -107,8 +133,6 @@ class RegisterViewController: UIViewController {
         }
         textField.removeError()
         return result
-        
-        
     }
     
     private func validateUsername(textField: GeneralTextFieldView, inputText: String) -> Bool {
@@ -154,10 +178,20 @@ class RegisterViewController: UIViewController {
     private func setStateMainButton(){
         loginButton.isEnabled = (nameValidity && usernameValidity && passwordValidity && confirmationValidity)
     }
+    
+    @IBAction func registerButtonTapped(_ sender: Any) {
+        guard let name = nameField.mainTextField.text,
+              let username = usernameField.mainTextField.text,
+              let password = passwordField.mainTextField.text else { return }
+        
+        let customer = CustomerModel(name: name, username: username, password: password, balance: 0, isActive: false)
+        
+        viewModel?.registerUser(customer: customer)
+    }
 }
 
 
-extension RegisterViewController: UITextFieldDelegate {
+extension RegisterViewController: GeneralTextFieldViewDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         let currentText = textField.text ?? ""
