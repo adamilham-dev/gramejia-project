@@ -10,4 +10,7 @@ import Combine
 
 class BaseViewModel {
     var cancellables = Set<AnyCancellable>()
+    
+    let error = CurrentValueSubject<Error?, Never>(nil)
+    let isLoading = CurrentValueSubject<Bool, Never>(false)
 }
