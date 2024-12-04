@@ -46,6 +46,10 @@
 		7E4DA5F52CFEE11000C5D7AC /* error.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E4DA5F42CFEE11000C5D7AC /* error.json */; };
 		7E4DA5F72CFEE6EA00C5D7AC /* PopupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4DA5F62CFEE6EA00C5D7AC /* PopupModel.swift */; };
 		7E4DA5F92CFF5D8500C5D7AC /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4DA5F82CFF5D8500C5D7AC /* BaseViewModel.swift */; };
+		7E4DA5FB2D00217400C5D7AC /* login.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E4DA5FA2D00217400C5D7AC /* login.json */; };
+		7E4DA5FD2D00235C00C5D7AC /* register.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E4DA5FC2D00235B00C5D7AC /* register.json */; };
+		7E4DA5FF2D00355500C5D7AC /* AdminModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4DA5FE2D00355500C5D7AC /* AdminModel.swift */; };
+		7E4DA6012D0035F200C5D7AC /* AdminMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4DA6002D0035F200C5D7AC /* AdminMapper.swift */; };
 		7E7F8B292CFDF52700B61544 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7F8B282CFDF52700B61544 /* BaseViewController.swift */; };
 		7E7F8B2C2CFDFF8500B61544 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7F8B2B2CFDFF8500B61544 /* LoadingView.swift */; };
 		7E7F8B2F2CFE006400B61544 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 7E7F8B2E2CFE006400B61544 /* Lottie */; };
@@ -113,6 +117,10 @@
 		7E4DA5F42CFEE11000C5D7AC /* error.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = error.json; sourceTree = "<group>"; };
 		7E4DA5F62CFEE6EA00C5D7AC /* PopupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupModel.swift; sourceTree = "<group>"; };
 		7E4DA5F82CFF5D8500C5D7AC /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		7E4DA5FA2D00217400C5D7AC /* login.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = login.json; sourceTree = "<group>"; };
+		7E4DA5FC2D00235B00C5D7AC /* register.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = register.json; sourceTree = "<group>"; };
+		7E4DA5FE2D00355500C5D7AC /* AdminModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminModel.swift; sourceTree = "<group>"; };
+		7E4DA6002D0035F200C5D7AC /* AdminMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminMapper.swift; sourceTree = "<group>"; };
 		7E7F8B282CFDF52700B61544 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		7E7F8B2B2CFDFF8500B61544 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		7E7F8B312CFE018400B61544 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
@@ -240,6 +248,7 @@
 			children = (
 				7E10D9322CFB64D400B11046 /* BookModel.swift */,
 				7EE0A6C72CFDBF50000BDEBF /* CustomerModel.swift */,
+				7E4DA5FE2D00355500C5D7AC /* AdminModel.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -249,6 +258,7 @@
 			children = (
 				7E10D9352CFB693400B11046 /* BookMapper.swift */,
 				7EE0A6CB2CFDC1FD000BDEBF /* CustomerMapper.swift */,
+				7E4DA6002D0035F200C5D7AC /* AdminMapper.swift */,
 			);
 			path = Mapper;
 			sourceTree = "<group>";
@@ -389,6 +399,8 @@
 			children = (
 				7E4DA5F42CFEE11000C5D7AC /* error.json */,
 				7E7F8B312CFE018400B61544 /* loading.json */,
+				7E4DA5FA2D00217400C5D7AC /* login.json */,
+				7E4DA5FC2D00235B00C5D7AC /* register.json */,
 			);
 			path = Lottie;
 			sourceTree = "<group>";
@@ -533,6 +545,7 @@
 				7E23D8A12CF9963600710336 /* Base in Resources */,
 				7E10D96E2CFC4F8000B11046 /* Nunito-BlackItalic.ttf in Resources */,
 				7E10D9712CFC4F8000B11046 /* Nunito-SemiBoldItalic.ttf in Resources */,
+				7E4DA5FB2D00217400C5D7AC /* login.json in Resources */,
 				7E7F8B322CFE018400B61544 /* loading.json in Resources */,
 				7E4DA5F52CFEE11000C5D7AC /* error.json in Resources */,
 				7E10D9762CFC4F8000B11046 /* Nunito-ExtraLight.ttf in Resources */,
@@ -545,6 +558,7 @@
 				7E10D96B2CFC4F8000B11046 /* Nunito-Bold.ttf in Resources */,
 				7E23D89C2CF9963500710336 /* Base in Resources */,
 				7EACAC1F2CFC8A330094C61B /* GeneralTextFieldView.xib in Resources */,
+				7E4DA5FD2D00235C00C5D7AC /* register.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,6 +579,8 @@
 				7EE0A6BC2CFCE7BC000BDEBF /* RegisterViewController.swift in Sources */,
 				7EACAC1D2CFC8A250094C61B /* GeneralTextFieldView.swift in Sources */,
 				7E10D9422CFB787600B11046 /* AddBookUseCase.swift in Sources */,
+				7E4DA6012D0035F200C5D7AC /* AdminMapper.swift in Sources */,
+				7E4DA5FF2D00355500C5D7AC /* AdminModel.swift in Sources */,
 				7E10D93E2CFB782300B11046 /* AddBookViewController.swift in Sources */,
 				7EACAC212CFCB17C0094C61B /* UIView+Ext.swift in Sources */,
 				7E10D9262CF997BB00B11046 /* gramejia.xcdatamodeld in Sources */,
