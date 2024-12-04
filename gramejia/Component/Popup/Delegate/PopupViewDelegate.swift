@@ -8,8 +8,8 @@
 import Foundation
 
 
-@objc protocol PopupViewDelegate: AnyObject {
-    @objc optional func didTappedFirstButton()
-    @objc optional func didTappedSecondButton()
-    @objc optional func onDismissed()
+protocol PopupViewDelegate: AnyObject {
+    func didTappedFirstButton()
+    func didTappedSecondButton()
+    func onDismissed()
 }

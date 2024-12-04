@@ -12,11 +12,25 @@ struct PopupModel {
     var description: String?
     var firstButtonTitle: String?
     var secondButtonTitle: String?
+    var category: CategoryPopup
+    var firstAction: ActionPopup
+    var secondAction: ActionPopup
     
-    init(title: String? = nil, description: String? = nil, firstButtonTitle: String? = nil, secondButtonTitle: String? = nil) {
+    init( category: CategoryPopup = .general, title: String? = nil, description: String? = nil, firstButtonTitle: String? = nil, secondButtonTitle: String? = nil, firstAction: ActionPopup = .dismiss, secondAction: ActionPopup = .dismiss) {
+        self.category = category
         self.title = title
         self.description = description
         self.firstButtonTitle = firstButtonTitle
         self.secondButtonTitle = secondButtonTitle
+        self.firstAction = firstAction
+        self.secondAction = secondAction
     }
+}
+
+enum CategoryPopup {
+    case general
+}
+
+enum ActionPopup {
+    case dismiss
 }

@@ -105,7 +105,7 @@ class PopupViewController: UIViewController {
         UIView.animate(withDuration: 0.3, animations: {
             self.mainContainerView.frame.origin.y = self.view.frame.height
         }) { _ in
-            self.delegate?.onDismissed?()
+            self.delegate?.onDismissed()
             self.dismiss(animated: true, completion: nil)
         }
     }
@@ -125,11 +125,11 @@ class PopupViewController: UIViewController {
     }
     
     @IBAction func firstButtonTapped(_ sender: Any) {
-        self.delegate?.didTappedFirstButton?()
+        self.delegate?.didTappedFirstButton()
     }
     
     @IBAction func secondButtonTapped(_ sender: Any) {
-        self.delegate?.didTappedSecondButton?()
+        self.delegate?.didTappedSecondButton()
         self.dismiss(animated: true)
     }
 }
