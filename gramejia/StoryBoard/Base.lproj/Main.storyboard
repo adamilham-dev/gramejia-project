@@ -63,7 +63,7 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3HC-zB-iiR" userLabel="AnimationContainer">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="250"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="250" id="aji-vd-erH"/>
                                                 </constraints>
@@ -108,13 +108,16 @@
                                                             </view>
                                                         </subviews>
                                                     </stackView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s6n-OA-Mvu" customClass="MainActionButton" customModule="gramejia" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s6n-OA-Mvu" userLabel="LoginButton" customClass="MainActionButton" customModule="gramejia" customModuleProvider="target">
                                                         <rect key="frame" x="24" y="450" width="345" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="eD1-cY-cTD"/>
                                                         </constraints>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" title="Login"/>
+                                                        <connections>
+                                                            <action selector="loginButtonTapped:" destination="VdG-Lm-qhn" eventType="touchUpInside" id="0ga-CB-T6t"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -170,11 +173,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="AeW-TI-zAZ"/>
                     <connections>
+                        <outlet property="animationContainer" destination="3HC-zB-iiR" id="nRO-i8-VH3"/>
                         <outlet property="hookRegisterLabel" destination="JBg-NH-yNT" id="hLn-Q7-sr0"/>
+                        <outlet property="loginButton" destination="s6n-OA-Mvu" id="icV-a2-RM7"/>
                         <outlet property="mainButton" destination="s6n-OA-Mvu" id="KEc-5j-Tbe"/>
                         <outlet property="mainScrollView" destination="zEb-hh-JlB" id="rhc-Is-eNV"/>
-                        <outlet property="passwordTextField" destination="PNM-iW-0ZO" id="MvV-b5-g1f"/>
-                        <outlet property="usernameTextField" destination="k3k-1O-Iqh" id="E4i-n2-MX9"/>
+                        <outlet property="passwordField" destination="PNM-iW-0ZO" id="GQO-fz-yWI"/>
+                        <outlet property="usernameField" destination="k3k-1O-Iqh" id="f0U-hq-6Dv"/>
                         <segue destination="M2N-pz-oyh" kind="push" identifier="goToRegister" id="3JL-II-C3p"/>
                     </connections>
                 </viewController>
@@ -316,10 +321,10 @@
                         <outlet property="animationContainer" destination="iSi-IA-A2b" id="zLC-DE-T5h"/>
                         <outlet property="backButton" destination="jTm-2i-zGw" id="2Mb-7Y-Cei"/>
                         <outlet property="confirmationField" destination="BvU-6E-6eh" id="NjZ-Wf-upT"/>
-                        <outlet property="loginButton" destination="fwY-5p-Dko" id="Lsv-ZW-d5A"/>
                         <outlet property="mainScrollView" destination="HAI-PR-FfW" id="thX-uD-JI8"/>
                         <outlet property="nameField" destination="YHz-oF-KkN" id="iPr-HU-faT"/>
                         <outlet property="passwordField" destination="njQ-5z-Ajt" id="5WP-Lw-JtU"/>
+                        <outlet property="registerButton" destination="fwY-5p-Dko" id="BEl-47-EAq"/>
                         <outlet property="usernameField" destination="9nY-wo-mxD" id="yDZ-KW-M57"/>
                     </connections>
                 </viewController>

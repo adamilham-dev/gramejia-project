@@ -6,60 +6,110 @@
 //
 
 import UIKit
+import Lottie
+import Combine
 
-class LoginViewController: UIViewController {
+class LoginViewController: BaseViewController<LoginViewModel> {
     @IBOutlet weak var mainButton: UIButton!
     
     @IBOutlet weak var hookRegisterLabel: UILabel!
     @IBOutlet weak var mainScrollView: UIScrollView!
+    
+    @IBOutlet weak var loginButton: MainActionButton!
+    
+    @IBOutlet weak var usernameField: GeneralTextFieldView!
+    @IBOutlet weak var passwordField: PasswordTextFieldView!
+    @IBOutlet weak var animationContainer: UIView!
+    
+    var usernameValidity = false
+    var passwordValidity = false
     var activeTextField: UITextField?
-    
-    @IBOutlet weak var usernameTextField: GeneralTextFieldView!
-    @IBOutlet weak var passwordTextField: PasswordTextFieldView!
-    
-    open var toolbar = UIToolbar()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //        mainButton.showsTouchWhenHighlighted = true
-        // Do any additional setup after loading the view.
+        self.viewModel = LoginViewModel()
         
-        
-        hookRegisterLabel.isUserInteractionEnabled = true
-        let rootTappedGesture = UITapGestureRecognizer(target: self, action: #selector(rootTapped))
-        hookRegisterLabel.addGestureRecognizer(rootTappedGesture)
+        setupView()
+        setupAction()
+        bindDataViewModel()
+    }
+    
+    private func setupView() {
+        setupAnimation()
+        mainScrollView.showsVerticalScrollIndicator = false
+        setupFields()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-//        
-//        usernameTextField.mainTextField.delegate = self
-//        passwordTextField.mainTextField.delegate = self
+        
+        loginButton.isEnabled = false
     }
     
-    @objc func rootTapped() {
-        performSegue(withIdentifier: "goToRegister", sender: nil)
+    private func bindDataViewModel() {
+        viewModel?.isUserLoggedIn
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] response in
+                if response {
+                    self?.resetForm()
+                    self?.showSnackbar(message: "Successfully Logged In")
+                }
+            }
+            .store(in: &cancellables)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    private func resetForm() {
+        usernameField.mainTextField.text = ""
+        passwordField.mainTextField.text = ""
+        usernameValidity = false
+        passwordValidity = false
+        setStateMainButton()
+    }
+    
+    private func setupAction() {
+        hookRegisterLabel.isUserInteractionEnabled = true
+        let hookRegisterLabelGesture = UITapGestureRecognizer(target: self, action: #selector(hookRegisterLabelTapped))
+        hookRegisterLabel.addGestureRecognizer(hookRegisterLabelGesture)
+        
+    }
+    
+    private func setupFields() {
+        usernameField.setTextFieldProperty(leftSystemImage: "mail.fill", placeholder: "Input your username")
+        passwordField.setTextFieldProperty(leftSystemImage: "lock.fill", placeholder: "Input your password")
+        
+        usernameField.mainTextField.textContentType = .username
+        passwordField.mainTextField.textContentType = .password
+        
+        usernameField.delegate = self
+        passwordField.delegate = self
+    }
+    
+    private func setupAnimation() {
+        let loginAnimationView = LottieAnimationView(name: "login")
+        animationContainer.addSubview(loginAnimationView)
+        loginAnimationView.frame = animationContainer.bounds
+        
+        loginAnimationView.contentMode = .scaleAspectFit
+        loginAnimationView.animationSpeed = 1.0
+        loginAnimationView.loopMode = .loop
+        loginAnimationView.play()
     }
     
     @objc func keyboardWillShow(notification: Notification) {
         guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
         let keyboardHeight = keyboardFrame.height
-
-        // Adjust the scroll view's content inset
+        
         mainScrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardHeight, right: 0)
         mainScrollView.scrollIndicatorInsets = mainScrollView.contentInset
-
-        // Scroll to the active text field
+        
         if let activeField = activeTextField {
             let fieldFrame = activeField.convert(activeField.bounds, to: mainScrollView)
             mainScrollView.scrollRectToVisible(fieldFrame, animated: true)
         }
+    }
+    
+    private func setStateMainButton(){
+        loginButton.isEnabled = (usernameValidity && passwordValidity)
     }
     
     @objc func keyboardWillHide(notification: Notification) {
@@ -67,29 +117,35 @@ class LoginViewController: UIViewController {
         mainScrollView.scrollIndicatorInsets = .zero
     }
     
-    private func addToolbarView() {
-        toolbar.sizeToFit()
-        let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(dismissKeyboard))
-        let spaceCalendar = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-        toolbar.setItems([spaceCalendar, done], animated: false)
+    @objc func hookRegisterLabelTapped() {
+        performSegue(withIdentifier: "goToRegister", sender: nil)
     }
     
-    @objc open dynamic func onDonePressed() {
-        view.endEditing(true)
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
-    @objc open dynamic func dismissKeyboard() {
-        view.endEditing(true)
+    @IBAction func loginButtonTapped(_ sender: Any) {
+        guard let username = usernameField.mainTextField.text,
+              let password = passwordField.mainTextField.text else { return }
+        viewModel.loginUser(username: username, password: password)
     }
 }
 
-extension LoginViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        activeTextField = textField
-    }
-
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        activeTextField = nil
+extension LoginViewController: GeneralTextFieldViewDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let currentText = textField.text ?? ""
+        let updatedText = (currentText as NSString).replacingCharacters(in: range, with: string)
+        if(textField == usernameField.mainTextField) {
+            usernameValidity = usernameField.validateUsername(inputText: updatedText)
+        } else if(textField == passwordField.mainTextField) {
+            passwordValidity = passwordField.validatePassword(inputText: updatedText)
+        }
+        setStateMainButton()
+        return true
     }
 }
 
