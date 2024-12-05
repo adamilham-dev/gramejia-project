@@ -53,9 +53,17 @@ class LoginViewController: BaseViewController<LoginViewModel> {
                 if response {
                     self?.resetForm()
                     self?.showSnackbar(message: "Successfully Logged In")
+                    self?.performSegue(withIdentifier: "gotoDashboard", sender: self)
                 }
             }
             .store(in: &cancellables)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "gotoDashboard" {
+                guard let navigationController = self.navigationController else { return }
+                navigationController.viewControllers.removeAll(where: { $0 != segue.destination })
+        }
     }
     
     private func resetForm() {
