@@ -52,6 +52,8 @@
 		7E4DA6012D0035F200C5D7AC /* AdminMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4DA6002D0035F200C5D7AC /* AdminMapper.swift */; };
 		7E4DA6042D00ACF700C5D7AC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4DA6032D00ACF700C5D7AC /* HomeViewController.swift */; };
 		7E4DA6072D00AD3500C5D7AC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4DA6062D00AD3500C5D7AC /* ProfileViewController.swift */; };
+		7E6ADAD32D0424E000BE222F /* GeneralTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6ADAD22D0424E000BE222F /* GeneralTextView.swift */; };
+		7E6ADAD52D0424FC00BE222F /* GeneralTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E6ADAD42D0424FC00BE222F /* GeneralTextView.xib */; };
 		7E7F8B292CFDF52700B61544 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7F8B282CFDF52700B61544 /* BaseViewController.swift */; };
 		7E7F8B2C2CFDFF8500B61544 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7F8B2B2CFDFF8500B61544 /* LoadingView.swift */; };
 		7E7F8B2F2CFE006400B61544 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 7E7F8B2E2CFE006400B61544 /* Lottie */; };
@@ -125,6 +127,8 @@
 		7E4DA6002D0035F200C5D7AC /* AdminMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminMapper.swift; sourceTree = "<group>"; };
 		7E4DA6032D00ACF700C5D7AC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		7E4DA6062D00AD3500C5D7AC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		7E6ADAD22D0424E000BE222F /* GeneralTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTextView.swift; sourceTree = "<group>"; };
+		7E6ADAD42D0424FC00BE222F /* GeneralTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralTextView.xib; sourceTree = "<group>"; };
 		7E7F8B282CFDF52700B61544 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		7E7F8B2B2CFDFF8500B61544 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		7E7F8B312CFE018400B61544 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
@@ -300,6 +304,7 @@
 		7E10D9532CFC4A4E00B11046 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				7E6ADAD12D04229900BE222F /* Textview */,
 				7E7F8B362CFE0AE500B61544 /* Popup */,
 				7E7F8B332CFE045700B61544 /* SnackBar */,
 				7E7F8B2A2CFDFF7A00B61544 /* Loading */,
@@ -397,6 +402,15 @@
 				7E4DA6062D00AD3500C5D7AC /* ProfileViewController.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		7E6ADAD12D04229900BE222F /* Textview */ = {
+			isa = PBXGroup;
+			children = (
+				7E6ADAD22D0424E000BE222F /* GeneralTextView.swift */,
+				7E6ADAD42D0424FC00BE222F /* GeneralTextView.xib */,
+			);
+			path = Textview;
 			sourceTree = "<group>";
 		};
 		7E7F8B272CFDF50E00B61544 /* Base */ = {
@@ -560,6 +574,7 @@
 				7E23D89E2CF9963600710336 /* Assets.xcassets in Resources */,
 				7E10D96D2CFC4F8000B11046 /* Nunito-Italic.ttf in Resources */,
 				7E10D9732CFC4F8000B11046 /* Nunito-Black.ttf in Resources */,
+				7E6ADAD52D0424FC00BE222F /* GeneralTextView.xib in Resources */,
 				7E10D9682CFC4F8000B11046 /* Nunito-ExtraLightItalic.ttf in Resources */,
 				7E10D9692CFC4F8000B11046 /* Nunito-Light.ttf in Resources */,
 				7E10D9752CFC4F8000B11046 /* Nunito-Regular.ttf in Resources */,
@@ -609,6 +624,7 @@
 				7E10D9262CF997BB00B11046 /* gramejia.xcdatamodeld in Sources */,
 				7E10D9502CFC41A100B11046 /* LoginViewModel.swift in Sources */,
 				7E10D9792CFC51F200B11046 /* UIFont+Ext.swift in Sources */,
+				7E6ADAD32D0424E000BE222F /* GeneralTextView.swift in Sources */,
 				7E4DA6072D00AD3500C5D7AC /* ProfileViewController.swift in Sources */,
 				7E23D8952CF9963500710336 /* AppDelegate.swift in Sources */,
 				7E4DA5F72CFEE6EA00C5D7AC /* PopupModel.swift in Sources */,
