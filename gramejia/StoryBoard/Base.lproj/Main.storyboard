@@ -39,13 +39,98 @@
                     <view key="view" contentMode="scaleToFill" id="fRJ-wy-mKz">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q1D-Vi-7k7" userLabel="MainScrollView">
+                                <rect key="frame" x="0.0" y="44" width="393" height="808"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="k84-QM-hnw" userLabel="MainStackView">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="896"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MFM-1Z-pP1" userLabel="FormContainer">
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="896"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="dQ9-F0-F00" userLabel="FormStack">
+                                                        <rect key="frame" x="24" y="0.0" width="345" height="656"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="393" placeholderIntrinsicHeight="80" translatesAutoresizingMaskIntoConstraints="NO" id="tFt-nR-rd9" userLabel="TitleField" customClass="GeneralTextFieldView" customModule="gramejia" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="345" height="80"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="393" placeholderIntrinsicHeight="80" translatesAutoresizingMaskIntoConstraints="NO" id="DUw-xE-bgO" userLabel="SynopsisField" customClass="GeneralTextView" customModule="gramejia" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="96" width="345" height="80"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="393" placeholderIntrinsicHeight="80" translatesAutoresizingMaskIntoConstraints="NO" id="Zde-Z0-ylC" userLabel="AuthorField" customClass="GeneralTextFieldView" customModule="gramejia" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="192" width="345" height="80"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="393" placeholderIntrinsicHeight="80" translatesAutoresizingMaskIntoConstraints="NO" id="eHn-d8-r5B" userLabel="PublisherField" customClass="GeneralTextFieldView" customModule="gramejia" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="288" width="345" height="80"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="393" placeholderIntrinsicHeight="80" translatesAutoresizingMaskIntoConstraints="NO" id="KN2-jE-I5B" userLabel="PublishedDateField" customClass="GeneralTextFieldView" customModule="gramejia" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="384" width="345" height="80"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="393" placeholderIntrinsicHeight="80" translatesAutoresizingMaskIntoConstraints="NO" id="gTC-b2-36U" userLabel="PriceField" customClass="GeneralTextFieldView" customModule="gramejia" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="480" width="345" height="80"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="393" placeholderIntrinsicHeight="80" translatesAutoresizingMaskIntoConstraints="NO" id="Lwl-pj-jbe" userLabel="Stock Field" customClass="GeneralTextFieldView" customModule="gramejia" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="576" width="345" height="80"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            </view>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uX7-7Z-30e" userLabel="SubmitButton" customClass="MainActionButton" customModule="gramejia" customModuleProvider="target">
+                                                        <rect key="frame" x="24" y="680" width="345" height="216"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="ET6-rF-sEC"/>
+                                                        </constraints>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Submit"/>
+                                                        <connections>
+                                                            <action selector="loginButtonTapped:" destination="VdG-Lm-qhn" eventType="touchUpInside" id="6wF-2I-P4G"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="uX7-7Z-30e" secondAttribute="bottom" id="6fo-oW-opS"/>
+                                                    <constraint firstItem="dQ9-F0-F00" firstAttribute="leading" secondItem="MFM-1Z-pP1" secondAttribute="leading" constant="24" id="Hgh-mq-8pi"/>
+                                                    <constraint firstItem="uX7-7Z-30e" firstAttribute="top" secondItem="dQ9-F0-F00" secondAttribute="bottom" constant="24" id="OnS-e4-nDv"/>
+                                                    <constraint firstItem="dQ9-F0-F00" firstAttribute="top" secondItem="MFM-1Z-pP1" secondAttribute="top" id="Q3d-gX-RIF"/>
+                                                    <constraint firstItem="uX7-7Z-30e" firstAttribute="leading" secondItem="MFM-1Z-pP1" secondAttribute="leading" constant="24" id="V7E-IK-g3D"/>
+                                                    <constraint firstAttribute="trailing" secondItem="dQ9-F0-F00" secondAttribute="trailing" constant="24" id="uyA-Z1-GQf"/>
+                                                    <constraint firstAttribute="trailing" secondItem="uX7-7Z-30e" secondAttribute="trailing" constant="24" id="whb-gu-5NB"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="k84-QM-hnw" secondAttribute="trailing" id="93N-qP-4X7"/>
+                                    <constraint firstItem="k84-QM-hnw" firstAttribute="leading" secondItem="q1D-Vi-7k7" secondAttribute="leading" id="Lp3-So-dQq"/>
+                                    <constraint firstAttribute="bottom" secondItem="k84-QM-hnw" secondAttribute="bottom" id="MCe-5l-9qV"/>
+                                    <constraint firstItem="k84-QM-hnw" firstAttribute="top" secondItem="q1D-Vi-7k7" secondAttribute="top" id="pKE-vD-aCA"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="2Hl-gB-bA4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="q1D-Vi-7k7" firstAttribute="leading" secondItem="fRJ-wy-mKz" secondAttribute="leading" id="LnX-EL-c01"/>
+                            <constraint firstItem="k84-QM-hnw" firstAttribute="width" secondItem="fRJ-wy-mKz" secondAttribute="width" id="NfQ-1r-noc"/>
+                            <constraint firstAttribute="trailing" secondItem="q1D-Vi-7k7" secondAttribute="trailing" id="Re0-SY-ymK"/>
+                            <constraint firstAttribute="bottom" secondItem="q1D-Vi-7k7" secondAttribute="bottom" id="eVr-m4-Twp"/>
+                            <constraint firstItem="q1D-Vi-7k7" firstAttribute="top" secondItem="2Hl-gB-bA4" secondAttribute="top" id="jAF-D9-Cde"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="1X4-j2-3b4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NnC-5b-hhR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-156" y="-306"/>
+            <point key="canvasLocation" x="3237" y="1561"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="Fk7-Ns-Ruc">
@@ -379,6 +464,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" id="sSf-7O-TSz"/>
                     <navigationItem key="navigationItem" id="JMC-wO-kRx"/>
+                    <connections>
+                        <segue destination="Vq7-yy-yzs" kind="show" identifier="gotoAddBook" id="He3-1z-Wvv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p0r-Bf-Z7V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

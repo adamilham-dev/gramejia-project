@@ -33,7 +33,14 @@ class HomeViewController: UIViewController {
     
     
     @objc func addBookNavItemTapped() {
-        print("LOGDEBUG: tapped")
+        performSegue(withIdentifier: "gotoAddBook", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "gotoAddBook",
+           let addBookVC = segue.destination as? AddBookViewController {
+            addBookVC.hidesBottomBarWhenPushed = true
+        }
     }
     
 }
