@@ -14,6 +14,8 @@ class AddBookViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController?.navigationBar.tintColor = .mainAccent
     }
 
 }
