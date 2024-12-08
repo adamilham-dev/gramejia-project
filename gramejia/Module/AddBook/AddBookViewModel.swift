@@ -9,36 +9,48 @@ import Foundation
 import Combine
 
 
-class AddBookViewModel {
-    private var cancellables = Set<AnyCancellable>()
+class AddBookViewModel: BaseViewModel {
     private var addBookUseCase: AddBookUseCaseProtocol = Injection().provideAddBookUseCase()
     
-    var errorState = PassthroughSubject<Error, Never>()
-    @Published var isSuccessAddedBook: Bool = false
+    let isSuccessAddBook = CurrentValueSubject<Bool, Never>(false)
+    
+    //    func registerUser(customer: CustomerModel) {
+    //        isLoading.send(true)
+    //
+    //        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+    //            self.registerUseCase.registerCustomer(customer: customer)
+    //                .receive(on: RunLoop.main)
+    //                .sink(receiveCompletion: { [weak self] completion in
+    //                    self?.isLoading.send(false)
+    //                    switch(completion) {
+    //                    case .finished:
+    //                        break
+    //                    case .failure(let error):
+    //                        self?.error.send(error)
+    //                    }
+    //                }, receiveValue: { [weak self] isSuccess in
+    //                    self?.error.send(nil)
+    //                    self?.isActionSuccess.send(isSuccess)
+    //                })
+    //                .store(in: &self.cancellables)
+    //        }
+    //    }
     
     func addBook(book: BookModel){
+        isLoading.send(true)
+        
         addBookUseCase.addBook(book: book)
-            .receive(on: DispatchQueue.main)
+            .receive(on: RunLoop.main)
             .sink(receiveCompletion: { [weak self] completion in
+                self?.isLoading.send(false)
                 switch(completion) {
                 case .finished:
                     break
                 case .failure(let error):
-                    self?.errorState.send(error)
+                    self?.error.send(error)
                 }
             }, receiveValue: { [weak self] isSuccess in
-                self?.isSuccessAddedBook = isSuccess
-            })
-            .store(in: &cancellables)
-    }
-    
-    func getBookList() {
-        addBookUseCase.getBookList()
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                
-            }, receiveValue: { bookList in
-                print("LOGDEBUG: get booklist \(bookList)")
+                self?.isSuccessAddBook.send(isSuccess)
             })
             .store(in: &cancellables)
     }

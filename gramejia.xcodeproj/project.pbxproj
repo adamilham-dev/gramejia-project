@@ -43,6 +43,12 @@
 		7E23D89C2CF9963500710336 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 7E23D89B2CF9963500710336 /* Base */; };
 		7E23D89E2CF9963600710336 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E23D89D2CF9963600710336 /* Assets.xcassets */; };
 		7E23D8A12CF9963600710336 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 7E23D8A02CF9963600710336 /* Base */; };
+		7E30C35F2D047077008581A3 /* ImageFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E30C35E2D047077008581A3 /* ImageFieldView.swift */; };
+		7E30C3632D0470AD008581A3 /* ImageFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E30C3622D0470AD008581A3 /* ImageFieldView.xib */; };
+		7E30C3692D048304008581A3 /* add-image.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E30C3682D048304008581A3 /* add-image.json */; };
+		7E30C36F2D05631E008581A3 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E30C36E2D05631E008581A3 /* Date+Ext.swift */; };
+		7E30C3712D056326008581A3 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E30C3702D056326008581A3 /* String+Ext.swift */; };
+		7E30C3732D056991008581A3 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E30C3722D056991008581A3 /* UIImage+Ext.swift */; };
 		7E4DA5F52CFEE11000C5D7AC /* error.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E4DA5F42CFEE11000C5D7AC /* error.json */; };
 		7E4DA5F72CFEE6EA00C5D7AC /* PopupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4DA5F62CFEE6EA00C5D7AC /* PopupModel.swift */; };
 		7E4DA5F92CFF5D8500C5D7AC /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4DA5F82CFF5D8500C5D7AC /* BaseViewModel.swift */; };
@@ -118,6 +124,12 @@
 		7E23D89D2CF9963600710336 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7E23D8A02CF9963600710336 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7E23D8A22CF9963600710336 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E30C35E2D047077008581A3 /* ImageFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFieldView.swift; sourceTree = "<group>"; };
+		7E30C3622D0470AD008581A3 /* ImageFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageFieldView.xib; sourceTree = "<group>"; };
+		7E30C3682D048304008581A3 /* add-image.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "add-image.json"; sourceTree = "<group>"; };
+		7E30C36E2D05631E008581A3 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
+		7E30C3702D056326008581A3 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		7E30C3722D056991008581A3 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		7E4DA5F42CFEE11000C5D7AC /* error.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = error.json; sourceTree = "<group>"; };
 		7E4DA5F62CFEE6EA00C5D7AC /* PopupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupModel.swift; sourceTree = "<group>"; };
 		7E4DA5F82CFF5D8500C5D7AC /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
@@ -304,6 +316,7 @@
 		7E10D9532CFC4A4E00B11046 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				7E30C35D2D047060008581A3 /* ImageField */,
 				7E6ADAD12D04229900BE222F /* Textview */,
 				7E7F8B362CFE0AE500B61544 /* Popup */,
 				7E7F8B332CFE045700B61544 /* SnackBar */,
@@ -344,6 +357,9 @@
 				7E10D9782CFC51F200B11046 /* UIFont+Ext.swift */,
 				7EACAC202CFCB17C0094C61B /* UIView+Ext.swift */,
 				7EACAC222CFCB6D70094C61B /* UIColor+Ext.swift */,
+				7E30C36E2D05631E008581A3 /* Date+Ext.swift */,
+				7E30C3702D056326008581A3 /* String+Ext.swift */,
+				7E30C3722D056991008581A3 /* UIImage+Ext.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -386,6 +402,15 @@
 				7E23D8A22CF9963600710336 /* Info.plist */,
 			);
 			path = gramejia;
+			sourceTree = "<group>";
+		};
+		7E30C35D2D047060008581A3 /* ImageField */ = {
+			isa = PBXGroup;
+			children = (
+				7E30C35E2D047077008581A3 /* ImageFieldView.swift */,
+				7E30C3622D0470AD008581A3 /* ImageFieldView.xib */,
+			);
+			path = ImageField;
 			sourceTree = "<group>";
 		};
 		7E4DA6022D00ACCC00C5D7AC /* Home */ = {
@@ -433,6 +458,7 @@
 		7E7F8B302CFE017300B61544 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				7E30C3682D048304008581A3 /* add-image.json */,
 				7E4DA5F42CFEE11000C5D7AC /* error.json */,
 				7E7F8B312CFE018400B61544 /* loading.json */,
 				7E4DA5FA2D00217400C5D7AC /* login.json */,
@@ -574,6 +600,7 @@
 				7E23D89E2CF9963600710336 /* Assets.xcassets in Resources */,
 				7E10D96D2CFC4F8000B11046 /* Nunito-Italic.ttf in Resources */,
 				7E10D9732CFC4F8000B11046 /* Nunito-Black.ttf in Resources */,
+				7E30C3632D0470AD008581A3 /* ImageFieldView.xib in Resources */,
 				7E6ADAD52D0424FC00BE222F /* GeneralTextView.xib in Resources */,
 				7E10D9682CFC4F8000B11046 /* Nunito-ExtraLightItalic.ttf in Resources */,
 				7E10D9692CFC4F8000B11046 /* Nunito-Light.ttf in Resources */,
@@ -596,6 +623,7 @@
 				7E23D89C2CF9963500710336 /* Base in Resources */,
 				7EACAC1F2CFC8A330094C61B /* GeneralTextFieldView.xib in Resources */,
 				7E4DA5FD2D00235C00C5D7AC /* register.json in Resources */,
+				7E30C3692D048304008581A3 /* add-image.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,12 +636,14 @@
 			files = (
 				7E7F8B352CFE046200B61544 /* SnackBarView.swift in Sources */,
 				7E10D9362CFB693400B11046 /* BookMapper.swift in Sources */,
+				7E30C3712D056326008581A3 /* String+Ext.swift in Sources */,
 				7E10D9402CFB783300B11046 /* AddBookViewModel.swift in Sources */,
 				7EE0A6CC2CFDC1FD000BDEBF /* CustomerMapper.swift in Sources */,
 				7E10D92B2CF9996E00B11046 /* Error+Ext.swift in Sources */,
 				7E7F8B292CFDF52700B61544 /* BaseViewController.swift in Sources */,
 				7E7F8B2C2CFDFF8500B61544 /* LoadingView.swift in Sources */,
 				7EE0A6BC2CFCE7BC000BDEBF /* RegisterViewController.swift in Sources */,
+				7E30C3732D056991008581A3 /* UIImage+Ext.swift in Sources */,
 				7EACAC1D2CFC8A250094C61B /* GeneralTextFieldView.swift in Sources */,
 				7E10D9422CFB787600B11046 /* AddBookUseCase.swift in Sources */,
 				7E4DA6012D0035F200C5D7AC /* AdminMapper.swift in Sources */,
@@ -633,9 +663,11 @@
 				7E10D97C2CFC53EE00B11046 /* CustomFontUtil.swift in Sources */,
 				7E7F8B392CFE0B0400B61544 /* PopupViewController.swift in Sources */,
 				7E10D9392CFB76FD00B11046 /* Injection.swift in Sources */,
+				7E30C36F2D05631E008581A3 /* Date+Ext.swift in Sources */,
 				7E10D9282CF9990500B11046 /* CoreDataManager.swift in Sources */,
 				7E8652FC2CFDCF4500EBF68B /* RegisterUseCase.swift in Sources */,
 				7E10D9302CFB638200B11046 /* BookRepository.swift in Sources */,
+				7E30C35F2D047077008581A3 /* ImageFieldView.swift in Sources */,
 				7E10D9332CFB64D400B11046 /* BookModel.swift in Sources */,
 				7E10D94E2CFC419800B11046 /* LoginViewController.swift in Sources */,
 				7EE0A6B42CFCCE8F000BDEBF /* PasswordTextField.swift in Sources */,

@@ -44,46 +44,54 @@
                                 <rect key="frame" x="0.0" y="44" width="393" height="808"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="k84-QM-hnw" userLabel="MainStackView">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="896"/>
+                                        <rect key="frame" x="0.0" y="24" width="393" height="992"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MFM-1Z-pP1" userLabel="FormContainer">
-                                                <rect key="frame" x="0.0" y="0.0" width="393" height="896"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="992"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="dQ9-F0-F00" userLabel="FormStack">
-                                                        <rect key="frame" x="24" y="0.0" width="345" height="656"/>
+                                                        <rect key="frame" x="24" y="0.0" width="345" height="918"/>
                                                         <subviews>
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="345" placeholderIntrinsicHeight="150" translatesAutoresizingMaskIntoConstraints="NO" id="7fl-XF-kOw" userLabel="ImageField" customClass="ImageFieldView" customModule="gramejia" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="345" height="150"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="393" placeholderIntrinsicHeight="80" translatesAutoresizingMaskIntoConstraints="NO" id="HY5-ud-dUy" userLabel="ISBNField" customClass="GeneralTextFieldView" customModule="gramejia" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="166" width="345" height="80"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            </view>
                                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="393" placeholderIntrinsicHeight="80" translatesAutoresizingMaskIntoConstraints="NO" id="tFt-nR-rd9" userLabel="TitleField" customClass="GeneralTextFieldView" customModule="gramejia" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="345" height="80"/>
+                                                                <rect key="frame" x="0.0" y="262" width="345" height="80"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             </view>
                                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="393" placeholderIntrinsicHeight="80" translatesAutoresizingMaskIntoConstraints="NO" id="DUw-xE-bgO" userLabel="SynopsisField" customClass="GeneralTextView" customModule="gramejia" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="96" width="345" height="80"/>
+                                                                <rect key="frame" x="0.0" y="358" width="345" height="80"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             </view>
                                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="393" placeholderIntrinsicHeight="80" translatesAutoresizingMaskIntoConstraints="NO" id="Zde-Z0-ylC" userLabel="AuthorField" customClass="GeneralTextFieldView" customModule="gramejia" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="192" width="345" height="80"/>
+                                                                <rect key="frame" x="0.0" y="454" width="345" height="80"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             </view>
                                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="393" placeholderIntrinsicHeight="80" translatesAutoresizingMaskIntoConstraints="NO" id="eHn-d8-r5B" userLabel="PublisherField" customClass="GeneralTextFieldView" customModule="gramejia" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="288" width="345" height="80"/>
+                                                                <rect key="frame" x="0.0" y="550" width="345" height="80"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             </view>
                                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="393" placeholderIntrinsicHeight="80" translatesAutoresizingMaskIntoConstraints="NO" id="KN2-jE-I5B" userLabel="PublishedDateField" customClass="GeneralTextFieldView" customModule="gramejia" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="384" width="345" height="80"/>
+                                                                <rect key="frame" x="0.0" y="646" width="345" height="80"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             </view>
                                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="393" placeholderIntrinsicHeight="80" translatesAutoresizingMaskIntoConstraints="NO" id="gTC-b2-36U" userLabel="PriceField" customClass="GeneralTextFieldView" customModule="gramejia" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="480" width="345" height="80"/>
+                                                                <rect key="frame" x="0.0" y="742" width="345" height="80"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             </view>
                                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="393" placeholderIntrinsicHeight="80" translatesAutoresizingMaskIntoConstraints="NO" id="Lwl-pj-jbe" userLabel="Stock Field" customClass="GeneralTextFieldView" customModule="gramejia" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="576" width="345" height="80"/>
+                                                                <rect key="frame" x="0.0" y="838" width="345" height="80"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             </view>
                                                         </subviews>
                                                     </stackView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uX7-7Z-30e" userLabel="SubmitButton" customClass="MainActionButton" customModule="gramejia" customModuleProvider="target">
-                                                        <rect key="frame" x="24" y="680" width="345" height="216"/>
+                                                        <rect key="frame" x="24" y="942" width="345" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="ET6-rF-sEC"/>
                                                         </constraints>
@@ -91,6 +99,7 @@
                                                         <state key="normal" title="Submit"/>
                                                         <connections>
                                                             <action selector="loginButtonTapped:" destination="VdG-Lm-qhn" eventType="touchUpInside" id="6wF-2I-P4G"/>
+                                                            <action selector="submitButtonTapped:" destination="Vq7-yy-yzs" eventType="touchUpInside" id="JfO-ZX-oyx"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -112,12 +121,12 @@
                                     <constraint firstAttribute="trailing" secondItem="k84-QM-hnw" secondAttribute="trailing" id="93N-qP-4X7"/>
                                     <constraint firstItem="k84-QM-hnw" firstAttribute="leading" secondItem="q1D-Vi-7k7" secondAttribute="leading" id="Lp3-So-dQq"/>
                                     <constraint firstAttribute="bottom" secondItem="k84-QM-hnw" secondAttribute="bottom" id="MCe-5l-9qV"/>
-                                    <constraint firstItem="k84-QM-hnw" firstAttribute="top" secondItem="q1D-Vi-7k7" secondAttribute="top" id="pKE-vD-aCA"/>
+                                    <constraint firstItem="k84-QM-hnw" firstAttribute="top" secondItem="q1D-Vi-7k7" secondAttribute="top" constant="24" id="pKE-vD-aCA"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2Hl-gB-bA4"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="q1D-Vi-7k7" firstAttribute="leading" secondItem="fRJ-wy-mKz" secondAttribute="leading" id="LnX-EL-c01"/>
                             <constraint firstItem="k84-QM-hnw" firstAttribute="width" secondItem="fRJ-wy-mKz" secondAttribute="width" id="NfQ-1r-noc"/>
@@ -127,6 +136,19 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1X4-j2-3b4"/>
+                    <connections>
+                        <outlet property="authorField" destination="Zde-Z0-ylC" id="KTT-KL-Shn"/>
+                        <outlet property="imageField" destination="7fl-XF-kOw" id="GO8-ix-y4I"/>
+                        <outlet property="isbnField" destination="HY5-ud-dUy" id="tzd-Zf-OHg"/>
+                        <outlet property="mainScrollView" destination="q1D-Vi-7k7" id="bsA-L7-bLD"/>
+                        <outlet property="priceField" destination="gTC-b2-36U" id="aBs-Bx-ElW"/>
+                        <outlet property="publishedDateField" destination="KN2-jE-I5B" id="HT2-8X-m4S"/>
+                        <outlet property="publisherField" destination="eHn-d8-r5B" id="9R4-ej-iAk"/>
+                        <outlet property="stockField" destination="Lwl-pj-jbe" id="Drt-nm-2W1"/>
+                        <outlet property="submitButton" destination="uX7-7Z-30e" id="ZMU-DC-Jz7"/>
+                        <outlet property="synopsisField" destination="DUw-xE-bgO" id="RRg-B9-EiZ"/>
+                        <outlet property="titleField" destination="tFt-nR-rd9" id="VxL-2P-ADD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NnC-5b-hhR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

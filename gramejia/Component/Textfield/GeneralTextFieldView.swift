@@ -7,8 +7,11 @@
 
 import UIKit
 
-protocol GeneralTextFieldViewDelegate: AnyObject {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+@objc protocol GeneralTextFieldViewDelegate: AnyObject {
+    @objc optional func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    
+    @objc optional func textFieldRightImageTapped(_ textField: UITextField)
+    @objc optional func textFieldRootTapped(_ textField: UITextField)
 }
 
 
@@ -79,10 +82,19 @@ class GeneralTextFieldView: UIView {
         self.isUserInteractionEnabled = true
         let rootTappedGesture = UITapGestureRecognizer(target: self, action: #selector(rootTapped))
         self.addGestureRecognizer(rootTappedGesture)
+        
+        rightImageView.isUserInteractionEnabled = true
+        let rightImageTappedGesture = UITapGestureRecognizer(target: self, action: #selector(rightImageTapped))
+        rightImageView.addGestureRecognizer(rightImageTappedGesture);
     }
     
-    @objc private func rootTapped() {
+    @objc open func rightImageTapped() {
+        delegate?.textFieldRightImageTapped?(mainTextField)
+    }
+    
+    @objc open func rootTapped() {
         mainTextField.becomeFirstResponder()
+        delegate?.textFieldRootTapped?(mainTextField)
     }
     
     open func setTextFieldProperty(leftSystemImage: String? = nil, rightSystemImage: String? = nil, placeholder: String) {
@@ -116,6 +128,7 @@ extension GeneralTextFieldView: UITextFieldDelegate {
         UIView.animate(withDuration: 0.1) { [weak self] in
             self?.fieldStackView.layer.borderColor = UIColor.black.cgColor
         }
+        delegate?.textFieldRootTapped?(textField)
         
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -125,19 +138,19 @@ extension GeneralTextFieldView: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        return delegate?.textField(textField, shouldChangeCharactersIn: range, replacementString: string) ?? true
+        return delegate?.textField?(textField, shouldChangeCharactersIn: range, replacementString: string) ?? true
     }
 }
 
 extension GeneralTextFieldView {
     func validateName(inputText: String) -> Bool {
         let textField = self
-        let nameRegex = "^(?=.*[A-Za-z])[A-Za-z ]{4,}$"
+        let nameRegex = #"^[a-zA-Z\s\-’]+$"#
         let predicate = NSPredicate(format: "SELF MATCHES %@", nameRegex)
         let result = predicate.evaluate(with: inputText)
         
         if(!result) {
-            textField.setError(description: "Invalid name, minimum 4 characters of alphabet")
+            textField.setError(description: "Invalid name, name cannot be empty or contains illegal characters")
             return false
         }
         textField.removeError()
@@ -180,6 +193,62 @@ extension GeneralTextFieldView {
         
         if(!result) {
             textField.setError(description: "Password not match")
+            return false
+        }
+        textField.removeError()
+        return result
+    }
+    
+    func validateDigits(inputText: String, minDigits: Int, maxDigits: Int) -> Bool {
+        let textField = self
+        let digitsRegex = #"^\d{13}$"#
+        let predicate = NSPredicate(format: "SELF MATCHES %@", digitsRegex)
+        let result = predicate.evaluate(with: inputText)
+        
+        if(!result) {
+            textField.setError(description: "Invalid number, minimum \(minDigits) and maximum \(maxDigits) and not contain spaces")
+            return false
+        }
+        textField.removeError()
+        return result
+    }
+    
+    func validateTitle(inputText: String) -> Bool {
+        let textField = self
+        let titleRegex = #"^[\w\s\p{P}’“”\-]+$"#
+        let predicate = NSPredicate(format: "SELF MATCHES %@", titleRegex)
+        let result = predicate.evaluate(with: inputText)
+        
+        if(!result) {
+            textField.setError(description: "Invalid title, title should not empty or contains illegal characters")
+            return false
+        }
+        textField.removeError()
+        return result
+    }
+    
+    func validateStock(inputText: String) -> Bool {
+        let textField = self
+        let stockRegex = #"^\d+$"#
+        let predicate = NSPredicate(format: "SELF MATCHES %@", stockRegex)
+        let result = predicate.evaluate(with: inputText)
+        
+        if(!result) {
+            textField.setError(description: "Invalid stock, stock should not empty or negative")
+            return false
+        }
+        textField.removeError()
+        return result
+    }
+    
+    func validatePrice(inputText: String) -> Bool {
+        let textField = self
+        let priceRegex = #"^\d+(\.\d{1,2})?$"#
+        let predicate = NSPredicate(format: "SELF MATCHES %@", priceRegex)
+        let result = predicate.evaluate(with: inputText)
+        
+        if(!result) {
+            textField.setError(description: "Invalid price, price should not empty or negative")
             return false
         }
         textField.removeError()

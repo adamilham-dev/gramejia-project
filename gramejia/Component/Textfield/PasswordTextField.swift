@@ -26,15 +26,7 @@ class PasswordTextFieldView: GeneralTextFieldView {
         mainTextField.textContentType = .password
     }
     
-    override func setActions() {
-        super.setActions()
-        
-        rightImageView.isUserInteractionEnabled = true
-        let rightImageTappedGesture = UITapGestureRecognizer(target: self, action: #selector(rightImageTapped))
-        rightImageView.addGestureRecognizer(rightImageTappedGesture)
-    }
-    
-    @objc private func rightImageTapped() {
+    override func rightImageTapped() {
         isSecurePassword.toggle()
         updateStateTextField()
     }
