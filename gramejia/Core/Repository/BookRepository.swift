@@ -36,7 +36,8 @@ extension BookRepository: BookRepositoryProtocol {
     
     func addBook(book: BookModel) -> AnyPublisher<Bool, any Error> {
         let predicate = NSPredicate(format: "id == %@", book.id)
-        return self.coreDataManager.addOrUpdateEntity(predicate: predicate) { (entity: BookEntity) in
+        
+        return self.coreDataManager.addUnique(predicate: predicate) { (entity: BookEntity) in
             BookMapper.bookDomainToEntity(book, entity: entity)
         }
         .eraseToAnyPublisher()
