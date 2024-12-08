@@ -8,8 +8,9 @@
 import UIKit
 
 
-protocol GeneralTextViewDelegate: AnyObject {
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool
+@objc protocol GeneralTextViewDelegate: AnyObject {
+    @objc optional func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool
+    @objc optional func textViewRootTapped(_ textView: UITextView)
 }
 
 class GeneralTextView: UIView {
@@ -84,9 +85,11 @@ class GeneralTextView: UIView {
     
     @objc private func rootTapped() {
         mainTextView.becomeFirstResponder()
+        delegate?.textViewRootTapped?(mainTextView)
     }
     
     open func setTextFieldProperty(leftSystemImage: String? = nil, rightSystemImage: String? = nil, placeholder: String) {
+        placeholderLabel.text = placeholder
         if let leftImage = leftSystemImage {
             self.leftImageView.image = UIImage(systemName: leftImage)
             self.leftImageView.isHidden = false
@@ -115,6 +118,7 @@ extension GeneralTextView: UITextViewDelegate {
         UIView.animate(withDuration: 0.1) { [weak self] in
             self?.fieldStackView.layer.borderColor = UIColor.black.cgColor
         }
+        delegate?.textViewRootTapped?(textView)
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -128,6 +132,22 @@ extension GeneralTextView: UITextViewDelegate {
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        return delegate?.textView(textView, shouldChangeTextIn: range, replacementText: text) ?? true
+        return delegate?.textView?(textView, shouldChangeTextIn: range, replacementText: text) ?? true
+    }
+}
+
+extension GeneralTextView {
+    func validateSynopsis(inputText: String) -> Bool {
+        let textView = self
+        let synopsisRegex = #"^[\w\s\p{P}’“”!,.?;:()\-–—\[\]{}'"`*#&@/\\|+=<>~^]+$"#
+        let predicate = NSPredicate(format: "SELF MATCHES %@", synopsisRegex)
+        let result = predicate.evaluate(with: inputText)
+        
+        if(!result) {
+            textView.setError(description: "Invalid synopsis, synopsis must have some word")
+            return false
+        }
+        textView.removeError()
+        return result
     }
 }
