@@ -27,4 +27,17 @@ extension String {
 
         return isoFormatter.date(from: self)
     }
+    
+    func formatISODate(to format: String = "E, dd MMM yyyy") -> String? {
+            let isoFormatter = ISO8601DateFormatter()
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = format
+            dateFormatter.locale = Locale(identifier: "en_US")
+            
+            guard let date = isoFormatter.date(from: self) else {
+                return nil
+            }
+            
+            return dateFormatter.string(from: date)
+        }
 }
