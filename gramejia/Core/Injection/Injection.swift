@@ -34,4 +34,9 @@ final class Injection: NSObject {
         let authenticationRepository = provideAuthenticationRepository()
         return LoginUseCase(authenticationRepository: authenticationRepository)
     }
+    
+    func provideHomeUseCase() -> HomeUseCaseProtocol {
+        let bookRepository = provideBookRepository()
+        return HomeUseCase(bookRepository: bookRepository)
+    }
 }
