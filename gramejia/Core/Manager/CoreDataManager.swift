@@ -420,6 +420,46 @@ class CoreDataManager {
     }
     
     
+    func getCartBookItem(username: String, idBook: String) -> AnyPublisher<CartItemEntity?, Error> {
+        return Future<CartItemEntity?, Error> { [weak self] promise in
+            guard let self = self, let context = self.context else {
+                promise(.failure(DatabaseError.invalidDatabase))
+                return
+            }
+            
+            if let user = getSingle(CustomerEntity.self, predicate: NSPredicate(format: "username == %@", username)){
+                var cart = user.cart
+                if cart == nil {
+                    let newCart = CartEntity(context: context)
+                    newCart.owner = user
+                    cart = newCart
+                }
+                
+                guard let book = getSingle(BookEntity.self, predicate: NSPredicate(format: "id == %@", idBook)) else {
+                    promise(.failure(DatabaseError.dataNotFound))
+                    return
+                }
+                
+                if let cart = cart {
+                    if let cartItems = cart.items as? Set<CartItemEntity> {
+                        if let existingCartItem = cartItems.first(where: { $0.book == book }) {
+                            promise(.success(existingCartItem))
+                        } else {
+                            promise(.success(nil))
+                        }
+                    } else {
+                        promise(.failure(DatabaseError.dataNotFound))
+                    }
+                } else {
+                    promise(.failure(DatabaseError.dataNotFound))
+                }
+            } else {
+                promise(.failure(DatabaseError.dataNotFound))
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+    
     func addBookToCart(username: String, idBook: String, quantity: Int64) -> AnyPublisher<Bool, Error> {
         return Future<Bool, Error> { [weak self] promise in
             guard let self = self, let context = self.context else {
@@ -443,7 +483,7 @@ class CoreDataManager {
                 if let cart = cart {
                     if var cartItems = cart.items as? Set<CartItemEntity> {
                         if let existingCartItem = cartItems.first(where: { $0.book == book }) {
-                            existingCartItem.quantity += quantity
+                            existingCartItem.quantity = quantity
                         } else {
                             let cartItem = CartItemEntity(context: context)
                             cartItem.book = book
@@ -468,7 +508,6 @@ class CoreDataManager {
             } else {
                 promise(.failure(DatabaseError.dataNotFound))
             }
-            
         }
         .eraseToAnyPublisher()
     }
