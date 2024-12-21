@@ -14,4 +14,5 @@ struct CustomerModel: Identifiable {
     var password: String
     var balance: Double
     var isActive: Bool
+    var profileImage: String?
 }
