@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Nunito-Bold.ttf">
+            <string>Nunito-Bold</string>
+        </array>
+        <array key="Nunito-Regular.ttf">
+            <string>Nunito-Regular</string>
+        </array>
+        <array key="Nunito-SemiBold.ttf">
+            <string>Nunito-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="172" id="KGk-i7-Jjw" customClass="CartTableViewCell" customModule="gramejia" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="589" height="172"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="589" height="172"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ApX-k3-cJa" userLabel="MainContainerView">
+                        <rect key="frame" x="24" y="12" width="541" height="150"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JVj-PM-o4I">
+                                <rect key="frame" x="0.0" y="0.0" width="120" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="GtK-rh-6OS"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="UvB-2v-sLZ" userLabel="InfoStack">
+                                <rect key="frame" x="128" y="35.333333333333336" width="405" height="79.666666666666657"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Harry Potter and The Deathly Hallow" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6T5-eB-rlb">
+                                        <rect key="frame" x="0.0" y="0.0" width="405" height="18.666666666666668"/>
+                                        <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rp500.000.- x 100 pcs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2n-Ak-kxy">
+                                        <rect key="frame" x="0.0" y="26.666666666666664" width="405" height="16.333333333333336"/>
+                                        <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="14"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bfq-qQ-UrU">
+                                        <rect key="frame" x="0.0" y="50.999999999999993" width="405" height="2"/>
+                                        <color key="backgroundColor" systemColor="separatorColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="maq-00-MlB"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtotal : Rp100.000.000.000,-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1bD-VA-7Ld">
+                                        <rect key="frame" x="0.0" y="60.999999999999993" width="405" height="18.666666666666664"/>
+                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96648123830255839" green="0.96648123830255839" blue="0.96648123830255839" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="150" id="76P-Q3-Jpv"/>
+                            <constraint firstItem="UvB-2v-sLZ" firstAttribute="centerY" secondItem="ApX-k3-cJa" secondAttribute="centerY" id="JNd-PL-7Pk"/>
+                            <constraint firstItem="JVj-PM-o4I" firstAttribute="top" secondItem="ApX-k3-cJa" secondAttribute="top" id="Me4-Ur-MRa"/>
+                            <constraint firstItem="UvB-2v-sLZ" firstAttribute="leading" secondItem="JVj-PM-o4I" secondAttribute="trailing" constant="8" id="a5n-qf-iPr"/>
+                            <constraint firstAttribute="trailing" secondItem="UvB-2v-sLZ" secondAttribute="trailing" constant="8" id="fpL-CM-yd9"/>
+                            <constraint firstAttribute="bottom" secondItem="JVj-PM-o4I" secondAttribute="bottom" id="iwI-Oq-ViR"/>
+                            <constraint firstItem="JVj-PM-o4I" firstAttribute="leading" secondItem="ApX-k3-cJa" secondAttribute="leading" id="tEi-cS-BDf"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ApX-k3-cJa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="ISt-jp-3j1"/>
+                    <constraint firstAttribute="bottom" secondItem="ApX-k3-cJa" secondAttribute="bottom" constant="12" id="ZqC-hh-gc4"/>
+                    <constraint firstItem="ApX-k3-cJa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="bim-l2-8iy"/>
+                    <constraint firstAttribute="trailing" secondItem="ApX-k3-cJa" secondAttribute="trailing" constant="24" id="uD1-ZN-KSG"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="coverImageView" destination="JVj-PM-o4I" id="Tro-Uv-5hS"/>
+                <outlet property="mainContainerView" destination="ApX-k3-cJa" id="Rjb-bQ-S9O"/>
+                <outlet property="priceQuantityLabel" destination="P2n-Ak-kxy" id="qtw-Jg-8VF"/>
+                <outlet property="subtotalLabel" destination="1bD-VA-7Ld" id="LOo-0w-YHp"/>
+                <outlet property="titleLabel" destination="6T5-eB-rlb" id="LuN-vG-3JR"/>
+            </connections>
+            <point key="canvasLocation" x="-227" y="-23"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="separatorColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
