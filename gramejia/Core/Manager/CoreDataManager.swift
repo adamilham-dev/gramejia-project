@@ -59,8 +59,6 @@ class CoreDataManager {
     }
     
     func fetch<T: NSManagedObject>(_ entity: T.Type, predicate: NSPredicate? = nil, sortDescriptor: [NSSortDescriptor]? = nil) -> AnyPublisher<[T], Error> {
-        
-        
         return Future<[T], Error> { [weak self] promise in
             guard let self = self, let context = self.context else {
                 promise(.failure(DatabaseError.invalidDatabase))
@@ -226,6 +224,26 @@ class CoreDataManager {
         .eraseToAnyPublisher()
     }
     
+    func addMultiple<T: NSManagedObject>(entity: T.Type, configure: @escaping (NSManagedObjectContext) -> Void) -> AnyPublisher<Bool, Error> {
+        return Future<Bool, Error> { [weak self] promise in
+            guard let self = self, let context = self.context else {
+                promise(.failure(DatabaseError.invalidDatabase))
+                return
+            }
+            
+            configure(context)
+            
+            do {
+                try context.save()
+                promise(.success(true))
+            } catch let error {
+                context.rollback()
+                promise(.failure(error))
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+    
     func addWithLimit<T: NSManagedObject>(entity: T.Type, limit: Int, sortDescriptor: [NSSortDescriptor]? = nil, configure: @escaping (T) -> Void) -> AnyPublisher<Bool, Error> {
         return Future<Bool, Error> { [weak self] promise in
             guard let self = self, let context = self.context else {
@@ -328,6 +346,129 @@ class CoreDataManager {
                 context.rollback()
                 promise(.failure(error))
             }
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    private func getSingle<T: NSManagedObject>(_ entity: T.Type, predicate: NSPredicate?) -> T? {
+        guard let context = self.context else {
+            return nil
+        }
+        
+        let fetchRequest = NSFetchRequest<T>(entityName: String(describing: T.self))
+        fetchRequest.predicate = predicate
+        
+        do {
+            let results = try context.fetch(fetchRequest)
+            return results.first
+        } catch let error {
+            return nil
+        }
+    }
+    
+    func fetchCartItems(username: String) -> AnyPublisher<[CartItemEntity], Error> {
+        return Future<[CartItemEntity], Error> { [weak self] promise in
+            guard let self = self, let context = self.context else {
+                promise(.failure(DatabaseError.invalidDatabase))
+                return
+            }
+            
+            if let user = getSingle(CustomerEntity.self, predicate: NSPredicate(format: "username == %@", username)){
+                var cart = user.cart
+                if cart == nil {
+                    let newCart = CartEntity(context: context)
+                    newCart.owner = user
+                    cart = newCart
+                }
+                
+                if let cart = cart {
+                    if var cartItems = cart.items as? Set<CartItemEntity> {
+                        promise(.success(Array(cartItems)))
+                    } else {
+                        promise(.failure(DatabaseError.dataNotFound))
+                    }
+                } else {
+                    promise(.failure(DatabaseError.dataNotFound))
+                }
+
+            } else {
+                promise(.failure(DatabaseError.dataNotFound))
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    func addTransaction(username: String, handler: @escaping (NSManagedObjectContext, CustomerEntity) -> Void) -> AnyPublisher<Bool, Error> {
+        return Future<Bool, Error> { [weak self] promise in
+            guard let self = self, let context = self.context else {
+                promise(.failure(DatabaseError.invalidDatabase))
+                return
+            }
+            
+            guard let user = getSingle(CustomerEntity.self, predicate: NSPredicate(format: "username == %@", username)) else { return }
+            
+            handler(context, user)
+            
+            do {
+                try context.save()
+                promise(.success(true))
+            } catch {
+                context.rollback()
+                promise(.failure(error))
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    
+    func addBookToCart(username: String, idBook: String, quantity: Int64) -> AnyPublisher<Bool, Error> {
+        return Future<Bool, Error> { [weak self] promise in
+            guard let self = self, let context = self.context else {
+                promise(.failure(DatabaseError.invalidDatabase))
+                return
+            }
+            
+            if let user = getSingle(CustomerEntity.self, predicate: NSPredicate(format: "username == %@", username)){
+                var cart = user.cart
+                if cart == nil {
+                    let newCart = CartEntity(context: context)
+                    newCart.owner = user
+                    cart = newCart
+                }
+                
+                guard let book = getSingle(BookEntity.self, predicate: NSPredicate(format: "id == %@", idBook)) else {
+                    promise(.failure(DatabaseError.dataNotFound))
+                    return
+                }
+                
+                if let cart = cart {
+                    if var cartItems = cart.items as? Set<CartItemEntity> {
+                        if let existingCartItem = cartItems.first(where: { $0.book == book }) {
+                            existingCartItem.quantity += quantity
+                        } else {
+                            let cartItem = CartItemEntity(context: context)
+                            cartItem.book = book
+                            cartItem.cart = cart
+                            cartItem.quantity = quantity
+                            cartItems.insert(cartItem)
+                        }
+                    } else {
+                        promise(.failure(DatabaseError.dataNotFound))
+                    }
+                    do {
+                        try context.save()
+                        promise(.success(true))
+                    } catch {
+                        context.rollback()
+                        promise(.failure(error))
+                    }
+                } else {
+                    promise(.failure(DatabaseError.dataNotFound))
+                }
+
+            } else {
+                promise(.failure(DatabaseError.dataNotFound))
+            }
+            
         }
         .eraseToAnyPublisher()
     }
