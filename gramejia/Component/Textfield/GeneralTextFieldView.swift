@@ -190,9 +190,7 @@ extension GeneralTextFieldView {
         guard let currentPassword = secondTextField.mainTextField.text else { return false }
         
         let result = currentPassword == inputText
-        
-        print("LOGDEBUG: \(result)")
-        
+
         if(!result) {
             textField.setError(description: "Password not match")
             return false
