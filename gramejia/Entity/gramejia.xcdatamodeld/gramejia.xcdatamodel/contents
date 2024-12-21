@@ -5,6 +5,7 @@
         <attribute name="level" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="password" optional="YES" attributeType="String"/>
+        <attribute name="profileImage" optional="YES" attributeType="String"/>
         <attribute name="username" optional="YES" attributeType="String"/>
     </entity>
     <entity name="BookEntity" representedClassName="BookEntity" syncable="YES" codeGenerationType="class">
@@ -18,6 +19,16 @@
         <attribute name="synopsis" attributeType="String"/>
         <attribute name="title" attributeType="String"/>
         <attribute name="updatedDate" attributeType="String"/>
+        <relationship name="cartItems" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CartItemEntity" inverseName="book" inverseEntity="CartItemEntity"/>
+    </entity>
+    <entity name="CartEntity" representedClassName="CartEntity" syncable="YES" codeGenerationType="class">
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CartItemEntity" inverseName="cart" inverseEntity="CartItemEntity"/>
+        <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CustomerEntity" inverseName="cart" inverseEntity="CustomerEntity"/>
+    </entity>
+    <entity name="CartItemEntity" representedClassName="CartItemEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="quantity" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="book" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BookEntity" inverseName="cartItems" inverseEntity="BookEntity"/>
+        <relationship name="cart" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CartEntity" inverseName="items" inverseEntity="CartEntity"/>
     </entity>
     <entity name="CustomerEntity" representedClassName="CustomerEntity" syncable="YES" codeGenerationType="class">
         <attribute name="balance" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -25,6 +36,28 @@
         <attribute name="isActive" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="password" attributeType="String"/>
+        <attribute name="profileImage" optional="YES" attributeType="String"/>
         <attribute name="username" attributeType="String"/>
+        <relationship name="cart" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="CartEntity" inverseName="owner" inverseEntity="CartEntity"/>
+        <relationship name="transaction" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TransactionEntity" inverseName="owner" inverseEntity="TransactionEntity"/>
+    </entity>
+    <entity name="TransactionEntity" representedClassName="TransactionEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="transactionDate" optional="YES" attributeType="String"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TransactionItemEntity" inverseName="transaction" inverseEntity="TransactionItemEntity"/>
+        <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CustomerEntity" inverseName="transaction" inverseEntity="CustomerEntity"/>
+    </entity>
+    <entity name="TransactionItemEntity" representedClassName="TransactionItemEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="author" attributeType="String"/>
+        <attribute name="coverImage" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="idBook" optional="YES" attributeType="String"/>
+        <attribute name="price" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="publishedDate" attributeType="String"/>
+        <attribute name="publisher" attributeType="String"/>
+        <attribute name="quantity" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="synopsis" attributeType="String"/>
+        <attribute name="title" attributeType="String"/>
+        <relationship name="transaction" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TransactionEntity" inverseName="items" inverseEntity="TransactionEntity"/>
     </entity>
 </model>
