@@ -46,7 +46,7 @@ class SnackbarView: UIView {
         messageLabel.text = message
     }
     
-    func show(in parentView: UIView, duration: TimeInterval = 3.0) {
+    func show(in parentView: UIView, duration: TimeInterval = 3.0, dismissCompletion: (() -> Void)? = nil) {
         parentView.addSubview(self)
        
         translatesAutoresizingMaskIntoConstraints = false
@@ -63,6 +63,7 @@ class SnackbarView: UIView {
 
         dismissTimer = Timer.scheduledTimer(withTimeInterval: duration, repeats: false) { [weak self] _ in
             self?.dismiss()
+            dismissCompletion?()
         }
     }
     
