@@ -55,11 +55,17 @@ class BaseViewController<ViewModel: BaseViewModel>: UIViewController {
         present(popupView, animated: true)
     }
     
-    func showSnackbar(message: String, duration: TimeInterval = 3.0) {
+    func showSnackbar(message: String, duration: TimeInterval = 3.0, dismissCompletion: (() -> Void)? = nil) {
         snackbarView?.dismiss()
+        
+        guard let keyWindow = UIApplication.shared.connectedScenes
+                .compactMap({ $0 as? UIWindowScene })
+                .flatMap({ $0.windows })
+                .first(where: { $0.isKeyWindow }) else { return }
+        
         snackbarView = SnackbarView(message: message)
         guard let snackbarView = snackbarView else { return }
-        snackbarView.show(in: view, duration: duration)
+        snackbarView.show(in: keyWindow, duration: duration, dismissCompletion: dismissCompletion)
     }
     
     func hideSnackbar() {
