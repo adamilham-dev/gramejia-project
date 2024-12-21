@@ -33,7 +33,7 @@ class LoginViewController: BaseViewController<LoginViewModel> {
         setupView()
         setupAction()
         bindDataViewModel()
-        viewModel.loadBooks()
+        viewModel.preloadData()
     }
     
     private func setupView() {

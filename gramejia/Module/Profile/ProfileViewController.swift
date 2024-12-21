@@ -111,9 +111,7 @@ class ProfileViewController: BaseViewController<ProfileViewModel> {
         nameField.mainTextField.textContentType = .name
         passwordField.mainTextField.textContentType = .password
         confirmationField.mainTextField.textContentType = .password
-        
         balanceStack.isHidden = viewModel.typeUser == "admin"
-        
         balanceField.delegate = self
         nameField.delegate = self
         passwordField.delegate = self

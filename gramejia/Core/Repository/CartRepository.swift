@@ -18,6 +18,8 @@ protocol CartRepositoryProtocol {
     func deleteCartBookItem(username: String, idBook: String) -> AnyPublisher<Bool, Error>
     
     func deleteCartUser(username: String) -> AnyPublisher<Bool, Error>
+    
+    func updateBookStock(username: String, cartItems: [CartItemModel]) -> AnyPublisher<Bool, Error>
 }
 
 final class CartRepository: NSObject {
@@ -61,5 +63,17 @@ extension CartRepository: CartRepositoryProtocol {
         return self.coreDataManager.fetchCartItems(username: username)
             .map { $0.map { CartMapper.cartItemEntityToDomain($0) } }
             .eraseToAnyPublisher()
+    }
+    
+    func updateBookStock(username: String, cartItems: [CartItemModel]) -> AnyPublisher<Bool, Error> {
+        return self.coreDataManager.updateStockBook(username: username) { context, cartItemEntities in
+            for item in cartItems {
+                if let entity = cartItemEntities.first(where: { $0.book?.id == item.book?.id }) {
+                    let newStock = (entity.book?.stock ?? 0) - item.quantity
+                    entity.book?.stock = newStock
+                    context.delete(entity)
+                }
+            }
+        }
     }
 }

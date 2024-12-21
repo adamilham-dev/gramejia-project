@@ -11,6 +11,7 @@ import Combine
 protocol LoginUseCaseProtocol {
     func authenticateCustomer(username: String, password: String) -> AnyPublisher<CustomerModel?, Error>
     func authenticateAdmin(username: String, password: String) -> AnyPublisher<AdminModel?, Error>
+    func registerAdmin(admin: AdminModel) -> AnyPublisher<Bool, Error>
 }
 
 class LoginUseCase: LoginUseCaseProtocol {
@@ -26,5 +27,9 @@ class LoginUseCase: LoginUseCaseProtocol {
     
     func authenticateAdmin(username: String, password: String) -> AnyPublisher<AdminModel?, Error> {
         return authenticationRepository.authenticateAdmin(username: username, password: password)
+    }
+    
+    func registerAdmin(admin: AdminModel) -> AnyPublisher<Bool, Error> {
+        return authenticationRepository.registerAdmin(admin: admin)
     }
 }

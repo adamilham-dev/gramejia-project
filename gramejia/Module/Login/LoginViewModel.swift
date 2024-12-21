@@ -15,25 +15,23 @@ class LoginViewModel: BaseViewModel {
     let userFullname = CurrentValueSubject<String?, Never>(nil)
     let userUsername = CurrentValueSubject<String?, Never>(nil)
     
-    
-    func loadBooks(){
+    func preloadData() {
         let isFirstTime: Bool? = UserDefaultsManager.shared.get(forKey: .isFirstTime)
-        
         if(isFirstTime == false) {
             
         } else {
-            guard let url = Bundle.main.url(forResource: "preload", withExtension: "json") else {
-                print("File not found")
-                return
-            }
             
+            loginUseCase.registerAdmin(admin: AdminModel(name: "Root", username: "root", password: "rootgramejia"))
+                .sink { _ in } receiveValue: { _ in }
+                .store(in: &cancellables)
+
+            
+            guard let url = Bundle.main.url(forResource: "preload", withExtension: "json") else { return }
             do {
                 let data = try Data(contentsOf: url)
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase // Adjust for snake_case keys if necessary
                 let books = try decoder.decode([BookModel].self, from: data)
-                
-                print(books.count)
                 
                 CoreDataManager.shared.addMultiple(entity: BookEntity.self) { context in
                     for book in books {
@@ -41,22 +39,8 @@ class LoginViewModel: BaseViewModel {
                         BookMapper.bookDomainToEntity(book, entity: newEntity)
                     }
                 }.receive(on: RunLoop.main)
-                    .sink { completion in
-                        switch(completion) {
-                        case .finished:
-                            break
-                        case .failure(let error):
-                            print("LOGDEBUG: \(error.localizedDescription)")
-                        }
-                    } receiveValue: { isSuccess in
-                        print("LOGDEBUG: \(isSuccess)")
-                    }.store(in: &cancellables)
-
-                
-            } catch {
-                print("Error decoding JSON: \(error)")
-            }
-            
+                    .sink { _ in } receiveValue: { _ in }.store(in: &cancellables)
+            } catch {}
             UserDefaultsManager.shared.set(value: false, forKey: .isFirstTime)
         }
     }

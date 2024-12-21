@@ -52,14 +52,15 @@ class HomeViewController: BaseViewController<HomeViewModel> {
         let width = ( UIScreen.main.bounds.width - totalSpacing) / 2
         let height = width * 1.5
         layout.itemSize = CGSize(width: width, height: height)
-
+        
         mainCollectionView.collectionViewLayout = layout
     }
     
     private func setupNavigation() {
         navigationController?.navigationBar.tintColor = .mainAccent
         self.title = "Home"
-        if(viewModel.userLevel == "customer") {
+        //MARK NN: change level
+        if(viewModel.userLevel == "admin") {
             let rightBarButton = UIBarButtonItem(
                 image: UIImage(systemName: "plus.app"),
                 style: .plain,
@@ -93,7 +94,7 @@ class HomeViewController: BaseViewController<HomeViewModel> {
             }
             
         } else if segue.identifier == "gotoDetailBook", let detailBookVC = segue.destination as? DetailBookViewController {
-                detailBookVC.hidesBottomBarWhenPushed = true
+            detailBookVC.hidesBottomBarWhenPushed = true
             detailBookVC.bookModel = selectedBook
         }
     }
@@ -120,8 +121,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.selectedBook = viewModel.bookList.value[indexPath.item]
-        //MARK NN: change leve
-        if(viewModel.userLevel == "customer") {
+        //MARK NN: change level
+        if(viewModel.userLevel == "admin") {
             performSegue(withIdentifier: "gotoAddBook", sender: "edit")
         } else {
             performSegue(withIdentifier: "gotoDetailBook", sender: nil)

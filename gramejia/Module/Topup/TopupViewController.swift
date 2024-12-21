@@ -30,6 +30,7 @@ class TopupViewController: BaseViewController<TopupViewModel> {
                 if response {
                     self?.resetForm()
                     self?.showSnackbar(message: "Successfully Update Balance")
+                    self?.navigationController?.popViewController(animated: true)
                 }
             }
             .store(in: &cancellables)

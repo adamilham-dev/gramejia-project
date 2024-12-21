@@ -18,6 +18,7 @@ class CartViewModel: BaseViewModel {
     let isCartItemDeleted = CurrentValueSubject<Bool, Never>(false)
     let isCartUserDeleted = CurrentValueSubject<Bool, Never>(false)
     let isSuccessUpdateBalance = CurrentValueSubject<Bool, Never>(false)
+    let isSuccessUpdateStockBook = CurrentValueSubject<Bool, Never>(false)
     let username: String = UserDefaultsManager.shared.get(forKey: .currentUsername) ?? ""
     
     func getCarts(){
@@ -102,25 +103,6 @@ class CartViewModel: BaseViewModel {
             .store(in: &self.cancellables)
     }
     
-    func deleteCartUser() {
-        isLoading.send(true)
-        
-        self.cartUseCase.deleteCartUser(username: username)
-            .receive(on: RunLoop.main)
-            .sink(receiveCompletion: { [weak self] completion in
-                switch(completion) {
-                case .finished:
-                    break
-                case .failure(let error):
-                    self?.error.send(error)
-                }
-            }, receiveValue: { [weak self] isSuccess in
-                self?.error.send(nil)
-                self?.isCartUserDeleted.send(isSuccess)
-            })
-            .store(in: &self.cancellables)
-    }
-    
     func updateBalance(balance: Double){
         isLoading.send(true)
         
@@ -136,6 +118,25 @@ class CartViewModel: BaseViewModel {
                 }
             }, receiveValue: { [weak self] isSuccess in
                 self?.isSuccessUpdateBalance.send(isSuccess)
+            })
+            .store(in: &cancellables)
+    }
+    
+    func updateStockBook(){
+        isLoading.send(true)
+        
+        self.cartUseCase.updateBookStock(username: username, cartItems: cartItemList.value)
+            .receive(on: RunLoop.main)
+            .sink(receiveCompletion: { [weak self] completion in
+                self?.isLoading.send(false)
+                switch(completion) {
+                case .finished:
+                    break
+                case .failure(let error):
+                    self?.error.send(error)
+                }
+            }, receiveValue: { [weak self] isSuccess in
+                self?.isSuccessUpdateStockBook.send(isSuccess)
             })
             .store(in: &cancellables)
     }

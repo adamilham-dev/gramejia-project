@@ -2,7 +2,6 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22522" systemVersion="23B81" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
     <entity name="AdminEntity" representedClassName="AdminEntity" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="String"/>
-        <attribute name="level" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="password" optional="YES" attributeType="String"/>
         <attribute name="profileImage" optional="YES" attributeType="String"/>
@@ -22,6 +21,7 @@
         <relationship name="cartItems" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CartItemEntity" inverseName="book" inverseEntity="CartItemEntity"/>
     </entity>
     <entity name="CartEntity" representedClassName="CartEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="String"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CartItemEntity" inverseName="cart" inverseEntity="CartItemEntity"/>
         <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CustomerEntity" inverseName="cart" inverseEntity="CustomerEntity"/>
     </entity>

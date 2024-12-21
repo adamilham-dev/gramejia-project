@@ -12,6 +12,5 @@ struct AdminModel: Identifiable {
     var name: String
     var username: String
     var password: String
-    var level: String
     var profileImage: String?
 }

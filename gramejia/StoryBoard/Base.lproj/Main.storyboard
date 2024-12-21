@@ -376,7 +376,7 @@
                         <outlet property="stockLabel" destination="bqu-Uk-EOO" id="MtC-fb-XZO"/>
                         <outlet property="titleLabel" destination="jyu-oD-g7J" id="VF5-j5-pub"/>
                         <outlet property="totalPaymentLabel" destination="RUF-OW-bfB" id="F4u-lA-kre"/>
-                        <segue destination="vuL-xs-wKn" kind="presentation" identifier="gotoDetailInfoBook" id="LAA-hw-aMn"/>
+                        <segue destination="vuL-xs-wKn" kind="showDetail" identifier="gotoDetailInfoBook" id="LAA-hw-aMn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tMX-6x-C1l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1296,11 +1296,11 @@
                                 <rect key="frame" x="0.0" y="44" width="393" height="759"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="M9s-wU-rkJ" userLabel="MainTableView">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="620.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="630.33333333333337"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="isw-qb-4m1" userLabel="TotalStack">
-                                        <rect key="frame" x="24" y="628.33333333333337" width="345" height="122.66666666666663"/>
+                                        <rect key="frame" x="24" y="638.33333333333337" width="345" height="112.66666666666663"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="pOA-eo-PUX" userLabel="BalanceStack">
                                                 <rect key="frame" x="0.0" y="0.0" width="345" height="23.333333333333332"/>
@@ -1380,15 +1380,8 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bv1-mX-lle">
-                                                <rect key="frame" x="0.0" y="62.666666666666629" width="345" height="2"/>
-                                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="2" id="Qkg-tL-AEi"/>
-                                                </constraints>
-                                            </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K20-L9-HFc" userLabel="CheckoutButton" customClass="MainActionButton" customModule="gramejia" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="72.666666666666629" width="345" height="50"/>
+                                                <rect key="frame" x="0.0" y="62.666666666666629" width="345" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="51o-98-kMo"/>
                                                 </constraints>

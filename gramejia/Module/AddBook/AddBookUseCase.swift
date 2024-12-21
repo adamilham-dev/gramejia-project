@@ -12,6 +12,7 @@ protocol AddBookUseCaseProtocol {
     func getBookList() -> AnyPublisher<[BookModel], Error>
     func addBook(book: BookModel) -> AnyPublisher<Bool, Error>
     func deleteBook(idBook: String) -> AnyPublisher<Bool, any Error>
+    func updateBook(book: BookModel) -> AnyPublisher<Bool, Error>
 }
 
 class AddBookUseCase: AddBookUseCaseProtocol {
@@ -31,5 +32,9 @@ class AddBookUseCase: AddBookUseCaseProtocol {
     
     func deleteBook(idBook: String) -> AnyPublisher<Bool, any Error> {
         return bookRepository.deleteBook(idBook: idBook).eraseToAnyPublisher()
+    }
+    
+    func updateBook(book: BookModel) -> AnyPublisher<Bool, Error> {
+        return bookRepository.updateBook(book: book).eraseToAnyPublisher()
     }
 }

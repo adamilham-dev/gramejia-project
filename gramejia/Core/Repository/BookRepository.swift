@@ -11,7 +11,9 @@ import Combine
 protocol BookRepositoryProtocol {
     func getBookList() -> AnyPublisher<[BookModel], Error>
     func addBook(book: BookModel) -> AnyPublisher<Bool, Error>
-    func deleteBook(idBook: String) -> AnyPublisher<Bool, any Error>
+    func deleteBook(idBook: String) -> AnyPublisher<Bool, Error>
+    func updateBook(book: BookModel) -> AnyPublisher<Bool, Error>
+    func updateBookStock(idBook: String, stock: Int64) -> AnyPublisher<Bool, Error>
 }
 
 final class BookRepository: NSObject {
@@ -29,6 +31,25 @@ final class BookRepository: NSObject {
 }
 
 extension BookRepository: BookRepositoryProtocol {
+    func updateBook(book: BookModel) -> AnyPublisher<Bool, Error> {
+        let predicate = NSPredicate(format: "id == %@", book.id)
+        
+        return self.coreDataManager.updateEntity(predicate: predicate) { (entity: BookEntity) in
+            BookMapper.bookDomainToEntity(book, entity: entity)
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    func updateBookStock(idBook: String, stock: Int64) -> AnyPublisher<Bool, Error>  {
+        let predicate = NSPredicate(format: "id == %@", idBook)
+        
+        return self.coreDataManager.updateEntity(predicate: predicate) { (entity: BookEntity) in
+            let newStock = entity.stock - stock
+            entity.stock = newStock
+        }
+        .eraseToAnyPublisher()
+    }
+    
     func getBookList() -> AnyPublisher<[BookModel], any Error> {
         return self.coreDataManager.fetch(BookEntity.self)
             .map { $0.map { BookMapper.bookEntityToDomain($0) } }

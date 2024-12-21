@@ -13,8 +13,7 @@ final class AdminMapper {
             id: entity.id ?? "",
             name: entity.name ?? "",
             username: entity.username ?? "",
-            password: entity.password ?? "",
-            level: entity.level ?? ""
+            password: entity.password ?? ""
         )
     }
     
@@ -23,6 +22,5 @@ final class AdminMapper {
         entity.name = domain.name
         entity.username = domain.username
         entity.password = domain.password
-        entity.level = domain.level
     }
 }

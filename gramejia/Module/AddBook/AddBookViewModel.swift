@@ -14,6 +14,7 @@ class AddBookViewModel: BaseViewModel {
     
     let isSuccessAddBook = CurrentValueSubject<Bool, Never>(false)
     let isSuccessDeleteBook = CurrentValueSubject<Bool, Never>(false)
+    let isSuccessUpdateBook = CurrentValueSubject<Bool, Never>(false)
     
     func addBook(book: BookModel){
         isLoading.send(true)
@@ -53,5 +54,22 @@ class AddBookViewModel: BaseViewModel {
             .store(in: &cancellables)
     }
     
-    
+    func updateBook(book: BookModel) {
+        isLoading.send(true)
+        
+        addBookUseCase.updateBook(book: book)
+            .receive(on: RunLoop.main)
+            .sink(receiveCompletion: { [weak self] completion in
+                self?.isLoading.send(false)
+                switch(completion) {
+                case .finished:
+                    break
+                case .failure(let error):
+                    self?.error.send(error)
+                }
+            }, receiveValue: { [weak self] isSuccess in
+                self?.isSuccessUpdateBook.send(isSuccess)
+            })
+            .store(in: &cancellables)
+    }
 }

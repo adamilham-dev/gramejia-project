@@ -16,15 +16,18 @@ protocol CartUseCaseProtocol {
     func deleteCartUser(username: String) -> AnyPublisher<Bool, Error>
     
     func updateBalance(username: String, balance: Double) -> AnyPublisher<Bool, Error>
+    func updateBookStock(username: String, cartItems: [CartItemModel]) -> AnyPublisher<Bool, Error>
 }
 
 class CartUseCase: CartUseCaseProtocol {
     private let cartRepository: CartRepositoryProtocol
     private let authenticationRepository: AuthenticationRepositoryProtocol
+    private let bookRepository: BookRepositoryProtocol
     
-    required init(cartRepository: CartRepositoryProtocol, authenticationRepository: AuthenticationRepositoryProtocol) {
+    required init(cartRepository: CartRepositoryProtocol, authenticationRepository: AuthenticationRepositoryProtocol, bookRepository: BookRepositoryProtocol) {
         self.cartRepository = cartRepository
         self.authenticationRepository = authenticationRepository
+        self.bookRepository = bookRepository
     }
     
     func deleteCartBookItem(username: String, idBook: String) -> AnyPublisher<Bool, Error> {
@@ -49,6 +52,10 @@ class CartUseCase: CartUseCaseProtocol {
     
     func deleteCartUser(username: String) -> AnyPublisher<Bool, Error> {
         return cartRepository.deleteCartUser(username: username)
+    }
+    
+    func updateBookStock(username: String, cartItems: [CartItemModel]) -> AnyPublisher<Bool, Error> {
+        return cartRepository.updateBookStock(username: username, cartItems: cartItems)
     }
     
 }

@@ -55,7 +55,8 @@ final class Injection: NSObject {
     func provideCartUseCase() -> CartUseCaseProtocol {
         let cartRepository = provideCartRepository()
         let authenticationRepository = provideAuthenticationRepository()
-        return CartUseCase(cartRepository: cartRepository, authenticationRepository: authenticationRepository)
+        let bookRepository = provideBookRepository()
+        return CartUseCase(cartRepository: cartRepository, authenticationRepository: authenticationRepository, bookRepository: bookRepository )
     }
     
     func provideDetailBookUseCase() -> DetailBookUseCaseProtocol {

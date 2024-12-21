@@ -223,7 +223,7 @@ class CoreDataManager {
         }
         .eraseToAnyPublisher()
     }
-    
+
     func addMultiple<T: NSManagedObject>(entity: T.Type, configure: @escaping (NSManagedObjectContext) -> Void) -> AnyPublisher<Bool, Error> {
         return Future<Bool, Error> { [weak self] promise in
             guard let self = self, let context = self.context else {
@@ -384,6 +384,46 @@ class CoreDataManager {
                 if let cart = cart {
                     if var cartItems = cart.items as? Set<CartItemEntity> {
                         promise(.success(Array(cartItems)))
+                    } else {
+                        promise(.failure(DatabaseError.dataNotFound))
+                    }
+                } else {
+                    promise(.failure(DatabaseError.dataNotFound))
+                }
+
+            } else {
+                promise(.failure(DatabaseError.dataNotFound))
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    func updateStockBook(username: String, handler: @escaping (NSManagedObjectContext, Set<CartItemEntity>) -> Void) -> AnyPublisher<Bool, Error> {
+        return Future<Bool, Error> { [weak self] promise in
+            guard let self = self, let context = self.context else {
+                promise(.failure(DatabaseError.invalidDatabase))
+                return
+            }
+            
+            
+            if let user = getSingle(CustomerEntity.self, predicate: NSPredicate(format: "username == %@", username)){
+                var cart = user.cart
+                if cart == nil {
+                    let newCart = CartEntity(context: context)
+                    newCart.owner = user
+                    cart = newCart
+                }
+                
+                if let cart = cart {
+                    if let cartItems = cart.items as? Set<CartItemEntity> {
+                        handler(context, cartItems)
+                        do {
+                            try context.save()
+                            promise(.success(true))
+                        } catch {
+                            context.rollback()
+                            promise(.failure(error))
+                        }
                     } else {
                         promise(.failure(DatabaseError.dataNotFound))
                     }

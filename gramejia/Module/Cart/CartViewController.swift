@@ -92,11 +92,11 @@ class CartViewController: BaseViewController<CartViewModel> {
             .store(in: &cancellables)
         
         viewModel?.isTransactionAdded
-            .combineLatest(viewModel.isCartUserDeleted, viewModel.isSuccessUpdateBalance)
+            .combineLatest(viewModel.isSuccessUpdateBalance, viewModel.isSuccessUpdateStockBook)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] isTransactionAdded, isCartUserDeleted, isUpdatedBalance in
+            .sink { [weak self] isTransactionAdded, isUpdatedBalance, isUpdateStockBook in
                 self?.viewModel.isLoading.send(false)
-                if(isTransactionAdded && isCartUserDeleted && isUpdatedBalance) {
+                if(isTransactionAdded && isUpdatedBalance && isUpdateStockBook) {
                     self?.showSnackbar(message: "Your Transaction is success")
                     self?.viewModel.cartItemList.value.removeAll()
                     self?.updateCart()
@@ -122,7 +122,11 @@ class CartViewController: BaseViewController<CartViewModel> {
         let items = viewModel.cartItemList.value
         self.totalCost = items.reduce(0, { $0 + Double($1.quantity) * ($1.book?.price ?? 0) })
         self.totalCostLabel.text = totalCost.toRupiah()
-        checkoutButton.isEnabled = totalCost <= viewModel.customerBalance.value
+        
+        let isBalanceSufficient = totalCost <= viewModel.customerBalance.value
+        checkoutButton.setTitle(isBalanceSufficient ? "Checkout" : "Insufficient Balance", for: .normal)
+        checkoutButton.isEnabled = isBalanceSufficient
+        
         
         if(items.isEmpty) {
             emptyView.isHidden = false
@@ -138,13 +142,14 @@ class CartViewController: BaseViewController<CartViewModel> {
         if segue.identifier == "gotoDetailBook", let detailBookVC = segue.destination as? DetailBookViewController {
             detailBookVC.hidesBottomBarWhenPushed = true
             detailBookVC.bookModel = selectedCartItem?.book
+        } else if segue.identifier == "gotoTransaction", let transactionVC = segue.destination as? TransactionViewController {
+            transactionVC.hidesBottomBarWhenPushed = true
         }
     }
     @IBAction func checkoutButtonTapped(_ sender: Any) {
         viewModel.checkoutTransaction()
         viewModel.updateBalance(balance: -totalCost)
-        viewModel.deleteCartUser()
-        
+        viewModel.updateStockBook()
     }
 }
 
