@@ -102,6 +102,8 @@ class CartViewController: BaseViewController<CartViewModel> {
                 self?.viewModel.isLoading.send(false)
                 if response {
                     self?.showSnackbar(message: "Your Transaction is success")
+                    self?.viewModel.cartItemList.value.removeAll()
+                    self?.updateCart()
                 }
             }
             .store(in: &cancellables)
@@ -118,6 +120,12 @@ class CartViewController: BaseViewController<CartViewModel> {
                 }
             }
             .store(in: &cancellables)
+    }
+    
+    private func updateCart(){
+        let items = viewModel.cartItemList.value
+        let totalCost: Double = items.reduce(0, { $0 + Double($1.quantity) * ($1.book?.price ?? 0) })
+        self.totalCostLabel.text = totalCost.toRupiah()
     }
     
     private func updateState() {
@@ -173,9 +181,7 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
             tableView.deleteRows(at: [indexPath], with: .automatic)
             viewModel.deleteCartItem(idBook: item.book?.id ?? "")
             
-            let items = viewModel.cartItemList.value
-            let totalCost: Double = items.reduce(0, { $0 + Double($1.quantity) * ($1.book?.price ?? 0) })
-            self.totalCostLabel.text = totalCost.toRupiah()
+            updateCart()
         }
     }
 }
