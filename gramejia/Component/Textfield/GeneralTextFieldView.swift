@@ -191,6 +191,21 @@ extension GeneralTextFieldView {
         
         let result = currentPassword == inputText
         
+        print("LOGDEBUG: \(result)")
+        
+        if(!result) {
+            textField.setError(description: "Password not match")
+            return false
+        }
+        textField.removeError()
+        return result
+    }
+    
+    func validateConfirmationPassword(passwordText: String, inputText: String) -> Bool {
+        let textField = self
+        
+        let result = passwordText == inputText
+
         if(!result) {
             textField.setError(description: "Password not match")
             return false
