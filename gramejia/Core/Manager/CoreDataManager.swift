@@ -419,6 +419,53 @@ class CoreDataManager {
         }.eraseToAnyPublisher()
     }
     
+    func deleteCartBookItem(username: String, idBook: String) -> AnyPublisher<Bool, Error> {
+        return Future<Bool, Error> { [weak self] promise in
+            guard let self = self, let context = self.context else {
+                promise(.failure(DatabaseError.invalidDatabase))
+                return
+            }
+            
+            if let user = getSingle(CustomerEntity.self, predicate: NSPredicate(format: "username == %@", username)){
+                var cart = user.cart
+                if cart == nil {
+                    let newCart = CartEntity(context: context)
+                    newCart.owner = user
+                    cart = newCart
+                }
+                
+                guard let book = getSingle(BookEntity.self, predicate: NSPredicate(format: "id == %@", idBook)) else {
+                    promise(.failure(DatabaseError.dataNotFound))
+                    return
+                }
+                
+                if let cart = cart {
+                    if let cartItems = cart.items as? Set<CartItemEntity> {
+                        if let existingCartItem = cartItems.first(where: { $0.book == book }) {
+                            context.delete(existingCartItem)
+                            do {
+                                try context.save()
+                                promise(.success(true))
+                            } catch let error {
+                                context.rollback()
+                                promise(.failure(error))
+                            }
+                        } else {
+                            promise(.failure(DatabaseError.dataNotFound))
+                        }
+                    } else {
+                        promise(.failure(DatabaseError.dataNotFound))
+                    }
+                } else {
+                    promise(.failure(DatabaseError.dataNotFound))
+                }
+            } else {
+                promise(.failure(DatabaseError.dataNotFound))
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+    
     
     func getCartBookItem(username: String, idBook: String) -> AnyPublisher<CartItemEntity?, Error> {
         return Future<CartItemEntity?, Error> { [weak self] promise in

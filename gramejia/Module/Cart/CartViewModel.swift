@@ -16,11 +16,13 @@ class CartViewModel: BaseViewModel {
     let totalCost = CurrentValueSubject<Double, Never>(0)
     let customerBalance = CurrentValueSubject<Double, Never>(0)
     let isTransactionAdded = CurrentValueSubject<Bool, Never>(false)
+    let isCartItemDeleted = CurrentValueSubject<Bool, Never>(false)
+    let username: String = UserDefaultsManager.shared.get(forKey: .currentUsername) ?? ""
     
     func getCarts(){
         isLoading.send(true)
         
-        cartUseCase.getCartList(username: "aaaa")
+        cartUseCase.getCartList(username: username)
             .receive(on: RunLoop.main)
             .sink(receiveCompletion: { [weak self] completion in
                 self?.isLoading.send(false)
@@ -80,5 +82,24 @@ class CartViewModel: BaseViewModel {
                 self?.isTransactionAdded.send(isSuccesAddTransaction)
             })
             .store(in: &cancellables)
+    }
+    
+    func deleteCartItem(idBook: String) {
+        isLoading.send(true)
+        
+        self.cartUseCase.deleteCartBookItem(username: username, idBook: idBook)
+            .receive(on: RunLoop.main)
+            .sink(receiveCompletion: { [weak self] completion in
+                switch(completion) {
+                case .finished:
+                    break
+                case .failure(let error):
+                    self?.error.send(error)
+                }
+            }, receiveValue: { [weak self] isSuccess in
+                self?.error.send(nil)
+                self?.isCartItemDeleted.send(isSuccess)
+            })
+            .store(in: &self.cancellables)
     }
 }

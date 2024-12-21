@@ -14,6 +14,8 @@ protocol CartRepositoryProtocol {
     func addBookToCart(username: String, idBook: String, quantity: Int64) -> AnyPublisher<Bool, Error>
     
     func getCartBookItem(username: String, idBook: String) -> AnyPublisher<CartItemModel?, Error>
+    
+    func deleteCartBookItem(username: String, idBook: String) -> AnyPublisher<Bool, Error>
 }
 
 final class CartRepository: NSObject {
@@ -31,6 +33,10 @@ final class CartRepository: NSObject {
 }
 
 extension CartRepository: CartRepositoryProtocol {
+    func deleteCartBookItem(username: String, idBook: String) -> AnyPublisher<Bool, Error> {
+        self.coreDataManager.deleteCartBookItem(username: username, idBook: idBook)
+    }
+    
     func getCartBookItem(username: String, idBook: String) -> AnyPublisher<CartItemModel?, Error> {
         self.coreDataManager.getCartBookItem(username: username, idBook: idBook)
             .map({

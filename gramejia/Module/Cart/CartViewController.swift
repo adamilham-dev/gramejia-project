@@ -99,10 +99,22 @@ class CartViewController: BaseViewController<CartViewModel> {
         viewModel?.isTransactionAdded
             .receive(on: DispatchQueue.main)
             .sink { [weak self] response in
+                self?.viewModel.isLoading.send(false)
                 if response {
                     self?.showSnackbar(message: "Your Transaction is success")
+                }
+            }
+            .store(in: &cancellables)
+        
+        viewModel?.isCartItemDeleted
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] response in
+                self?.viewModel.isLoading.send(false)
+                if response {
+                    self?.showSnackbar(message: "Book successfully deleted from Cart")
+                    self?.mainTableView.reloadData()
                 } else {
-                    self?.viewModel.isLoading.send(false)
+                    self?.viewModel.getCarts()
                 }
             }
             .store(in: &cancellables)
@@ -156,8 +168,14 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            let item = viewModel.cartItemList.value[indexPath.row]
             viewModel.cartItemList.value.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
+            viewModel.deleteCartItem(idBook: item.book?.id ?? "")
+            
+            let items = viewModel.cartItemList.value
+            let totalCost: Double = items.reduce(0, { $0 + Double($1.quantity) * ($1.book?.price ?? 0) })
+            self.totalCostLabel.text = totalCost.toRupiah()
         }
     }
 }

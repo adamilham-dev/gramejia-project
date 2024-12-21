@@ -14,7 +14,7 @@ protocol DetailBookUseCaseProtocol {
     func getCartBookItem(username: String, idBook: String) -> AnyPublisher<CartItemModel?, Error>
 }
 
-class DetailBookUseCase: DetailBookUseCaseProtocol {
+class DetailBookUseCase: DetailBookUseCaseProtocol {    
     func addBookToCart(username: String, idBook: String, quantity: Int64) -> AnyPublisher<Bool, Error> {
         return cartRepository.addBookToCart(username: username, idBook: idBook, quantity: quantity)
     }

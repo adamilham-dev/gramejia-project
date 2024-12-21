@@ -40,13 +40,7 @@ class DetailBookViewModel: BaseViewModel {
         
         self.detailBookUseCase.getCartBookItem(username: username, idBook: idBook)
             .receive(on: RunLoop.main)
-            .sink(receiveCompletion: { [weak self] completion in
-                switch(completion) {
-                case .finished:
-                    break
-                case .failure:
-                    break
-                }
+            .sink(receiveCompletion: { _ in
             }, receiveValue: { [weak self] cartItem in
                 self?.currentCartItem.send(cartItem)
             })
