@@ -17,15 +17,13 @@ class RegisterViewController: BaseViewController<RegisterViewModel> {
     @IBOutlet weak var passwordField: PasswordTextFieldView!
     @IBOutlet weak var confirmationField: PasswordTextFieldView!
     @IBOutlet weak var registerButton: MainActionButton!
-    
+    @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var animationContainer: UIView!
     
     var nameValidity = false
     var usernameValidity = false
     var passwordValidity = false
     var confirmationValidity = false
-    
-    @IBOutlet weak var mainScrollView: UIScrollView!
     
     var activeTextField: UITextField?
     
