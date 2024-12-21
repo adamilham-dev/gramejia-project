@@ -10,12 +10,18 @@ import Combine
 
 protocol AuthenticationRepositoryProtocol {
     func registerCustomer(customer: CustomerModel) -> AnyPublisher<Bool, Error>
-    func getCustomer(username: String, password: String) -> AnyPublisher<CustomerModel?, Error>
+    func authenticateCustomer(username: String, password: String) -> AnyPublisher<CustomerModel?, Error>
     func getCustomerList() -> AnyPublisher<[CustomerModel], Error>
+    func getCustomer(username: String) -> AnyPublisher<CustomerModel?, Error>
     
     func registerAdmin(admin: AdminModel) -> AnyPublisher<Bool, Error>
-    func getAdmin(username: String, password: String) -> AnyPublisher<AdminModel?, Error>
+    func authenticateAdmin(username: String, password: String) -> AnyPublisher<AdminModel?, Error>
+    func getAdmin(username: String) -> AnyPublisher<AdminModel?, Error>
     func getAdminList() -> AnyPublisher<[AdminModel]?, Error>
+    
+    func updateAdmin(username: String, name: String, password: String, profileImage: String?) -> AnyPublisher<Bool, Error>
+    func updateCustomer(username: String, name: String, password: String, profileImage: String?) -> AnyPublisher<Bool, Error>
+    func updateBalance(username: String, balance: Double) -> AnyPublisher<Bool, Error>
 }
 
 final class AuthenticationRepository: NSObject {
@@ -41,8 +47,18 @@ extension AuthenticationRepository: AuthenticationRepositoryProtocol {
         }.eraseToAnyPublisher()
     }
     
-    func getAdmin(username: String, password: String) -> AnyPublisher<AdminModel?, Error> {
+    func authenticateAdmin(username: String, password: String) -> AnyPublisher<AdminModel?, Error> {
         let predicate = NSPredicate(format: "username == %@ AND password == %@", username, password)
+        
+        return self.coreDataManager.fetchSingle(AdminEntity.self, predicate: predicate)
+            .map { (entity) -> AdminModel?  in
+                guard let entity: AdminEntity = entity else { return nil }
+                return AdminMapper.adminEntityToDomain(entity)
+            }.eraseToAnyPublisher()
+    }
+    
+    func getAdmin(username: String) -> AnyPublisher<AdminModel?, Error> {
+        let predicate = NSPredicate(format: "username == %@", username)
         
         return self.coreDataManager.fetchSingle(AdminEntity.self, predicate: predicate)
             .map { (entity) -> AdminModel?  in
@@ -59,8 +75,18 @@ extension AuthenticationRepository: AuthenticationRepositoryProtocol {
         }.eraseToAnyPublisher()
     }
     
-    func getCustomer(username: String, password: String) -> AnyPublisher<CustomerModel?, Error> {
+    func authenticateCustomer(username: String, password: String) -> AnyPublisher<CustomerModel?, Error> {
         let predicate = NSPredicate(format: "username == %@ AND password == %@", username, password)
+        
+        return self.coreDataManager.fetchSingle(CustomerEntity.self, predicate: predicate)
+            .map { (entity) -> CustomerModel?  in
+                guard let entity: CustomerEntity = entity else { return nil }
+                return CustomerMapper.customerEntityToDomain(entity)
+            }.eraseToAnyPublisher()
+    }
+    
+    func getCustomer(username: String) -> AnyPublisher<CustomerModel?, Error> {
+        let predicate = NSPredicate(format: "username == %@", username)
         
         return self.coreDataManager.fetchSingle(CustomerEntity.self, predicate: predicate)
             .map { (entity) -> CustomerModel?  in
@@ -85,4 +111,32 @@ extension AuthenticationRepository: AuthenticationRepositoryProtocol {
         }.eraseToAnyPublisher()
     }
     
+    func updateAdmin(username: String, name: String, password: String, profileImage: String?) -> AnyPublisher<Bool, Error> {
+        let predicate = NSPredicate(format: "username == %@", username)
+        
+        return self.coreDataManager.updateEntity(predicate: predicate) { (entity: AdminEntity) in
+            entity.password = password
+            entity.profileImage = profileImage
+            entity.name = name
+        }.eraseToAnyPublisher()
+    }
+    
+    func updateCustomer(username: String, name: String, password: String, profileImage: String?) -> AnyPublisher<Bool, Error> {
+        let predicate = NSPredicate(format: "username == %@", username)
+        
+        return self.coreDataManager.updateEntity(predicate: predicate) { (entity: CustomerEntity) in
+            entity.password = password
+            entity.profileImage = profileImage
+            entity.name = name
+        }.eraseToAnyPublisher()
+    }
+    
+    func updateBalance(username: String, balance: Double) -> AnyPublisher<Bool, Error> {
+        let predicate = NSPredicate(format: "username == %@", username)
+        
+        return self.coreDataManager.updateEntity(predicate: predicate) { (entity: CustomerEntity) in
+            let newBalance = entity.balance + balance
+            entity.balance = newBalance
+        }.eraseToAnyPublisher()
+    }
 }
