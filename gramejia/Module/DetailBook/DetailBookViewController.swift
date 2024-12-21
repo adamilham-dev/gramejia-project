@@ -8,7 +8,7 @@
 import UIKit
 
 class DetailBookViewController: BaseViewController<DetailBookViewModel> {
-
+    
     @IBOutlet weak var mainContainerInfo: UIView!
     @IBOutlet weak var addToCardButton: MainActionButton!
     @IBOutlet weak var backButton: ImageActionButton!
@@ -21,7 +21,6 @@ class DetailBookViewController: BaseViewController<DetailBookViewModel> {
     @IBOutlet weak var stockLabel: UILabel!
     
     @IBOutlet weak var productCountView: ProductCounterView!
-    
     @IBOutlet weak var totalPaymentLabel: UILabel!
     
     
@@ -34,13 +33,15 @@ class DetailBookViewController: BaseViewController<DetailBookViewModel> {
         
         setupView()
         setupAction()
+        bindDataViewModel()
     }
     
     private func setupView() {
         mainContainerInfo.setCorner(cornerRadius: 36, corners: [.topLeft, .topRight])
         
         backButton.image = UIImage(systemName: "chevron.backward")
-        backButton.normalBackgroundColor = .black
+        backButton.imageColor = .black
+        backButton.normalBackgroundColor = .white
         backButton.imagePadding = .init(top: 8, left: 8, bottom: 8, right: 8)
         
         productCountView.delegate = self
@@ -69,6 +70,20 @@ class DetailBookViewController: BaseViewController<DetailBookViewModel> {
         }
     }
     
+    private func bindDataViewModel() {
+        viewModel?.isBookToCartSuccess
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] response in
+                if response {
+                    self?.showSnackbar(message: "Book successfully added to Cart")
+                    self?.navigationController?.popViewController(animated: true)
+                } else {
+                    self?.viewModel.isLoading.send(false)
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
     private func setupAction() {
         moreChevronIcon.isUserInteractionEnabled = true
         let moreChevronIconGesture = UITapGestureRecognizer(target: self, action: #selector(moreInfoTapped))
@@ -81,10 +96,13 @@ class DetailBookViewController: BaseViewController<DetailBookViewModel> {
     
     
     @IBAction func addToCardAction(_ sender: Any) {
+        guard let book = bookModel else { return }
+        viewModel.addBookToCart(idBook: book.id, quantity: productCountView.currentCount)
     }
     
     @IBAction func backButtonAction(_ sender: Any) {
-        
+        self.viewModel.isLoading.send(false)
+        self.navigationController?.popViewController(animated: true)
     }
     
     private func updatePaymentOrder(count: Int64, price: Double) {
@@ -92,6 +110,24 @@ class DetailBookViewController: BaseViewController<DetailBookViewModel> {
         
         totalPaymentLabel.text = total.toRupiah()
         addToCardButton.isEnabled = total > 0
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "gotoDetailInfoBook" {
+            if let detailInfoBookVC = segue.destination as? DetailInfoBookViewController {
+                detailInfoBookVC.bookModel = bookModel
+            }
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
 }
