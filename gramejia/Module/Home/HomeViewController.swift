@@ -9,7 +9,10 @@ import UIKit
 
 
 class HomeViewController: BaseViewController<HomeViewModel> {
-    @IBOutlet weak var mainTableView: ContentSizedTableView!
+    
+    @IBOutlet weak var mainCollectionView: UICollectionView!
+    
+    private var selectedBook: BookModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,14 +26,37 @@ class HomeViewController: BaseViewController<HomeViewModel> {
     
     private func setupView() {
         setupNavigation()
+        setupCollectionView()
+    }
+    
+    private func setupCollectionView() {
+        mainCollectionView.showsVerticalScrollIndicator = false
+        mainCollectionView.allowsSelection = true
+        mainCollectionView.delegate = self
+        mainCollectionView.dataSource = self
         
-        mainTableView.register(BookTableViewCell.nib, forCellReuseIdentifier: BookTableViewCell.identifier)
-        mainTableView.delegate = self
-        mainTableView.dataSource = self
-        mainTableView.rowHeight = UITableView.automaticDimension
+        
+        mainCollectionView.register(BookCollectionViewCell.nib, forCellWithReuseIdentifier: BookCollectionViewCell.identifier)
+        
+        let horizontalSpacing: CGFloat = 24
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumInteritemSpacing = horizontalSpacing
+        layout.minimumLineSpacing = 24
+        layout.sectionInset = UIEdgeInsets(top: 24, left: horizontalSpacing, bottom: 24, right: horizontalSpacing)
+        
+        let totalSpacing = (2 * horizontalSpacing) + horizontalSpacing // (Insets + inter-item spacing)
+        let width = ( UIScreen.main.bounds.width - totalSpacing) / 2
+        let height = width * 1.5
+        layout.itemSize = CGSize(width: width, height: height)
+
+        
+        mainCollectionView.collectionViewLayout = layout
+        
     }
     
     private func setupNavigation() {
+        navigationController?.navigationBar.tintColor = .mainAccent
+        
         let rightBarButton = UIBarButtonItem(
             image: UIImage(systemName: "plus.app"),
             style: .plain,
@@ -47,7 +73,7 @@ class HomeViewController: BaseViewController<HomeViewModel> {
         viewModel?.bookList
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                self?.mainTableView.reloadData()
+                self?.mainCollectionView.reloadData()
             }
             .store(in: &cancellables)
     }
@@ -60,27 +86,38 @@ class HomeViewController: BaseViewController<HomeViewModel> {
         if segue.identifier == "gotoAddBook",
            let addBookVC = segue.destination as? AddBookViewController {
             addBookVC.hidesBottomBarWhenPushed = true
+        } else if segue.identifier == "gotoDetailBook", let detailBookVC = segue.destination as? DetailBookViewController {
+                detailBookVC.hidesBottomBarWhenPushed = true
+            detailBookVC.bookModel = selectedBook
         }
     }
     
+    
+    
 }
 
-extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.bookList.value.count
     }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: BookTableViewCell.identifier, for: indexPath) as? BookTableViewCell else { return UITableViewCell() }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let item = viewModel.bookList.value[indexPath.row]
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookCollectionViewCell.identifier, for: indexPath) as? BookCollectionViewCell else { return UICollectionViewCell() }
+        
+        let item = viewModel.bookList.value[indexPath.item]
         
         if let imageData = Data(base64Encoded: item.coverImage ?? "") {
-            cell.contentImageView.image =  UIImage(data: imageData)
-            cell.priceLabel.text = "Rp\(item.price)"
+            cell.coverImageView.image =  UIImage(data: imageData)
             cell.titleLabel.text = item.title
-            cell.stockLabel.text = "\(item.stock) pcs"
         }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        self.selectedBook = viewModel.bookList.value[indexPath.item]
+        performSegue(withIdentifier: "gotoDetailBook", sender: nil)
     }
 }
