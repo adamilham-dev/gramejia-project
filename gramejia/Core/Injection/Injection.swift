@@ -20,6 +20,18 @@ final class Injection: NSObject {
         return AuthenticationRepository.sharedInstance(coreDataManager)
     }
     
+    private func provideCartRepository() -> CartRepositoryProtocol {
+        let coreDataManager = CoreDataManager.shared
+        
+        return CartRepository.sharedInstance(coreDataManager)
+    }
+    
+    private func provideTransactionRepository() -> TransactionRepositoryProtocol {
+        let coreDataManager = CoreDataManager.shared
+        
+        return TransactionRepository.sharedInstance(coreDataManager)
+    }
+    
     func provideAddBookUseCase() -> AddBookUseCaseProtocol {
         let bookRepository = provideBookRepository()
         return AddBookUseCase(bookRepository: bookRepository)
@@ -38,5 +50,33 @@ final class Injection: NSObject {
     func provideHomeUseCase() -> HomeUseCaseProtocol {
         let bookRepository = provideBookRepository()
         return HomeUseCase(bookRepository: bookRepository)
+    }
+    
+    func provideCartUseCase() -> CartUseCaseProtocol {
+        let cartRepository = provideCartRepository()
+        let authenticationRepository = provideAuthenticationRepository()
+        return CartUseCase(cartRepository: cartRepository, authenticationRepository: authenticationRepository)
+    }
+    
+    func provideDetailBookUseCase() -> DetailBookUseCaseProtocol {
+        let cartRepository = provideCartRepository()
+        
+        return DetailBookUseCase(cartRepository: cartRepository)
+    }
+    
+    func provideTransactionUseCase() -> TransactionUseCaseProtocol {
+        let transactionRepository = provideTransactionRepository()
+        
+        return TransactionUseCase(transactionRepository: transactionRepository)
+    }
+    
+    func provideProfileUseCase() -> ProfileUseCase {
+        let authenticationRepository = provideAuthenticationRepository()
+        return ProfileUseCase(authenticationRepository: authenticationRepository)
+    }
+    
+    func provideTopupUseCase() -> TopupUseCase {
+        let authenticationRepository = provideAuthenticationRepository()
+        return TopupUseCase(authenticationRepository: authenticationRepository)
     }
 }
