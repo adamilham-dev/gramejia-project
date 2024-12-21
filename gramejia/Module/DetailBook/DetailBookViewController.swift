@@ -34,6 +34,10 @@ class DetailBookViewController: BaseViewController<DetailBookViewModel> {
         setupView()
         setupAction()
         bindDataViewModel()
+        
+        if let idBook = bookModel?.id {
+            viewModel.getCartBookItem(idBook: idBook)
+        }
     }
     
     private func setupView() {
@@ -80,6 +84,18 @@ class DetailBookViewController: BaseViewController<DetailBookViewModel> {
                 } else {
                     self?.viewModel.isLoading.send(false)
                 }
+            }
+            .store(in: &cancellables)
+        
+        viewModel?.currentCartItem
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] cartItem in
+                self?.bookModel = cartItem?.book
+                self?.productCountView.currentCount = cartItem?.quantity ?? 0
+                self?.productCountView.updateCount()
+                self?.setBookToView()
+                self?.updatePaymentOrder(count: self?.productCountView.currentCount ?? 0, price: self?.bookModel?.price ?? 0)
+                self?.viewModel.isLoading.send(false)
             }
             .store(in: &cancellables)
     }

@@ -10,11 +10,17 @@ import Combine
 
 protocol DetailBookUseCaseProtocol {
     func addBookToCart(username: String, idBook: String, quantity: Int64) -> AnyPublisher<Bool, Error>
+    
+    func getCartBookItem(username: String, idBook: String) -> AnyPublisher<CartItemModel?, Error>
 }
 
 class DetailBookUseCase: DetailBookUseCaseProtocol {
     func addBookToCart(username: String, idBook: String, quantity: Int64) -> AnyPublisher<Bool, Error> {
         return cartRepository.addBookToCart(username: username, idBook: idBook, quantity: quantity)
+    }
+    
+    func getCartBookItem(username: String, idBook: String) -> AnyPublisher<CartItemModel?, Error> {
+        return cartRepository.getCartBookItem(username: username, idBook: idBook)
     }
     
     private let cartRepository: CartRepositoryProtocol

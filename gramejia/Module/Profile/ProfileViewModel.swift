@@ -69,7 +69,7 @@ class ProfileViewModel: BaseViewModel {
                         self?.error.send(error)
                     }
                 }, receiveValue: { [weak self] customer in
-                    let userProfile = UserProfileModel(name: customer?.name ?? "", username: customer?.name ?? "", password: customer?.password ?? "", balance: customer?.balance, profileImage: customer?.profileImage ?? "")
+                    let userProfile = UserProfileModel(name: customer?.name ?? "", username: customer?.username ?? "", password: customer?.password ?? "", balance: customer?.balance, profileImage: customer?.profileImage ?? "")
                     self?.error.send(nil)
                     self?.userProfile.send(userProfile)
                 })
