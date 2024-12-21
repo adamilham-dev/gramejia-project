@@ -19,7 +19,7 @@ class DetailInfoBookViewController: UIViewController {
     @IBOutlet weak var synopsisLabel: UILabel!
     @IBOutlet weak var mainScrollView: UIScrollView!
     
-    var bookModel: BookModel? = mockBook
+    var bookModel: BookModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
