@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Nunito-SemiBold.ttf">
+            <string>Nunito-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="BookCollectionViewCell" customModule="gramejia" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="199" height="321"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="199" height="321"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TzM-Rj-ato" userLabel="MainContainerView">
+                        <rect key="frame" x="0.0" y="0.0" width="199" height="321"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="mzI-nd-18Z" userLabel="MainStackView">
+                                <rect key="frame" x="0.0" y="0.0" width="199" height="321"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iHx-0T-mqA" userLabel="CoverImageView">
+                                        <rect key="frame" x="0.0" y="0.0" width="199" height="98.333333333333329"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Lorem ipsum dolor sit amet que" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Bh-2p-3B7" userLabel="TitleLabel">
+                                        <rect key="frame" x="0.0" y="106.33333333333333" width="199" height="214.66666666666669"/>
+                                        <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="mzI-nd-18Z" firstAttribute="top" secondItem="TzM-Rj-ato" secondAttribute="top" id="Cdv-dB-MGq"/>
+                            <constraint firstAttribute="trailing" secondItem="mzI-nd-18Z" secondAttribute="trailing" id="FMb-lr-ofx"/>
+                            <constraint firstAttribute="bottom" secondItem="mzI-nd-18Z" secondAttribute="bottom" id="W2u-1I-ldQ"/>
+                            <constraint firstItem="mzI-nd-18Z" firstAttribute="leading" secondItem="TzM-Rj-ato" secondAttribute="leading" id="Wbi-vN-BYJ"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="TzM-Rj-ato" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="8e5-0B-Al8"/>
+                <constraint firstAttribute="bottom" secondItem="TzM-Rj-ato" secondAttribute="bottom" id="Bsz-z0-pbF"/>
+                <constraint firstAttribute="trailing" secondItem="TzM-Rj-ato" secondAttribute="trailing" id="N08-S1-KIF"/>
+                <constraint firstItem="TzM-Rj-ato" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Q1o-YV-LFr"/>
+            </constraints>
+            <size key="customSize" width="199" height="321"/>
+            <connections>
+                <outlet property="coverImageView" destination="iHx-0T-mqA" id="WOT-Ag-gmA"/>
+                <outlet property="titleLabel" destination="0Bh-2p-3B7" id="Hrd-NL-8Ge"/>
+            </connections>
+            <point key="canvasLocation" x="-168.70229007633588" y="-44.014084507042256"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
