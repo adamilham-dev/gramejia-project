@@ -33,6 +33,7 @@ class LoginViewController: BaseViewController<LoginViewModel> {
         setupView()
         setupAction()
         bindDataViewModel()
+        viewModel.loadBooks()
     }
     
     private func setupView() {

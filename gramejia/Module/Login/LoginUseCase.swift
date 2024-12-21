@@ -9,8 +9,8 @@ import Foundation
 import Combine
 
 protocol LoginUseCaseProtocol {
-    func getCustomer(username: String, password: String) -> AnyPublisher<CustomerModel?, Error>
-    func getAdmin(username: String, password: String) -> AnyPublisher<AdminModel?, Error>
+    func authenticateCustomer(username: String, password: String) -> AnyPublisher<CustomerModel?, Error>
+    func authenticateAdmin(username: String, password: String) -> AnyPublisher<AdminModel?, Error>
 }
 
 class LoginUseCase: LoginUseCaseProtocol {
@@ -20,11 +20,11 @@ class LoginUseCase: LoginUseCaseProtocol {
         self.authenticationRepository = authenticationRepository
     }
     
-    func getCustomer(username: String, password: String) -> AnyPublisher<CustomerModel?, Error> {
-        return authenticationRepository.getCustomer(username: username, password: password)
+    func authenticateCustomer(username: String, password: String) -> AnyPublisher<CustomerModel?, Error> {
+        return authenticationRepository.authenticateCustomer(username: username, password: password)
     }
     
-    func getAdmin(username: String, password: String) -> AnyPublisher<AdminModel?, Error> {
-        return authenticationRepository.getAdmin(username: username, password: password)
+    func authenticateAdmin(username: String, password: String) -> AnyPublisher<AdminModel?, Error> {
+        return authenticationRepository.authenticateAdmin(username: username, password: password)
     }
 }
