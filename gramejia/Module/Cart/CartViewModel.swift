@@ -13,7 +13,6 @@ class CartViewModel: BaseViewModel {
     private var transactionUseCase: TransactionUseCaseProtocol = Injection().provideTransactionUseCase()
     
     let cartItemList = CurrentValueSubject<[CartItemModel], Never>([])
-    let totalCost = CurrentValueSubject<Double, Never>(0)
     let customerBalance = CurrentValueSubject<Double, Never>(0)
     let isTransactionAdded = CurrentValueSubject<Bool, Never>(false)
     let isCartItemDeleted = CurrentValueSubject<Bool, Never>(false)
@@ -34,8 +33,6 @@ class CartViewModel: BaseViewModel {
                 }
             }, receiveValue: { [weak self] books in
                 self?.cartItemList.send(books)
-                self?.totalCost.send(books.reduce(0, {  $0 + (Double($1.quantity) * ($1.book?.price ?? 0)) }))
-                
             })
             .store(in: &cancellables)
     }

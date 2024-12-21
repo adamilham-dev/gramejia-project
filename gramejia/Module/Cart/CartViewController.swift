@@ -11,6 +11,8 @@ class CartViewController: BaseViewController<CartViewModel> {
     
     @IBOutlet weak var mainTableView: UITableView!
     
+    @IBOutlet weak var mainCartContainer: UIView!
+    @IBOutlet weak var emptyView: EmptyView!
     @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var totalCostLabel: UILabel!
     @IBOutlet weak var checkoutButton: MainActionButton!
@@ -80,19 +82,11 @@ class CartViewController: BaseViewController<CartViewModel> {
             }
             .store(in: &cancellables)
         
-        viewModel?.totalCost
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] total in
-                self?.totalCostLabel.text = total.toRupiah()
-                self?.updateState()
-            }
-            .store(in: &cancellables)
-        
         viewModel?.customerBalance
             .receive(on: DispatchQueue.main)
             .sink { [weak self] balance in
                 self?.balanceLabel.text = balance.toRupiah()
-                self?.updateState()
+                self?.updateCart()
             }
             .store(in: &cancellables)
         
@@ -126,10 +120,16 @@ class CartViewController: BaseViewController<CartViewModel> {
         let items = viewModel.cartItemList.value
         let totalCost: Double = items.reduce(0, { $0 + Double($1.quantity) * ($1.book?.price ?? 0) })
         self.totalCostLabel.text = totalCost.toRupiah()
-    }
-    
-    private func updateState() {
-        checkoutButton.isEnabled = viewModel.totalCost.value <= viewModel.customerBalance.value
+        checkoutButton.isEnabled = totalCost <= viewModel.customerBalance.value
+        
+        if(items.isEmpty) {
+            emptyView.isHidden = false
+            mainCartContainer.isHidden = true
+        } else {
+            emptyView.isHidden = true
+            mainTableView.reloadData()
+            mainCartContainer.isHidden = false
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -1288,37 +1288,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I5a-gm-1bi" customClass="EmptyView" customModule="gramejia" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="393" height="759"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8qe-ya-g0O" userLabel="MainCartContainer">
                                 <rect key="frame" x="0.0" y="44" width="393" height="759"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="M9s-wU-rkJ" userLabel="MainTableView">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="626.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="620.33333333333337"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="isw-qb-4m1" userLabel="TotalStack">
-                                        <rect key="frame" x="24" y="634.33333333333337" width="345" height="116.66666666666663"/>
+                                        <rect key="frame" x="24" y="628.33333333333337" width="345" height="122.66666666666663"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="pOA-eo-PUX" userLabel="BalanceStack">
-                                                <rect key="frame" x="0.0" y="0.0" width="345" height="20.333333333333332"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="345" height="23.333333333333332"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="banknote.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="egZ-Z9-fpG">
-                                                        <rect key="frame" x="0.0" y="2.3333333333333321" width="30" height="16"/>
+                                                        <rect key="frame" x="0.0" y="2.3333333333333321" width="30" height="19"/>
                                                         <color key="tintColor" name="MainAccentColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="30" id="nI0-eT-QIv"/>
                                                         </constraints>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="GGs-c4-dJb" userLabel="BalanceTitleStack">
-                                                        <rect key="frame" x="38" y="0.0" width="76" height="20.333333333333332"/>
+                                                        <rect key="frame" x="38" y="0.0" width="76" height="23.333333333333332"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Balance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bEC-OH-3Qf" userLabel="BalanceTitle">
-                                                                <rect key="frame" x="0.0" y="0.0" width="67" height="20.333333333333332"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="67.666666666666671" height="23.333333333333332"/>
                                                                 <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text=":" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F0P-lI-DbX" userLabel="Colon">
-                                                                <rect key="frame" x="71" y="0.0" width="5" height="20.333333333333332"/>
+                                                                <rect key="frame" x="71.666666666666657" y="0.0" width="4.3333333333333286" height="23.333333333333332"/>
                                                                 <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -1330,7 +1334,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rp900.000.000,-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zMz-2g-Vmm" userLabel="BalanceLabel">
-                                                        <rect key="frame" x="122" y="0.0" width="223" height="20.333333333333332"/>
+                                                        <rect key="frame" x="122" y="0.0" width="223" height="23.333333333333332"/>
                                                         <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -1338,26 +1342,26 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="MWF-hE-yye" userLabel="TotalStack">
-                                                <rect key="frame" x="0.0" y="28.333333333333258" width="345" height="20.333333333333329"/>
+                                                <rect key="frame" x="0.0" y="31.333333333333258" width="345" height="23.333333333333329"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="dollarsign" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="iFX-ii-MMA">
-                                                        <rect key="frame" x="0.0" y="-0.33333333333333215" width="30" height="21"/>
+                                                        <rect key="frame" x="0.0" y="-0.33333333333333215" width="30" height="24"/>
                                                         <color key="tintColor" name="MainAccentColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="30" id="1qO-rY-Zea"/>
                                                         </constraints>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="zSy-YS-763" userLabel="TotalTitleStack">
-                                                        <rect key="frame" x="38" y="0.0" width="76" height="20.333333333333332"/>
+                                                        <rect key="frame" x="38" y="0.0" width="76" height="23.333333333333332"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w6b-Vr-ROL" userLabel="TotalTitle">
-                                                                <rect key="frame" x="0.0" y="0.0" width="67" height="20.333333333333332"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="67.666666666666671" height="23.333333333333332"/>
                                                                 <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text=":" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mLw-HO-acL" userLabel="Colon">
-                                                                <rect key="frame" x="71" y="0.0" width="5" height="20.333333333333332"/>
+                                                                <rect key="frame" x="71.666666666666657" y="0.0" width="4.3333333333333286" height="23.333333333333332"/>
                                                                 <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -1369,7 +1373,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rp900.000,-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wne-P4-u6L" userLabel="TotalLabel">
-                                                        <rect key="frame" x="122" y="0.0" width="223" height="20.333333333333332"/>
+                                                        <rect key="frame" x="122" y="0.0" width="223" height="23.333333333333332"/>
                                                         <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -1377,14 +1381,14 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bv1-mX-lle">
-                                                <rect key="frame" x="0.0" y="56.666666666666629" width="345" height="2"/>
+                                                <rect key="frame" x="0.0" y="62.666666666666629" width="345" height="2"/>
                                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="2" id="Qkg-tL-AEi"/>
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K20-L9-HFc" userLabel="CheckoutButton" customClass="MainActionButton" customModule="gramejia" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="66.666666666666629" width="345" height="50"/>
+                                                <rect key="frame" x="0.0" y="72.666666666666629" width="345" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="51o-98-kMo"/>
                                                 </constraints>
@@ -1412,16 +1416,22 @@
                         <viewLayoutGuide key="safeArea" id="niq-bQ-ufC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="niq-bQ-ufC" firstAttribute="bottom" secondItem="I5a-gm-1bi" secondAttribute="bottom" id="Mqt-Rr-sag"/>
                             <constraint firstItem="8qe-ya-g0O" firstAttribute="leading" secondItem="niq-bQ-ufC" secondAttribute="leading" id="O1t-i2-dAZ"/>
                             <constraint firstItem="niq-bQ-ufC" firstAttribute="trailing" secondItem="8qe-ya-g0O" secondAttribute="trailing" id="eVQ-cn-BP8"/>
                             <constraint firstItem="niq-bQ-ufC" firstAttribute="bottom" secondItem="8qe-ya-g0O" secondAttribute="bottom" id="gXH-6J-3e7"/>
                             <constraint firstItem="8qe-ya-g0O" firstAttribute="top" secondItem="niq-bQ-ufC" secondAttribute="top" id="s7v-PX-izF"/>
+                            <constraint firstItem="I5a-gm-1bi" firstAttribute="leading" secondItem="uo8-eF-LeA" secondAttribute="leading" id="vth-P6-oOe"/>
+                            <constraint firstItem="I5a-gm-1bi" firstAttribute="top" secondItem="niq-bQ-ufC" secondAttribute="top" id="wyf-9J-Ofu"/>
+                            <constraint firstAttribute="trailing" secondItem="I5a-gm-1bi" secondAttribute="trailing" id="y5l-tP-1Wf"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="OvR-Bw-s8Q"/>
                     <connections>
                         <outlet property="balanceLabel" destination="zMz-2g-Vmm" id="0BK-aC-dsl"/>
                         <outlet property="checkoutButton" destination="K20-L9-HFc" id="Zvr-gs-fgO"/>
+                        <outlet property="emptyView" destination="I5a-gm-1bi" id="S52-36-Gsh"/>
+                        <outlet property="mainCartContainer" destination="8qe-ya-g0O" id="l5u-mk-evm"/>
                         <outlet property="mainTableView" destination="M9s-wU-rkJ" id="40T-H2-m10"/>
                         <outlet property="totalCostLabel" destination="Wne-P4-u6L" id="X80-P0-Y58"/>
                         <segue destination="6OS-Es-a34" kind="show" identifier="gotoTransaction" id="Gnh-YI-bLH"/>

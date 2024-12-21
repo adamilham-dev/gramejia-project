@@ -79,6 +79,9 @@
 		7E4DA6012D0035F200C5D7AC /* AdminMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4DA6002D0035F200C5D7AC /* AdminMapper.swift */; };
 		7E4DA6042D00ACF700C5D7AC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4DA6032D00ACF700C5D7AC /* HomeViewController.swift */; };
 		7E4DA6072D00AD3500C5D7AC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4DA6062D00AD3500C5D7AC /* ProfileViewController.swift */; };
+		7E66817C2D16EDA40093013B /* empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E66817B2D16EDA40093013B /* empty.json */; };
+		7E6681812D16EDE00093013B /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6681802D16EDE00093013B /* EmptyView.swift */; };
+		7E6681852D16EEF40093013B /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E6681842D16EEF40093013B /* EmptyView.xib */; };
 		7E6ADAD32D0424E000BE222F /* GeneralTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6ADAD22D0424E000BE222F /* GeneralTextView.swift */; };
 		7E6ADAD52D0424FC00BE222F /* GeneralTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E6ADAD42D0424FC00BE222F /* GeneralTextView.xib */; };
 		7E6FF4852D0D679E007340FB /* ProductCounterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E6FF4842D0D679E007340FB /* ProductCounterView.xib */; };
@@ -201,6 +204,9 @@
 		7E4DA6002D0035F200C5D7AC /* AdminMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminMapper.swift; sourceTree = "<group>"; };
 		7E4DA6032D00ACF700C5D7AC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		7E4DA6062D00AD3500C5D7AC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		7E66817B2D16EDA40093013B /* empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = empty.json; sourceTree = "<group>"; };
+		7E6681802D16EDE00093013B /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		7E6681842D16EEF40093013B /* EmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
 		7E6ADAD22D0424E000BE222F /* GeneralTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTextView.swift; sourceTree = "<group>"; };
 		7E6ADAD42D0424FC00BE222F /* GeneralTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralTextView.xib; sourceTree = "<group>"; };
 		7E6FF4842D0D679E007340FB /* ProductCounterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCounterView.xib; sourceTree = "<group>"; };
@@ -412,6 +418,7 @@
 		7E10D9532CFC4A4E00B11046 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				7E66817F2D16EDD40093013B /* Empty */,
 				7E38786A2D0EC2CB00789955 /* Preload */,
 				7E6FF4832D0D6762007340FB /* ProductCounter */,
 				7E30C37D2D058788008581A3 /* TableView */,
@@ -580,6 +587,15 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		7E66817F2D16EDD40093013B /* Empty */ = {
+			isa = PBXGroup;
+			children = (
+				7E6681802D16EDE00093013B /* EmptyView.swift */,
+				7E6681842D16EEF40093013B /* EmptyView.xib */,
+			);
+			path = Empty;
+			sourceTree = "<group>";
+		};
 		7E6ADAD12D04229900BE222F /* Textview */ = {
 			isa = PBXGroup;
 			children = (
@@ -618,6 +634,7 @@
 		7E7F8B302CFE017300B61544 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				7E66817B2D16EDA40093013B /* empty.json */,
 				7E30C3682D048304008581A3 /* add-image.json */,
 				7E4DA5F42CFEE11000C5D7AC /* error.json */,
 				7E7F8B312CFE018400B61544 /* loading.json */,
@@ -821,6 +838,7 @@
 				7E3878692D0E05A900789955 /* BookCollectionViewCell.xib in Resources */,
 				7E10D9732CFC4F8000B11046 /* Nunito-Black.ttf in Resources */,
 				7E30C3632D0470AD008581A3 /* ImageFieldView.xib in Resources */,
+				7E6681852D16EEF40093013B /* EmptyView.xib in Resources */,
 				7E6ADAD52D0424FC00BE222F /* GeneralTextView.xib in Resources */,
 				7E10D9682CFC4F8000B11046 /* Nunito-ExtraLightItalic.ttf in Resources */,
 				7E10D9692CFC4F8000B11046 /* Nunito-Light.ttf in Resources */,
@@ -833,6 +851,7 @@
 				7E4DA5FB2D00217400C5D7AC /* login.json in Resources */,
 				7E7F8B322CFE018400B61544 /* loading.json in Resources */,
 				7E30C37C2D057D4E008581A3 /* BookTableViewCell.xib in Resources */,
+				7E66817C2D16EDA40093013B /* empty.json in Resources */,
 				7E4DA5F52CFEE11000C5D7AC /* error.json in Resources */,
 				7E38787A2D0F246100789955 /* CartTableViewCell.xib in Resources */,
 				7E10D9762CFC4F8000B11046 /* Nunito-ExtraLight.ttf in Resources */,
@@ -886,6 +905,7 @@
 				7E10D93E2CFB782300B11046 /* AddBookViewController.swift in Sources */,
 				7EACAC212CFCB17C0094C61B /* UIView+Ext.swift in Sources */,
 				7E6FF48B2D0DB77F007340FB /* Double+Ext.swift in Sources */,
+				7E6681812D16EDE00093013B /* EmptyView.swift in Sources */,
 				7E363B8F2D1263D5007D4837 /* TransactionRepository.swift in Sources */,
 				7EB100592D126B1B00257511 /* TransactionUseCase.swift in Sources */,
 				7E6FF4872D0D67AD007340FB /* ProductCounterView.swift in Sources */,
