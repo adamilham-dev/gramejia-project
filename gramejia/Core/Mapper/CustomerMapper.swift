@@ -15,7 +15,8 @@ final class CustomerMapper {
             username: entity.username ?? "",
             password: entity.password ?? "",
             balance: entity.balance,
-            isActive: entity.isActive
+            isActive: entity.isActive,
+            profileImage: entity.profileImage
         )
     }
     
@@ -26,5 +27,6 @@ final class CustomerMapper {
         entity.password = domain.password
         entity.balance = domain.balance
         entity.isActive = domain.isActive
+        entity.profileImage = domain.profileImage
     }
 }
