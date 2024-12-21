@@ -2,7 +2,7 @@
 //  EmptyView.swift
 //  gramejia
 //
-//  Created by Rivaldo Fernandes on 21/12/24.
+//  Created by Adam on 21/12/24.
 //
 
 import UIKit

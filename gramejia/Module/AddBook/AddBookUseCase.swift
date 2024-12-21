@@ -11,6 +11,7 @@ import Combine
 protocol AddBookUseCaseProtocol {
     func getBookList() -> AnyPublisher<[BookModel], Error>
     func addBook(book: BookModel) -> AnyPublisher<Bool, Error>
+    func deleteBook(idBook: String) -> AnyPublisher<Bool, any Error>
 }
 
 class AddBookUseCase: AddBookUseCaseProtocol {
@@ -26,5 +27,9 @@ class AddBookUseCase: AddBookUseCaseProtocol {
     
     func addBook(book: BookModel) -> AnyPublisher<Bool, any Error> {
         return bookRepository.addBook(book: book).eraseToAnyPublisher()
+    }
+    
+    func deleteBook(idBook: String) -> AnyPublisher<Bool, any Error> {
+        return bookRepository.deleteBook(idBook: idBook).eraseToAnyPublisher()
     }
 }

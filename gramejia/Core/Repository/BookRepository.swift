@@ -11,6 +11,7 @@ import Combine
 protocol BookRepositoryProtocol {
     func getBookList() -> AnyPublisher<[BookModel], Error>
     func addBook(book: BookModel) -> AnyPublisher<Bool, Error>
+    func deleteBook(idBook: String) -> AnyPublisher<Bool, any Error>
 }
 
 final class BookRepository: NSObject {
@@ -43,5 +44,11 @@ extension BookRepository: BookRepositoryProtocol {
         .eraseToAnyPublisher()
     }
     
+    func deleteBook(idBook: String) -> AnyPublisher<Bool, any Error> {
+        let predicate = NSPredicate(format: "id == %@", idBook)
+        
+        return self.coreDataManager.deleteBy(BookEntity.self, predicate: predicate)
+            .eraseToAnyPublisher()
+    }
 }
 

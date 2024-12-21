@@ -18,8 +18,9 @@ class AddBookViewController: BaseViewController<AddBookViewModel>, UIImagePicker
     @IBOutlet weak var publishedDateField: GeneralTextFieldView!
     @IBOutlet weak var priceField: GeneralTextFieldView!
     @IBOutlet weak var stockField: GeneralTextFieldView!
-    
     @IBOutlet weak var submitButton: MainActionButton!
+    
+    var bookModel: BookModel? = nil
     
     
     var formValidity = [
@@ -43,6 +44,7 @@ class AddBookViewController: BaseViewController<AddBookViewModel>, UIImagePicker
         
         setupView()
         bindDataViewModel()
+        setBookToView()
     }
     
     private func setupView() {
@@ -56,9 +58,55 @@ class AddBookViewController: BaseViewController<AddBookViewModel>, UIImagePicker
         submitButton.isEnabled = false
     }
     
+    private func setBookToView() {
+        guard let book = bookModel else { return }
+        
+        isbnField.mainTextField.text = book.id
+        titleField.mainTextField.text = book.title
+        synopsisField.mainTextView.text = book.synopsis
+        authorField.mainTextField.text = book.author
+        publisherField.mainTextField.text = book.publisher
+        publishedDateField.mainTextField.text = book.publishedDate.formatISODate()
+        priceField.mainTextField.text = String(book.price)
+        stockField.mainTextField.text = String(book.stock)
+        if let imageData = Data(base64Encoded: book.coverImage ?? "") {
+            imageField.setImage(image: UIImage(data: imageData))
+        }
+        
+        for key in formValidity.keys {
+            formValidity[key] = true
+        }
+    }
+    
     private func setupNavigation() {
         navigationController?.navigationBar.tintColor = .mainAccent
-        title = "Add Book"
+        
+        if(bookModel == nil) {
+            title = "Add Book"
+        } else {
+            title = "Detail Book"
+            let rightBarButton = UIBarButtonItem(
+                image: UIImage(systemName: "trash.fill"),
+                style: .plain,
+                target: self,
+                action: #selector(deleteBookTapped)
+            )
+            
+            rightBarButton.tintColor = .mainAccent
+            navigationItem.rightBarButtonItem = rightBarButton
+        }
+    }
+    
+    @objc private func deleteBookTapped(){
+        let alert = UIAlertController(title: "Are you sure to delete this book?", message: "This action cannot be undone", preferredStyle: .alert)
+        let continueButton = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+            self?.viewModel.deleteBook(idBook: self?.bookModel?.id ?? "")
+        }
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(continueButton)
+        alert.addAction(cancelButton)
+        self.present(alert, animated: true)
     }
     
     private func bindDataViewModel() {
@@ -68,6 +116,17 @@ class AddBookViewController: BaseViewController<AddBookViewModel>, UIImagePicker
                 if response {
                     self?.resetForm()
                     self?.showSnackbar(message: "Successfully Add Book")
+                }
+            }
+            .store(in: &cancellables)
+        
+        viewModel?.isSuccessDeleteBook
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] response in
+                if response {
+                    self?.resetForm()
+                    self?.showSnackbar(message: "Successfully delete Book")
+                    self?.navigationController?.popViewController(animated: true)
                 }
             }
             .store(in: &cancellables)

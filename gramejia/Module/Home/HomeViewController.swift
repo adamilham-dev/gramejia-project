@@ -21,6 +21,10 @@ class HomeViewController: BaseViewController<HomeViewModel> {
         
         setupView()
         bindDataViewModel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         viewModel.getBookList()
     }
     
@@ -49,24 +53,23 @@ class HomeViewController: BaseViewController<HomeViewModel> {
         let height = width * 1.5
         layout.itemSize = CGSize(width: width, height: height)
 
-        
         mainCollectionView.collectionViewLayout = layout
-        
     }
     
     private func setupNavigation() {
         navigationController?.navigationBar.tintColor = .mainAccent
-        
-        let rightBarButton = UIBarButtonItem(
-            image: UIImage(systemName: "plus.app"),
-            style: .plain,
-            target: self,
-            action: #selector(addBookNavItemTapped)
-        )
-        
-        rightBarButton.tintColor = .black
         self.title = "Home"
-        navigationItem.rightBarButtonItem = rightBarButton
+        if(viewModel.userLevel == "customer") {
+            let rightBarButton = UIBarButtonItem(
+                image: UIImage(systemName: "plus.app"),
+                style: .plain,
+                target: self,
+                action: #selector(addBookNavItemTapped)
+            )
+            
+            rightBarButton.tintColor = .black
+            navigationItem.rightBarButtonItem = rightBarButton
+        }
     }
     
     private func bindDataViewModel() {
@@ -83,17 +86,17 @@ class HomeViewController: BaseViewController<HomeViewModel> {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "gotoAddBook",
-           let addBookVC = segue.destination as? AddBookViewController {
+        if segue.identifier == "gotoAddBook", let addBookVC = segue.destination as? AddBookViewController {
             addBookVC.hidesBottomBarWhenPushed = true
+            if let _ = sender as? String {
+                addBookVC.bookModel = selectedBook
+            }
+            
         } else if segue.identifier == "gotoDetailBook", let detailBookVC = segue.destination as? DetailBookViewController {
                 detailBookVC.hidesBottomBarWhenPushed = true
             detailBookVC.bookModel = selectedBook
         }
     }
-    
-    
-    
 }
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -116,8 +119,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         self.selectedBook = viewModel.bookList.value[indexPath.item]
-        performSegue(withIdentifier: "gotoDetailBook", sender: nil)
+        //MARK NN: change leve
+        if(viewModel.userLevel == "customer") {
+            performSegue(withIdentifier: "gotoAddBook", sender: "edit")
+        } else {
+            performSegue(withIdentifier: "gotoDetailBook", sender: nil)
+        }
     }
 }

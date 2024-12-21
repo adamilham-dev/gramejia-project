@@ -12,6 +12,7 @@ class HomeViewModel: BaseViewModel {
     private var homeUseCase: HomeUseCaseProtocol = Injection().provideHomeUseCase()
     
     let bookList = CurrentValueSubject<[BookModel], Never>([])
+    let userLevel: String = UserDefaultsManager.shared.get(forKey: .userLevel) ?? "customer"
     
     func getBookList(){
         isLoading.send(true)
