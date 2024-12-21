@@ -12,6 +12,8 @@ protocol TransactionRepositoryProtocol {
     func addTransaction(username: String, transaction: TransactionModel) -> AnyPublisher<Bool, Error>
     
     func getTransactionList(username: String) -> AnyPublisher<[TransactionModel], Error>
+    
+    func deleteTransaction(idTransaction: String) -> AnyPublisher<Bool, Error> 
 }
 
 final class TransactionRepository: NSObject {
@@ -30,9 +32,15 @@ final class TransactionRepository: NSObject {
 
 extension TransactionRepository: TransactionRepositoryProtocol {
     func getTransactionList(username: String) -> AnyPublisher<[TransactionModel], any Error> {
-        return self.coreDataManager.fetch(TransactionEntity.self)
+        let sortDescriptor = [NSSortDescriptor(key: "transactionDate", ascending: false)]
+        return self.coreDataManager.fetch(TransactionEntity.self, sortDescriptor: sortDescriptor)
             .map { $0.map { TransactionMapper.transactionEntityToDomain($0) } }
             .eraseToAnyPublisher()
+    }
+    
+    func deleteTransaction(idTransaction: String) -> AnyPublisher<Bool, Error> {
+        let predicate = NSPredicate(format: "id == %@", idTransaction)
+        return self.coreDataManager.deleteBy(TransactionEntity.self, predicate: predicate)
     }
     
     func addTransaction(username: String, transaction: TransactionModel) -> AnyPublisher<Bool, Error> {

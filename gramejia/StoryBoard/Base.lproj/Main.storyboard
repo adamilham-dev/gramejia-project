@@ -1450,22 +1450,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="nnw-b2-2Bd">
-                                <rect key="frame" x="0.0" y="44" width="393" height="808"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="izW-NI-MEz" userLabel="EmptyView" customClass="EmptyView" customModule="gramejia" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="393" height="759"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jzk-Uk-AQv" userLabel="MainContainer">
+                                <rect key="frame" x="0.0" y="44" width="393" height="808"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="nnw-b2-2Bd">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="808"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="nnw-b2-2Bd" firstAttribute="leading" secondItem="jzk-Uk-AQv" secondAttribute="leading" id="ATE-Jg-h4V"/>
+                                    <constraint firstAttribute="bottom" secondItem="nnw-b2-2Bd" secondAttribute="bottom" id="B04-e2-Z18"/>
+                                    <constraint firstItem="nnw-b2-2Bd" firstAttribute="top" secondItem="jzk-Uk-AQv" secondAttribute="top" id="mGM-Ph-5mU"/>
+                                    <constraint firstAttribute="trailing" secondItem="nnw-b2-2Bd" secondAttribute="trailing" id="ole-27-z3V"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="UZd-hO-Qw6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="nnw-b2-2Bd" firstAttribute="leading" secondItem="cxW-26-Nru" secondAttribute="leading" id="DEN-w1-A7n"/>
-                            <constraint firstItem="nnw-b2-2Bd" firstAttribute="top" secondItem="UZd-hO-Qw6" secondAttribute="top" id="IoX-X5-Ken"/>
-                            <constraint firstAttribute="bottom" secondItem="nnw-b2-2Bd" secondAttribute="bottom" id="MVy-sz-qOA"/>
-                            <constraint firstAttribute="trailing" secondItem="nnw-b2-2Bd" secondAttribute="trailing" id="fYy-th-hhE"/>
+                            <constraint firstItem="UZd-hO-Qw6" firstAttribute="trailing" secondItem="izW-NI-MEz" secondAttribute="trailing" id="0CU-Xs-WHf"/>
+                            <constraint firstItem="izW-NI-MEz" firstAttribute="leading" secondItem="UZd-hO-Qw6" secondAttribute="leading" id="A1B-6r-ESN"/>
+                            <constraint firstAttribute="trailing" secondItem="jzk-Uk-AQv" secondAttribute="trailing" id="HR1-aF-93e"/>
+                            <constraint firstItem="izW-NI-MEz" firstAttribute="top" secondItem="UZd-hO-Qw6" secondAttribute="top" id="MWN-Ka-3yT"/>
+                            <constraint firstItem="UZd-hO-Qw6" firstAttribute="bottom" secondItem="izW-NI-MEz" secondAttribute="bottom" id="bw9-0t-0qt"/>
+                            <constraint firstAttribute="bottom" secondItem="jzk-Uk-AQv" secondAttribute="bottom" id="kdW-on-Yst"/>
+                            <constraint firstItem="jzk-Uk-AQv" firstAttribute="top" secondItem="UZd-hO-Qw6" secondAttribute="top" id="nIu-Gz-zG5"/>
+                            <constraint firstItem="jzk-Uk-AQv" firstAttribute="leading" secondItem="cxW-26-Nru" secondAttribute="leading" id="x5L-ax-hbD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="CoY-0M-Lap"/>
                     <connections>
+                        <outlet property="emptyView" destination="izW-NI-MEz" id="56S-EH-9s5"/>
+                        <outlet property="mainContainer" destination="jzk-Uk-AQv" id="2aY-II-d5R"/>
                         <outlet property="transactionTableView" destination="nnw-b2-2Bd" id="eeg-fA-Twk"/>
                     </connections>
                 </viewController>

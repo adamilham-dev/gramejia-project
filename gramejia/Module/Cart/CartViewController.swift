@@ -18,6 +18,7 @@ class CartViewController: BaseViewController<CartViewModel> {
     @IBOutlet weak var checkoutButton: MainActionButton!
     
     private var selectedCartItem: CartItemModel? = nil
+    private var totalCost: Double = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,10 +92,11 @@ class CartViewController: BaseViewController<CartViewModel> {
             .store(in: &cancellables)
         
         viewModel?.isTransactionAdded
+            .combineLatest(viewModel.isCartUserDeleted, viewModel.isSuccessUpdateBalance)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] response in
+            .sink { [weak self] isTransactionAdded, isCartUserDeleted, isUpdatedBalance in
                 self?.viewModel.isLoading.send(false)
-                if response {
+                if(isTransactionAdded && isCartUserDeleted && isUpdatedBalance) {
                     self?.showSnackbar(message: "Your Transaction is success")
                     self?.viewModel.cartItemList.value.removeAll()
                     self?.updateCart()
@@ -118,7 +120,7 @@ class CartViewController: BaseViewController<CartViewModel> {
     
     private func updateCart(){
         let items = viewModel.cartItemList.value
-        let totalCost: Double = items.reduce(0, { $0 + Double($1.quantity) * ($1.book?.price ?? 0) })
+        self.totalCost = items.reduce(0, { $0 + Double($1.quantity) * ($1.book?.price ?? 0) })
         self.totalCostLabel.text = totalCost.toRupiah()
         checkoutButton.isEnabled = totalCost <= viewModel.customerBalance.value
         
@@ -140,6 +142,8 @@ class CartViewController: BaseViewController<CartViewModel> {
     }
     @IBAction func checkoutButtonTapped(_ sender: Any) {
         viewModel.checkoutTransaction()
+        viewModel.updateBalance(balance: -totalCost)
+        viewModel.deleteCartUser()
         
     }
 }

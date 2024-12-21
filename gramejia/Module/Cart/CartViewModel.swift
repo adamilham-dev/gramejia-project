@@ -16,6 +16,8 @@ class CartViewModel: BaseViewModel {
     let customerBalance = CurrentValueSubject<Double, Never>(0)
     let isTransactionAdded = CurrentValueSubject<Bool, Never>(false)
     let isCartItemDeleted = CurrentValueSubject<Bool, Never>(false)
+    let isCartUserDeleted = CurrentValueSubject<Bool, Never>(false)
+    let isSuccessUpdateBalance = CurrentValueSubject<Bool, Never>(false)
     let username: String = UserDefaultsManager.shared.get(forKey: .currentUsername) ?? ""
     
     func getCarts(){
@@ -98,5 +100,43 @@ class CartViewModel: BaseViewModel {
                 self?.isCartItemDeleted.send(isSuccess)
             })
             .store(in: &self.cancellables)
+    }
+    
+    func deleteCartUser() {
+        isLoading.send(true)
+        
+        self.cartUseCase.deleteCartUser(username: username)
+            .receive(on: RunLoop.main)
+            .sink(receiveCompletion: { [weak self] completion in
+                switch(completion) {
+                case .finished:
+                    break
+                case .failure(let error):
+                    self?.error.send(error)
+                }
+            }, receiveValue: { [weak self] isSuccess in
+                self?.error.send(nil)
+                self?.isCartUserDeleted.send(isSuccess)
+            })
+            .store(in: &self.cancellables)
+    }
+    
+    func updateBalance(balance: Double){
+        isLoading.send(true)
+        
+        self.cartUseCase.updateBalance(username: username, balance: balance)
+            .receive(on: RunLoop.main)
+            .sink(receiveCompletion: { [weak self] completion in
+                self?.isLoading.send(false)
+                switch(completion) {
+                case .finished:
+                    break
+                case .failure(let error):
+                    self?.error.send(error)
+                }
+            }, receiveValue: { [weak self] isSuccess in
+                self?.isSuccessUpdateBalance.send(isSuccess)
+            })
+            .store(in: &cancellables)
     }
 }

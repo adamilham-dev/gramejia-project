@@ -16,6 +16,8 @@ protocol CartRepositoryProtocol {
     func getCartBookItem(username: String, idBook: String) -> AnyPublisher<CartItemModel?, Error>
     
     func deleteCartBookItem(username: String, idBook: String) -> AnyPublisher<Bool, Error>
+    
+    func deleteCartUser(username: String) -> AnyPublisher<Bool, Error>
 }
 
 final class CartRepository: NSObject {
@@ -33,12 +35,16 @@ final class CartRepository: NSObject {
 }
 
 extension CartRepository: CartRepositoryProtocol {
+    func deleteCartUser(username: String) -> AnyPublisher<Bool, Error> {
+        return self.coreDataManager.deleteCartUser(username: username)
+    }
+    
     func deleteCartBookItem(username: String, idBook: String) -> AnyPublisher<Bool, Error> {
-        self.coreDataManager.deleteCartBookItem(username: username, idBook: idBook)
+        return self.coreDataManager.deleteCartBookItem(username: username, idBook: idBook)
     }
     
     func getCartBookItem(username: String, idBook: String) -> AnyPublisher<CartItemModel?, Error> {
-        self.coreDataManager.getCartBookItem(username: username, idBook: idBook)
+        return self.coreDataManager.getCartBookItem(username: username, idBook: idBook)
             .map({
                 let item: CartItemModel? = nil
                 guard let entity = $0 else { return item }
@@ -47,12 +53,12 @@ extension CartRepository: CartRepositoryProtocol {
     }
     
     func addBookToCart(username: String, idBook: String, quantity: Int64) -> AnyPublisher<Bool, Error> {
-        self.coreDataManager.addBookToCart(username: username, idBook: idBook, quantity: quantity)
+        return self.coreDataManager.addBookToCart(username: username, idBook: idBook, quantity: quantity)
             .eraseToAnyPublisher()
     }
     
     func getCartItemList(username: String) -> AnyPublisher<[CartItemModel], Error> {
-        self.coreDataManager.fetchCartItems(username: username)
+        return self.coreDataManager.fetchCartItems(username: username)
             .map { $0.map { CartMapper.cartItemEntityToDomain($0) } }
             .eraseToAnyPublisher()
     }

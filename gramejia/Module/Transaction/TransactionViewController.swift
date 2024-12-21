@@ -8,7 +8,10 @@
 import UIKit
 
 class TransactionViewController: BaseViewController<TransactionViewModel> {
-
+    
+    @IBOutlet weak var emptyView: EmptyView!
+    @IBOutlet weak var mainContainer: UIView!
+    
     @IBOutlet weak var transactionTableView: UITableView!
     
     override func viewDidLoad() {
@@ -57,8 +60,35 @@ class TransactionViewController: BaseViewController<TransactionViewModel> {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.transactionTableView.reloadData()
+                self?.updateState()
             }
             .store(in: &cancellables)
+        
+        viewModel?.isTransactionDeleted
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] response in
+                self?.viewModel.isLoading.send(false)
+                if response {
+                    self?.showSnackbar(message: "Your Transaction is deleted")
+                    self?.updateState()
+                } else {
+                    self?.viewModel.getTransactionList()
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func updateState() {
+        let items = viewModel.transactionlist.value
+       
+        if(items.isEmpty) {
+            emptyView.isHidden = false
+            mainContainer.isHidden = true
+        } else {
+            emptyView.isHidden = true
+            transactionTableView.reloadData()
+            mainContainer.isHidden = false
+        }
     }
 }
 
@@ -98,8 +128,11 @@ extension TransactionViewController: UITableViewDelegate, UITableViewDataSource 
     // Enable swipe-to-delete
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            let item = viewModel.transactionlist.value[indexPath.row]
             viewModel.transactionlist.value.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
+            viewModel.deleteTransaction(idTransaction: item.id)
+            updateState()
         }
     }
     

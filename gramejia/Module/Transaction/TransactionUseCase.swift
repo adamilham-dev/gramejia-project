@@ -12,9 +12,15 @@ protocol TransactionUseCaseProtocol {
     func addTransaction(username: String, transaction: TransactionModel) -> AnyPublisher<Bool, Error>
     
     func getTransactionList(username: String) -> AnyPublisher<[TransactionModel], Error>
+    
+    func deleteTransaction(idTransaction: String) -> AnyPublisher<Bool, Error>
 }
 
 class TransactionUseCase: TransactionUseCaseProtocol {
+    func deleteTransaction(idTransaction: String) -> AnyPublisher<Bool, Error> {
+        return self.transactionRepository.deleteTransaction(idTransaction: idTransaction)
+    }
+    
 
     private let transactionRepository: TransactionRepositoryProtocol
     

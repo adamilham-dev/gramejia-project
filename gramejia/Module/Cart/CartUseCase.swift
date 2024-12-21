@@ -13,9 +13,20 @@ protocol CartUseCaseProtocol {
     func getCustomer(username: String) -> AnyPublisher<CustomerModel?, Error>
     func addBookToCart(username: String, idBook: String, quantity: Int64) -> AnyPublisher<Bool, Error>
     func deleteCartBookItem(username: String, idBook: String) -> AnyPublisher<Bool, Error>
+    func deleteCartUser(username: String) -> AnyPublisher<Bool, Error>
+    
+    func updateBalance(username: String, balance: Double) -> AnyPublisher<Bool, Error>
 }
 
 class CartUseCase: CartUseCaseProtocol {
+    private let cartRepository: CartRepositoryProtocol
+    private let authenticationRepository: AuthenticationRepositoryProtocol
+    
+    required init(cartRepository: CartRepositoryProtocol, authenticationRepository: AuthenticationRepositoryProtocol) {
+        self.cartRepository = cartRepository
+        self.authenticationRepository = authenticationRepository
+    }
+    
     func deleteCartBookItem(username: String, idBook: String) -> AnyPublisher<Bool, Error> {
         self.cartRepository.deleteCartBookItem(username: username, idBook: idBook)
     }
@@ -32,12 +43,12 @@ class CartUseCase: CartUseCaseProtocol {
         self.cartRepository.getCartItemList(username: username).eraseToAnyPublisher()
     }
     
-    private let cartRepository: CartRepositoryProtocol
-    private let authenticationRepository: AuthenticationRepositoryProtocol
+    func updateBalance(username: String, balance: Double) -> AnyPublisher<Bool, Error> {
+        return authenticationRepository.updateBalance(username: username, balance: balance)
+    }
     
-    required init(cartRepository: CartRepositoryProtocol, authenticationRepository: AuthenticationRepositoryProtocol) {
-        self.cartRepository = cartRepository
-        self.authenticationRepository = authenticationRepository
+    func deleteCartUser(username: String) -> AnyPublisher<Bool, Error> {
+        return cartRepository.deleteCartUser(username: username)
     }
     
 }

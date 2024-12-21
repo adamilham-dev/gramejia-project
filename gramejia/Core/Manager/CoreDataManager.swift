@@ -321,7 +321,7 @@ class CoreDataManager {
         .eraseToAnyPublisher()
     }
     
-    func deleteBy<T: NSManagedObject>(_ entity: T.Type, id: String, predicate: NSPredicate) ->  AnyPublisher<Bool, Error> {
+    func deleteBy<T: NSManagedObject>(_ entity: T.Type, predicate: NSPredicate) ->  AnyPublisher<Bool, Error> {
         
         return Future<Bool, Error> { [weak self] promise in
             guard let self = self, let context = self.context else {
@@ -417,6 +417,32 @@ class CoreDataManager {
                 promise(.failure(error))
             }
         }.eraseToAnyPublisher()
+    }
+    
+    func deleteCartUser(username: String) -> AnyPublisher<Bool, Error> {
+        return Future<Bool, Error> { [weak self] promise in
+            guard let self = self, let context = self.context else {
+                promise(.failure(DatabaseError.invalidDatabase))
+                return
+            }
+            if let user = getSingle(CustomerEntity.self, predicate: NSPredicate(format: "username == %@", username)){
+                if let cart = user.cart {
+                    context.delete(cart)
+                    do {
+                        try context.save()
+                        promise(.success(true))
+                    } catch let error {
+                        context.rollback()
+                        promise(.failure(error))
+                    }
+                } else {
+                    promise(.failure(DatabaseError.dataNotFound))
+                }
+            } else {
+                promise(.failure(DatabaseError.dataNotFound))
+            }
+        }
+        .eraseToAnyPublisher()
     }
     
     func deleteCartBookItem(username: String, idBook: String) -> AnyPublisher<Bool, Error> {
