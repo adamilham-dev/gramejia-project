@@ -16,6 +16,7 @@ class ProfileViewModel: BaseViewModel {
     
     let userProfile = CurrentValueSubject<UserProfileModel?, Never>(nil)
     let isSuccessUpdateUser = CurrentValueSubject<Bool, Never>(false)
+    let isSuccessDeleteUser = CurrentValueSubject<Bool, Never>(false)
 
     func updateUser() {
         isLoading.send(true)
@@ -54,6 +55,22 @@ class ProfileViewModel: BaseViewModel {
         }
     }
     
+    func deleteAccount(){
+        self.profileUseCase.deleteCustomer(username: username)
+            .receive(on: RunLoop.main)
+            .sink(receiveCompletion: { [weak self] completion in
+                switch(completion) {
+                case .finished:
+                    break
+                case .failure(let error):
+                    self?.error.send(error)
+                }
+            }, receiveValue: { [weak self] isSuccess in
+                self?.isSuccessDeleteUser.send(isSuccess)
+            })
+            .store(in: &cancellables)
+    }
+    
     func getUser() {
         isLoading.send(true)
         
@@ -69,7 +86,8 @@ class ProfileViewModel: BaseViewModel {
                         self?.error.send(error)
                     }
                 }, receiveValue: { [weak self] customer in
-                    let userProfile = UserProfileModel(name: customer?.name ?? "", username: customer?.username ?? "", password: customer?.password ?? "", balance: customer?.balance, profileImage: customer?.profileImage ?? "")
+                    let profileImage = self?.userProfile.value?.profileImage
+                    let userProfile = UserProfileModel(name: customer?.name ?? "", username: customer?.username ?? "", password: customer?.password ?? "", balance: customer?.balance, profileImage: profileImage ?? customer?.profileImage ?? "")
                     self?.error.send(nil)
                     self?.userProfile.send(userProfile)
                 })
@@ -86,7 +104,8 @@ class ProfileViewModel: BaseViewModel {
                         self?.error.send(error)
                     }
                 }, receiveValue: { [weak self] admin in
-                    let userProfile = UserProfileModel(name: admin?.name ?? "", username: admin?.name ?? "", password: admin?.password ?? "", profileImage: admin?.profileImage ?? "")
+                    let profileImage = self?.userProfile.value?.profileImage
+                    let userProfile = UserProfileModel(name: admin?.name ?? "", username: admin?.name ?? "", password: admin?.password ?? "", profileImage: profileImage ?? admin?.profileImage ?? "")
                     self?.error.send(nil)
                     self?.userProfile.send(userProfile)
                 })

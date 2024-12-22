@@ -94,9 +94,30 @@ class ProfileViewController: BaseViewController<ProfileViewModel> {
             action: #selector(logoutButtonTapped)
         )
         
+        let deleteButton = UIBarButtonItem(
+            image: UIImage(systemName: "trash"),
+            style: .plain,
+            target: self,
+            action: #selector(deleteAccountTapped)
+        )
+        
+        deleteButton.tintColor = .mainAccent
+        
         logoutButton.tintColor = .black
-        navigationItem.rightBarButtonItem = logoutButton
+        navigationItem.rightBarButtonItems = [logoutButton ,deleteButton]
         self.title = "Profile"
+    }
+    
+    @objc private func deleteAccountTapped() {
+        let alert = UIAlertController(title: "Are you sure to delete your account?", message: "This action cannot be cancelled after this", preferredStyle: .alert)
+        let continueButton = UIAlertAction(title: "Delete", style: .destructive) { _ in
+            self.viewModel.deleteAccount()
+        }
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(continueButton)
+        alert.addAction(cancelButton)
+        self.present(alert, animated: true)
     }
     
     private func setupFields() {
@@ -148,6 +169,17 @@ class ProfileViewController: BaseViewController<ProfileViewModel> {
             .sink { [weak self] response in
                 if response {
                     self?.showSnackbar(message: "Successfully Update Profile")
+                }
+            }
+            .store(in: &cancellables)
+        
+        viewModel?.isSuccessDeleteUser
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] response in
+                if response {
+                    self?.showSnackbar(message: "Account Deleted, Sorry to letting you go")
+                    self?.viewModel.logoutUser()
+                    self?.navigateToLogin()
                 }
             }
             .store(in: &cancellables)
@@ -260,7 +292,8 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[.originalImage] as? UIImage {
             self.profileImageView.image = selectedImage
-            self.viewModel.userProfile.value?.profileImage = selectedImage.compressTo(targetSizeKB: 2024)?.base64EncodedString()
+            let base64 = selectedImage.compressTo(targetSizeKB: 2024)?.base64EncodedString()
+            self.viewModel.userProfile.value?.profileImage = base64
         } else {
             self.profileImageView.image = nil
         }

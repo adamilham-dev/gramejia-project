@@ -228,6 +228,14 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
         return .delete
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if(viewModel.userLevel == "customer") {
+            return 0
+        } else {
+            return 50
+        }
+    }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if(viewModel.userLevel == "customer") {
             return nil

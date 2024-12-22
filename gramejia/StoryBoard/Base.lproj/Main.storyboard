@@ -1147,45 +1147,43 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C5H-JJ-qGm" userLabel="MainContainer">
-                                <rect key="frame" x="0.0" y="44" width="393" height="808"/>
+                                <rect key="frame" x="0.0" y="44" width="393" height="759"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ToP-YT-1F2" userLabel="DenomStack">
-                                        <rect key="frame" x="0.0" y="24" width="393" height="535.33333333333337"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="wtz-Dn-w0e" userLabel="MainStackView">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fGI-ZL-3lb" userLabel="ContainerLabelAmount">
-                                                <rect key="frame" x="0.0" y="0.0" width="393" height="95.333333333333329"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8fa-JK-vJU" userLabel="ContainerDenomStack">
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="104.66666666666667"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Amount:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lkP-fd-4dB" userLabel="Select Amount">
-                                                        <rect key="frame" x="24" y="0.0" width="345" height="87.333333333333329"/>
-                                                        <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="15"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="RqU-Fi-qXY" userLabel="CustomDenomStack">
+                                                        <rect key="frame" x="24" y="0.0" width="345" height="104.66666666666667"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Specified Amount:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XGp-3A-c3S" userLabel="SpecifiedAmountLabel">
+                                                                <rect key="frame" x="0.0" y="0.0" width="345" height="20.666666666666668"/>
+                                                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="15"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="345" placeholderIntrinsicHeight="80" translatesAutoresizingMaskIntoConstraints="NO" id="mff-vX-xCC" userLabel="SpecifiedAmountField" customClass="GeneralTextFieldView" customModule="gramejia" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="24.666666666666671" width="345" height="80"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </view>
+                                                        </subviews>
+                                                    </stackView>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="lkP-fd-4dB" secondAttribute="trailing" constant="24" id="ILB-aP-HAg"/>
-                                                    <constraint firstItem="lkP-fd-4dB" firstAttribute="top" secondItem="fGI-ZL-3lb" secondAttribute="top" id="M5I-7v-ol3"/>
-                                                    <constraint firstAttribute="bottom" secondItem="lkP-fd-4dB" secondAttribute="bottom" constant="8" id="Vfp-D6-gL3"/>
-                                                    <constraint firstItem="lkP-fd-4dB" firstAttribute="leading" secondItem="fGI-ZL-3lb" secondAttribute="leading" constant="24" id="d4V-Rr-cUh"/>
+                                                    <constraint firstAttribute="bottom" secondItem="RqU-Fi-qXY" secondAttribute="bottom" id="HPm-Ba-61k"/>
+                                                    <constraint firstAttribute="trailing" secondItem="RqU-Fi-qXY" secondAttribute="trailing" constant="24" id="fzH-Jw-3d2"/>
+                                                    <constraint firstItem="RqU-Fi-qXY" firstAttribute="leading" secondItem="8fa-JK-vJU" secondAttribute="leading" constant="24" id="sJi-Rw-GBx"/>
+                                                    <constraint firstItem="RqU-Fi-qXY" firstAttribute="top" secondItem="8fa-JK-vJU" secondAttribute="top" id="sSI-XI-4WW"/>
                                                 </constraints>
                                             </view>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VDh-jo-F12" userLabel="MainCollectionView">
-                                                <rect key="frame" x="0.0" y="95.333333333333371" width="393" height="390"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="spX-Dz-A3x">
-                                                    <size key="itemSize" width="128" height="128"/>
-                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                </collectionViewFlowLayout>
-                                                <cells/>
-                                            </collectionView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xig-LJ-VQE" userLabel="Or">
-                                                <rect key="frame" x="0.0" y="485.33333333333337" width="393" height="50"/>
+                                                <rect key="frame" x="0.0" y="120.66666666666664" width="393" height="23.333333333333329"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ja-fw-6AU" userLabel="Or">
-                                                        <rect key="frame" x="0.0" y="24" width="393" height="26"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="393" height="23.333333333333332"/>
                                                         <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -1194,52 +1192,77 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="8Ja-fw-6AU" secondAttribute="trailing" id="2K9-bk-DSy"/>
-                                                    <constraint firstItem="8Ja-fw-6AU" firstAttribute="top" secondItem="xig-LJ-VQE" secondAttribute="top" constant="24" id="KgD-Kk-jEu"/>
+                                                    <constraint firstItem="8Ja-fw-6AU" firstAttribute="top" secondItem="xig-LJ-VQE" secondAttribute="top" id="KgD-Kk-jEu"/>
                                                     <constraint firstItem="8Ja-fw-6AU" firstAttribute="leading" secondItem="xig-LJ-VQE" secondAttribute="leading" id="XKs-h5-VwO"/>
                                                     <constraint firstAttribute="bottom" secondItem="8Ja-fw-6AU" secondAttribute="bottom" id="iBt-F5-1W9"/>
                                                 </constraints>
                                             </view>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="RqU-Fi-qXY" userLabel="CustomDenomStack">
-                                        <rect key="frame" x="24" y="583.33333333333337" width="345" height="104.66666666666663"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Specified Amount:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XGp-3A-c3S" userLabel="SpecifiedAmountLabel">
-                                                <rect key="frame" x="0.0" y="0.0" width="345" height="20.666666666666668"/>
-                                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="15"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="345" placeholderIntrinsicHeight="80" translatesAutoresizingMaskIntoConstraints="NO" id="mff-vX-xCC" userLabel="SpecifiedAmountField" customClass="GeneralTextFieldView" customModule="gramejia" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="24.666666666666629" width="345" height="80"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ToP-YT-1F2" userLabel="DenomStack">
+                                                <rect key="frame" x="0.0" y="160" width="393" height="533"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fGI-ZL-3lb" userLabel="ContainerLabelAmount">
+                                                        <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Amount:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lkP-fd-4dB" userLabel="Select Amount">
+                                                                <rect key="frame" x="24" y="0.0" width="345" height="42"/>
+                                                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="15"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="lkP-fd-4dB" secondAttribute="trailing" constant="24" id="ILB-aP-HAg"/>
+                                                            <constraint firstItem="lkP-fd-4dB" firstAttribute="top" secondItem="fGI-ZL-3lb" secondAttribute="top" id="M5I-7v-ol3"/>
+                                                            <constraint firstAttribute="bottom" secondItem="lkP-fd-4dB" secondAttribute="bottom" constant="8" id="Vfp-D6-gL3"/>
+                                                            <constraint firstItem="lkP-fd-4dB" firstAttribute="leading" secondItem="fGI-ZL-3lb" secondAttribute="leading" constant="24" id="d4V-Rr-cUh"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VDh-jo-F12" userLabel="MainCollectionView">
+                                                        <rect key="frame" x="0.0" y="50" width="393" height="483"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="spX-Dz-A3x">
+                                                            <size key="itemSize" width="128" height="128"/>
+                                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        </collectionViewFlowLayout>
+                                                        <cells/>
+                                                    </collectionView>
+                                                </subviews>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MCh-Bl-6EM" userLabel="ContainerTopUpButton">
+                                                <rect key="frame" x="0.0" y="709" width="393" height="50"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qbi-hE-6YZ" userLabel="TopupButton" customClass="MainActionButton" customModule="gramejia" customModuleProvider="target">
+                                                        <rect key="frame" x="24" y="0.0" width="345" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="ura-c2-XtS"/>
+                                                        </constraints>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Topup"/>
+                                                        <connections>
+                                                            <action selector="topupButtonTapped:" destination="VMJ-oU-JRW" eventType="touchUpInside" id="feo-A4-z0z"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="qbi-hE-6YZ" secondAttribute="bottom" id="1VJ-HM-i6D"/>
+                                                    <constraint firstItem="qbi-hE-6YZ" firstAttribute="leading" secondItem="MCh-Bl-6EM" secondAttribute="leading" constant="24" id="GfJ-L3-KQX"/>
+                                                    <constraint firstItem="qbi-hE-6YZ" firstAttribute="top" secondItem="MCh-Bl-6EM" secondAttribute="top" id="cNM-kD-QWw"/>
+                                                    <constraint firstAttribute="trailing" secondItem="qbi-hE-6YZ" secondAttribute="trailing" constant="24" id="s62-sd-gRP"/>
+                                                </constraints>
                                             </view>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qbi-hE-6YZ" userLabel="TopupButton" customClass="MainActionButton" customModule="gramejia" customModuleProvider="target">
-                                        <rect key="frame" x="24" y="712" width="345" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="ura-c2-XtS"/>
-                                        </constraints>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Topup"/>
-                                        <connections>
-                                            <action selector="topupButtonTapped:" destination="VMJ-oU-JRW" eventType="touchUpInside" id="feo-A4-z0z"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="ToP-YT-1F2" secondAttribute="trailing" id="9DU-he-hRT"/>
-                                    <constraint firstItem="ToP-YT-1F2" firstAttribute="leading" secondItem="C5H-JJ-qGm" secondAttribute="leading" id="ANa-19-W3S"/>
-                                    <constraint firstItem="RqU-Fi-qXY" firstAttribute="leading" secondItem="C5H-JJ-qGm" secondAttribute="leading" constant="24" id="LOk-dQ-qUe"/>
-                                    <constraint firstItem="ToP-YT-1F2" firstAttribute="top" secondItem="C5H-JJ-qGm" secondAttribute="top" constant="24" id="WXi-qr-ceS"/>
-                                    <constraint firstAttribute="bottom" secondItem="qbi-hE-6YZ" secondAttribute="bottom" constant="46" id="YeU-RR-RKF"/>
-                                    <constraint firstAttribute="trailing" secondItem="RqU-Fi-qXY" secondAttribute="trailing" constant="24" id="aqm-0F-wcI"/>
-                                    <constraint firstAttribute="trailing" secondItem="qbi-hE-6YZ" secondAttribute="trailing" constant="24" id="bnp-5f-IFS"/>
-                                    <constraint firstItem="qbi-hE-6YZ" firstAttribute="leading" secondItem="C5H-JJ-qGm" secondAttribute="leading" constant="24" id="cSd-GV-EDJ"/>
-                                    <constraint firstItem="RqU-Fi-qXY" firstAttribute="top" secondItem="ToP-YT-1F2" secondAttribute="bottom" constant="24" id="lTo-kK-BrT"/>
-                                    <constraint firstItem="qbi-hE-6YZ" firstAttribute="top" secondItem="RqU-Fi-qXY" secondAttribute="bottom" constant="24" id="nQe-eR-Hbh"/>
+                                    <constraint firstItem="wtz-Dn-w0e" firstAttribute="leading" secondItem="C5H-JJ-qGm" secondAttribute="leading" id="iAV-c0-o63"/>
+                                    <constraint firstItem="wtz-Dn-w0e" firstAttribute="top" secondItem="C5H-JJ-qGm" secondAttribute="top" id="r9g-DE-ogz"/>
+                                    <constraint firstAttribute="bottom" secondItem="wtz-Dn-w0e" secondAttribute="bottom" id="tCw-Dt-0eK"/>
+                                    <constraint firstAttribute="trailing" secondItem="wtz-Dn-w0e" secondAttribute="trailing" id="yXI-EQ-KPv"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1249,7 +1272,7 @@
                             <constraint firstItem="C5H-JJ-qGm" firstAttribute="top" secondItem="aKv-8m-5g7" secondAttribute="top" id="7qV-dm-CBv"/>
                             <constraint firstAttribute="trailing" secondItem="C5H-JJ-qGm" secondAttribute="trailing" id="QDJ-qK-sNP"/>
                             <constraint firstItem="C5H-JJ-qGm" firstAttribute="leading" secondItem="OLI-Ca-erM" secondAttribute="leading" id="dDx-4Y-ODq"/>
-                            <constraint firstAttribute="bottom" secondItem="C5H-JJ-qGm" secondAttribute="bottom" id="kmD-6H-hcU"/>
+                            <constraint firstItem="aKv-8m-5g7" firstAttribute="bottom" secondItem="C5H-JJ-qGm" secondAttribute="bottom" id="kmD-6H-hcU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Md6-bf-QFp"/>
@@ -1521,7 +1544,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QWF-Gc-2ky" userLabel="MainCollectionView">
-                                <rect key="frame" x="0.0" y="44" width="393" height="808"/>
+                                <rect key="frame" x="0.0" y="44" width="393" height="759"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="O1b-vv-jmW">
                                     <size key="itemSize" width="128" height="128"/>
@@ -1537,12 +1560,12 @@
                         <constraints>
                             <constraint firstItem="di8-Ja-fpK" firstAttribute="top" secondItem="MSl-NN-W9L" secondAttribute="top" id="6xg-Kn-h5f"/>
                             <constraint firstItem="QWF-Gc-2ky" firstAttribute="top" secondItem="MSl-NN-W9L" secondAttribute="top" id="MTn-yu-vKw"/>
-                            <constraint firstAttribute="bottom" secondItem="QWF-Gc-2ky" secondAttribute="bottom" id="eWY-sb-Y06"/>
                             <constraint firstItem="MSl-NN-W9L" firstAttribute="bottom" secondItem="di8-Ja-fpK" secondAttribute="bottom" id="fGH-NM-MZB"/>
                             <constraint firstItem="QWF-Gc-2ky" firstAttribute="leading" secondItem="MSl-NN-W9L" secondAttribute="leading" id="h5P-EB-F3a"/>
                             <constraint firstItem="MSl-NN-W9L" firstAttribute="trailing" secondItem="di8-Ja-fpK" secondAttribute="trailing" id="rzb-wX-UDi"/>
                             <constraint firstItem="di8-Ja-fpK" firstAttribute="leading" secondItem="MSl-NN-W9L" secondAttribute="leading" id="waK-I5-kcO"/>
                             <constraint firstItem="MSl-NN-W9L" firstAttribute="trailing" secondItem="QWF-Gc-2ky" secondAttribute="trailing" id="x3x-pe-H4M"/>
+                            <constraint firstItem="QWF-Gc-2ky" firstAttribute="bottom" secondItem="MSl-NN-W9L" secondAttribute="bottom" id="xiV-6e-2u8"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" id="sSf-7O-TSz"/>

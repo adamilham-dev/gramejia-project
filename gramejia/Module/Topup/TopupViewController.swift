@@ -59,6 +59,7 @@ class TopupViewController: BaseViewController<TopupViewModel> {
     
     private func setupFields() {
         specifiedAmountField.setTextFieldProperty(leftSystemImage: "banknote.fill", placeholder: "Input your specified amount")
+        specifiedAmountField.mainTextField.keyboardType = .numberPad
         specifiedAmountField.delegate = self
     }
     

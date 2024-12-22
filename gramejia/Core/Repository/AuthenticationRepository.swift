@@ -22,6 +22,7 @@ protocol AuthenticationRepositoryProtocol {
     func updateAdmin(username: String, name: String, password: String, profileImage: String?) -> AnyPublisher<Bool, Error>
     func updateCustomer(username: String, name: String, password: String, profileImage: String?) -> AnyPublisher<Bool, Error>
     func updateBalance(username: String, balance: Double) -> AnyPublisher<Bool, Error>
+    func deleteCustomer(username: String) -> AnyPublisher<Bool, Error>
 }
 
 final class AuthenticationRepository: NSObject {
@@ -138,5 +139,12 @@ extension AuthenticationRepository: AuthenticationRepositoryProtocol {
             let newBalance = entity.balance + balance
             entity.balance = newBalance
         }.eraseToAnyPublisher()
+    }
+    
+    func deleteCustomer(username: String) -> AnyPublisher<Bool, Error> {
+        let predicate = NSPredicate(format: "username == %@", username)
+        
+        return self.coreDataManager.deleteBy(CustomerEntity.self, predicate: predicate)
+            .eraseToAnyPublisher()
     }
 }

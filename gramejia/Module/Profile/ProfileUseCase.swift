@@ -13,6 +13,7 @@ protocol ProfileUseCaseProtocol {
     func updateAdmin(username: String, name: String, password: String, profileImage: String?) -> AnyPublisher<Bool, Error>
     func getCustomer(username: String) -> AnyPublisher<CustomerModel?, Error>
     func getAdmin(username: String) -> AnyPublisher<AdminModel?, Error>
+    func deleteCustomer(username: String) -> AnyPublisher<Bool, Error>
 }
 
 class ProfileUseCase: ProfileUseCaseProtocol {
@@ -37,5 +38,9 @@ class ProfileUseCase: ProfileUseCaseProtocol {
     
     func getAdmin(username: String) -> AnyPublisher<AdminModel?, Error> {
         return authenticationRepository.getAdmin(username: username)
+    }
+    
+    func deleteCustomer(username: String) -> AnyPublisher<Bool, Error> {
+        return authenticationRepository.deleteCustomer(username: username)
     }
 }
