@@ -42,6 +42,7 @@ class RegisterViewController: BaseViewController<RegisterViewModel> {
                 if response {
                     self?.resetForm()
                     self?.showSnackbar(message: "Account successfully registered")
+                    self?.navigationController?.popViewController(animated: true)
                 }
             }
             .store(in: &cancellables)

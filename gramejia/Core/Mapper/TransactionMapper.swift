@@ -41,6 +41,8 @@ final class TransactionMapper {
         return TransactionModel(
             id: entity.id ?? "",
             transactionDate: entity.transactionDate ?? "",
-            items: transactionItems.map { transactionItemEntityToDomain($0) })
+            items: transactionItems.map { transactionItemEntityToDomain($0) },
+            owner: UserProfileModel(name: entity.owner?.name ?? "", username: entity.owner?.username ?? "", password: entity.owner?.password ?? "")
+        )
     }
 }

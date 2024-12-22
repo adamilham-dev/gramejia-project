@@ -12,6 +12,7 @@ protocol TransactionUseCaseProtocol {
     func addTransaction(username: String, transaction: TransactionModel) -> AnyPublisher<Bool, Error>
     
     func getTransactionList(username: String) -> AnyPublisher<[TransactionModel], Error>
+    func getTransactionList() -> AnyPublisher<[TransactionModel], Error>
     
     func deleteTransaction(idTransaction: String) -> AnyPublisher<Bool, Error>
 }
@@ -32,7 +33,11 @@ class TransactionUseCase: TransactionUseCaseProtocol {
         return transactionRepository.addTransaction(username: username, transaction: transaction)
     }
     
-    func getTransactionList(username: String) -> AnyPublisher<[TransactionModel], any Error> {
+    func getTransactionList(username: String) -> AnyPublisher<[TransactionModel], Error> {
         return transactionRepository.getTransactionList(username: username)
+    }
+    
+    func getTransactionList() -> AnyPublisher<[TransactionModel], Error> {
+        return transactionRepository.getTransactionList()
     }
 }

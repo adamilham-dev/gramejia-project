@@ -11,6 +11,8 @@ import Combine
 protocol CartRepositoryProtocol {
     func getCartItemList(username: String) -> AnyPublisher<[CartItemModel], Error>
     
+    func getCartItemList() -> AnyPublisher<[CartItemModel], Error>
+    
     func addBookToCart(username: String, idBook: String, quantity: Int64) -> AnyPublisher<Bool, Error>
     
     func getCartBookItem(username: String, idBook: String) -> AnyPublisher<CartItemModel?, Error>
@@ -61,6 +63,12 @@ extension CartRepository: CartRepositoryProtocol {
     
     func getCartItemList(username: String) -> AnyPublisher<[CartItemModel], Error> {
         return self.coreDataManager.fetchCartItems(username: username)
+            .map { $0.map { CartMapper.cartItemEntityToDomain($0) } }
+            .eraseToAnyPublisher()
+    }
+    
+    func getCartItemList() -> AnyPublisher<[CartItemModel], Error> {
+        return self.coreDataManager.fetch(CartItemEntity.self)
             .map { $0.map { CartMapper.cartItemEntityToDomain($0) } }
             .eraseToAnyPublisher()
     }

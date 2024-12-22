@@ -20,24 +20,44 @@ class CartViewModel: BaseViewModel {
     let isSuccessUpdateBalance = CurrentValueSubject<Bool, Never>(false)
     let isSuccessUpdateStockBook = CurrentValueSubject<Bool, Never>(false)
     let username: String = UserDefaultsManager.shared.get(forKey: .currentUsername) ?? ""
+    let userLevel: String = UserDefaultsManager.shared.get(forKey: .userLevel) ?? "customer"
+    
     
     func getCarts(){
         isLoading.send(true)
         
-        cartUseCase.getCartList(username: username)
-            .receive(on: RunLoop.main)
-            .sink(receiveCompletion: { [weak self] completion in
-                self?.isLoading.send(false)
-                switch(completion) {
-                case .finished:
-                    break
-                case .failure(let error):
-                    self?.error.send(error)
-                }
-            }, receiveValue: { [weak self] books in
-                self?.cartItemList.send(books)
-            })
-            .store(in: &cancellables)
+        if(userLevel == "customer") {
+            cartUseCase.getCartList(username: username)
+                .receive(on: RunLoop.main)
+                .sink(receiveCompletion: { [weak self] completion in
+                    self?.isLoading.send(false)
+                    switch(completion) {
+                    case .finished:
+                        break
+                    case .failure(let error):
+                        self?.error.send(error)
+                    }
+                }, receiveValue: { [weak self] books in
+                    self?.cartItemList.send(books)
+                })
+                .store(in: &cancellables)
+        } else {
+            cartUseCase.getCartList()
+                .receive(on: RunLoop.main)
+                .sink(receiveCompletion: { [weak self] completion in
+                    self?.isLoading.send(false)
+                    switch(completion) {
+                    case .finished:
+                        break
+                    case .failure(let error):
+                        self?.error.send(error)
+                    }
+                }, receiveValue: { [weak self] books in
+                    self?.cartItemList.send(books)
+                })
+                .store(in: &cancellables)
+        }
+        
     }
     
     func getCustomer() {
@@ -66,7 +86,7 @@ class CartViewModel: BaseViewModel {
         let transactionItems = cartItemList.value.map { cartItem in
             return TransactionItemModel(id: UUID().uuidString, idBook: cartItem.book?.id ?? "", author: cartItem.book?.author ?? "", coverImage: cartItem.book?.coverImage, price: cartItem.book?.price ?? 0, publishedDate: cartItem.book?.publishedDate ?? "", publisher: cartItem.book?.publisher ?? "", quantity: cartItem.quantity, synopsis: cartItem.book?.synopsis ?? "", title: cartItem.book?.title ?? "")
         }
-        let transaction = TransactionModel(id: UUID().uuidString, transactionDate: Date().ISO8601Format(), items: transactionItems)
+        let transaction = TransactionModel(id: UUID().uuidString, transactionDate: Date().ISO8601Format(), items: transactionItems, owner: nil)
         
         transactionUseCase.addTransaction(username: username, transaction: transaction)
             .receive(on: RunLoop.main)

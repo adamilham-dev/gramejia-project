@@ -59,11 +59,11 @@ class ProfileViewController: BaseViewController<ProfileViewModel> {
     
     @objc private func logoutButtonTapped() {
         let alert = UIAlertController(title: "Are you sure to logout?", message: "You must relogin after this action", preferredStyle: .alert)
-        let continueButton = UIAlertAction(title: "Continue", style: .default) { _ in
+        let continueButton = UIAlertAction(title: "Logout", style: .destructive) { _ in
             self.viewModel.logoutUser()
             self.navigateToLogin()
         }
-        let cancelButton = UIAlertAction(title: "Cancel", style: .destructive)
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
         
         alert.addAction(continueButton)
         alert.addAction(cancelButton)

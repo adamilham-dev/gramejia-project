@@ -10,6 +10,7 @@ import Combine
 
 protocol CartUseCaseProtocol {
     func getCartList(username: String) -> AnyPublisher<[CartItemModel], Error>
+    func getCartList() -> AnyPublisher<[CartItemModel], Error>
     func getCustomer(username: String) -> AnyPublisher<CustomerModel?, Error>
     func addBookToCart(username: String, idBook: String, quantity: Int64) -> AnyPublisher<Bool, Error>
     func deleteCartBookItem(username: String, idBook: String) -> AnyPublisher<Bool, Error>
@@ -44,6 +45,10 @@ class CartUseCase: CartUseCaseProtocol {
     
     func getCartList(username: String) -> AnyPublisher<[CartItemModel], Error> {
         self.cartRepository.getCartItemList(username: username).eraseToAnyPublisher()
+    }
+    
+    func getCartList() -> AnyPublisher<[CartItemModel], Error> {
+        self.cartRepository.getCartItemList().eraseToAnyPublisher()
     }
     
     func updateBalance(username: String, balance: Double) -> AnyPublisher<Bool, Error> {

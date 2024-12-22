@@ -11,4 +11,5 @@ struct TransactionModel: Identifiable {
     let id: String
     let transactionDate: String
     let items: [TransactionItemModel]
+    let owner: UserProfileModel?
 }

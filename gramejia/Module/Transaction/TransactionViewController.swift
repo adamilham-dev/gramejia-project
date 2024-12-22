@@ -53,6 +53,8 @@ class TransactionViewController: BaseViewController<TransactionViewModel> {
         transactionTableView.register(TransactionTableViewCell.nib, forCellReuseIdentifier: TransactionTableViewCell.identifier)
         transactionTableView.delegate = self
         transactionTableView.dataSource = self
+        transactionTableView.separatorStyle = .singleLine
+        transactionTableView.separatorColor = .gray
     }
     
     private func bindDataViewModel() {
@@ -103,22 +105,14 @@ extension TransactionViewController: UITableViewDelegate, UITableViewDataSource 
         let item = viewModel.transactionlist.value[indexPath.row]
         
         cell.dateLabel.text = item.transactionDate.formatISODate()
-        cell.totalCostLabel.text = item.items.reduce(0, { $0 + ($1.price * Double($1.quantity))}).toRupiah()
+        let total =  item.items.reduce(0, { $0 + ($1.price * Double($1.quantity))})
+        cell.totalCostLabel.text = "-\(total.toRupiah())"
         cell.totalSubproductLabel.text = "\(item.items.count) sub products"
-//        if let book = item.book, let imageData = Data(base64Encoded: book.coverImage ?? "") {
-//            cell.coverImageView.image =  UIImage(data: imageData)
-//            cell.titleLabel.text = book.title
-//            cell.priceQuantityLabel.text = "\(book.price.toRupiah()) x \(item.quantity) pcs"
-//            
-//            let subTotal = book.price * Double(item.quantity)
-//            cell.subtotalLabel.text = "\(subTotal.toRupiah())"
-//        }
+        cell.usernameLabel.text = "@\(item.owner?.username ?? "")"
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        self.selectedCartItem = viewModel.cartItemList.value[indexPath.row]
-//        performSegue(withIdentifier: "gotoDetailBook", sender: nil)
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {

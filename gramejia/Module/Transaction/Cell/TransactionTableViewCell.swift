@@ -11,6 +11,7 @@ class TransactionTableViewCell: UITableViewCell {
 
     @IBOutlet weak var dateLabel: UILabel!
     
+    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var mainContainer: UIView!
     @IBOutlet weak var totalSubproductLabel: UILabel!
     
@@ -30,6 +31,5 @@ class TransactionTableViewCell: UITableViewCell {
     
     
     private func setupView() {
-        mainContainer.setCorner(cornerRadius: 16)
     }
 }

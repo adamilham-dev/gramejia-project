@@ -1115,6 +1115,7 @@
 				DEVELOPMENT_TEAM = 3F8C4P2T95;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = gramejia/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Gramejia;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1144,6 +1145,7 @@
 				DEVELOPMENT_TEAM = 3F8C4P2T95;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = gramejia/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Gramejia;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
