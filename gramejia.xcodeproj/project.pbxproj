@@ -82,6 +82,7 @@
 		7E66817C2D16EDA40093013B /* empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E66817B2D16EDA40093013B /* empty.json */; };
 		7E6681812D16EDE00093013B /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6681802D16EDE00093013B /* EmptyView.swift */; };
 		7E6681852D16EEF40093013B /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E6681842D16EEF40093013B /* EmptyView.xib */; };
+		7E6681942D17A80F0093013B /* CartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6681932D17A80F0093013B /* CartModel.swift */; };
 		7E6ADAD32D0424E000BE222F /* GeneralTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6ADAD22D0424E000BE222F /* GeneralTextView.swift */; };
 		7E6ADAD52D0424FC00BE222F /* GeneralTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E6ADAD42D0424FC00BE222F /* GeneralTextView.xib */; };
 		7E6FF4852D0D679E007340FB /* ProductCounterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E6FF4842D0D679E007340FB /* ProductCounterView.xib */; };
@@ -207,6 +208,7 @@
 		7E66817B2D16EDA40093013B /* empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = empty.json; sourceTree = "<group>"; };
 		7E6681802D16EDE00093013B /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		7E6681842D16EEF40093013B /* EmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
+		7E6681932D17A80F0093013B /* CartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartModel.swift; sourceTree = "<group>"; };
 		7E6ADAD22D0424E000BE222F /* GeneralTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTextView.swift; sourceTree = "<group>"; };
 		7E6ADAD42D0424FC00BE222F /* GeneralTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralTextView.xib; sourceTree = "<group>"; };
 		7E6FF4842D0D679E007340FB /* ProductCounterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCounterView.xib; sourceTree = "<group>"; };
@@ -371,6 +373,7 @@
 				7E363B882D11C7CC007D4837 /* TransactionItemModel.swift */,
 				7E363B8A2D11F5A4007D4837 /* TransactionModel.swift */,
 				7E84174B2D169E2D00072AB7 /* UserProfileModel.swift */,
+				7E6681932D17A80F0093013B /* CartModel.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -904,6 +907,7 @@
 				7E4DA5FF2D00355500C5D7AC /* AdminModel.swift in Sources */,
 				7E10D93E2CFB782300B11046 /* AddBookViewController.swift in Sources */,
 				7EACAC212CFCB17C0094C61B /* UIView+Ext.swift in Sources */,
+				7E6681942D17A80F0093013B /* CartModel.swift in Sources */,
 				7E6FF48B2D0DB77F007340FB /* Double+Ext.swift in Sources */,
 				7E6681812D16EDE00093013B /* EmptyView.swift in Sources */,
 				7E363B8F2D1263D5007D4837 /* TransactionRepository.swift in Sources */,

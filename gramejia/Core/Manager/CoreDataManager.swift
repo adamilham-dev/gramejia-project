@@ -398,13 +398,12 @@ class CoreDataManager {
         .eraseToAnyPublisher()
     }
     
-    func updateStockBook(username: String, handler: @escaping (NSManagedObjectContext, Set<CartItemEntity>) -> Void) -> AnyPublisher<Bool, Error> {
+    func updateStockBook(username: String, handler: @escaping (NSManagedObjectContext, CustomerEntity, CartEntity, Set<CartItemEntity>) -> Void) -> AnyPublisher<Bool, Error> {
         return Future<Bool, Error> { [weak self] promise in
             guard let self = self, let context = self.context else {
                 promise(.failure(DatabaseError.invalidDatabase))
                 return
             }
-            
             
             if let user = getSingle(CustomerEntity.self, predicate: NSPredicate(format: "username == %@", username)){
                 var cart = user.cart
@@ -416,7 +415,7 @@ class CoreDataManager {
                 
                 if let cart = cart {
                     if let cartItems = cart.items as? Set<CartItemEntity> {
-                        handler(context, cartItems)
+                        handler(context, user, cart, cartItems)
                         do {
                             try context.save()
                             promise(.success(true))
@@ -507,6 +506,9 @@ class CoreDataManager {
                 
                 if let cart = cart {
                     if let cartItems = cart.items as? Set<CartItemEntity> {
+                        if(cartItems.count == 1) {
+                            context.delete(cart)
+                        }
                         if let existingCartItem = cartItems.first(where: { $0.book == book }) {
                             context.delete(existingCartItem)
                             do {
@@ -573,7 +575,7 @@ class CoreDataManager {
         .eraseToAnyPublisher()
     }
     
-    func addBookToCart(username: String, idBook: String, quantity: Int64) -> AnyPublisher<Bool, Error> {
+    func addBookToCart(username: String, idBook: String, quantity: Int64, updatedDate: String) -> AnyPublisher<Bool, Error> {
         return Future<Bool, Error> { [weak self] promise in
             guard let self = self, let context = self.context else {
                 promise(.failure(DatabaseError.invalidDatabase))
@@ -584,6 +586,7 @@ class CoreDataManager {
                 var cart = user.cart
                 if cart == nil {
                     let newCart = CartEntity(context: context)
+                    newCart.updateDate = updatedDate
                     newCart.owner = user
                     cart = newCart
                 }
@@ -600,6 +603,7 @@ class CoreDataManager {
                         } else {
                             let cartItem = CartItemEntity(context: context)
                             cartItem.book = book
+                            cartItem.updateDate = updatedDate
                             cartItem.cart = cart
                             cartItem.quantity = quantity
                             cartItems.insert(cartItem)

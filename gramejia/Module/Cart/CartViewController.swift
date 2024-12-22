@@ -11,12 +11,13 @@ class CartViewController: BaseViewController<CartViewModel> {
     
     @IBOutlet weak var mainTableView: UITableView!
     
-    @IBOutlet weak var mainCartContainer: UIView!
+    @IBOutlet weak var mainCartContainer: UIStackView!
     @IBOutlet weak var emptyView: EmptyView!
     @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var totalCostLabel: UILabel!
     @IBOutlet weak var checkoutButton: MainActionButton!
     
+    @IBOutlet weak var checkoutCartContainer: UIView!
     private var selectedCartItem: CartItemModel? = nil
     private var totalCost: Double = 0
     
@@ -41,6 +42,8 @@ class CartViewController: BaseViewController<CartViewModel> {
         setupNavigation()
         checkoutButton.isEnabled = false
         setupTableView()
+        
+        checkoutCartContainer.isHidden = viewModel.userLevel == "admin"
     }
     
     private func setupNavigation() {
@@ -83,6 +86,13 @@ class CartViewController: BaseViewController<CartViewModel> {
             }
             .store(in: &cancellables)
         
+        viewModel?.cartUserList
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.mainTableView.reloadData()
+            }
+            .store(in: &cancellables)
+        
         viewModel?.customerBalance
             .receive(on: DispatchQueue.main)
             .sink { [weak self] balance in
@@ -119,16 +129,22 @@ class CartViewController: BaseViewController<CartViewModel> {
     }
     
     private func updateCart(){
-        let items = viewModel.cartItemList.value
-        self.totalCost = items.reduce(0, { $0 + Double($1.quantity) * ($1.book?.price ?? 0) })
-        self.totalCostLabel.text = totalCost.toRupiah()
-        
-        let isBalanceSufficient = totalCost <= viewModel.customerBalance.value
-        checkoutButton.setTitle(isBalanceSufficient ? "Checkout" : "Insufficient Balance", for: .normal)
-        checkoutButton.isEnabled = isBalanceSufficient
-        
-        
-        if(items.isEmpty) {
+        if(viewModel.userLevel == "customer") {
+            let items = viewModel.cartItemList.value
+            self.totalCost = items.reduce(0, { $0 + Double($1.quantity) * ($1.book?.price ?? 0) })
+            self.totalCostLabel.text = totalCost.toRupiah()
+            
+            let isBalanceSufficient = totalCost <= viewModel.customerBalance.value
+            checkoutButton.setTitle(isBalanceSufficient ? "Checkout" : "Insufficient Balance", for: .normal)
+            checkoutButton.isEnabled = isBalanceSufficient
+            updateViewCart(isEmpty: items.isEmpty)
+        } else {
+            updateViewCart(isEmpty: viewModel.cartUserList.value.isEmpty)
+        }
+    }
+    
+    private func updateViewCart(isEmpty: Bool) {
+        if(isEmpty) {
             emptyView.isHidden = false
             mainCartContainer.isHidden = true
         } else {
@@ -155,23 +171,50 @@ class CartViewController: BaseViewController<CartViewModel> {
 
 extension CartViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.cartItemList.value.count
+        if(viewModel.userLevel == "customer") {
+            return viewModel.cartItemList.value.count
+        } else {
+            return viewModel.cartUserList.value[section].items.count
+        }
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if(viewModel.userLevel == "customer") {
+            return 1
+        } else {
+            return viewModel.cartUserList.value.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CartTableViewCell.identifier, for: indexPath) as? CartTableViewCell else { return UITableViewCell() }
+        var item: CartItemModel? = nil
         
-        let item = viewModel.cartItemList.value[indexPath.row]
+        if(viewModel.userLevel == "customer") {
+            item = viewModel.cartItemList.value[indexPath.row]
+        } else {
+            let section = viewModel.cartUserList.value[indexPath.section]
+            item = section.items[indexPath.row]
+        }
         
-        if let book = item.book, let imageData = Data(base64Encoded: book.coverImage ?? "") {
+        if let item = item, let book = item.book, let imageData = Data(base64Encoded: book.coverImage ?? "") {
             cell.coverImageView.image =  UIImage(data: imageData)
             cell.titleLabel.text = book.title
             cell.priceQuantityLabel.text = "\(book.price.toRupiah()) x \(item.quantity) pcs"
+            cell.selectionStyle = .none
             
             let subTotal = book.price * Double(item.quantity)
             cell.subtotalLabel.text = "\(subTotal.toRupiah())"
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if(viewModel.userLevel == "customer") {
+            return nil
+        } else {
+            return viewModel.cartUserList.value[section].owner?.name ?? ""
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -183,13 +226,52 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
         return .delete
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if(viewModel.userLevel == "customer") {
+            return nil
+        } else {
+            let owner = viewModel.cartUserList.value[section].owner
+            let headerView = UIView()
+            
+            let label = UILabel()
+            label.text = "\(owner?.name.capitalized ?? "")'s Cart"
+            label.font = UIFont.nunitoBold(size: 17)
+            label.textColor = .white
+            label.translatesAutoresizingMaskIntoConstraints = false
+            label.textAlignment = .left
+            headerView.backgroundColor = .mainAccent
+            
+            headerView.addSubview(label)
+            NSLayoutConstraint.activate([
+                label.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 24),
+                label.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -24),
+                label.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 8),
+                label.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -8)
+            ])
+            return headerView
+        }
+    }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let item = viewModel.cartItemList.value[indexPath.row]
-            viewModel.cartItemList.value.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-            viewModel.deleteCartItem(idBook: item.book?.id ?? "")
-            
+            if(viewModel.userLevel == "customer") {
+                let item = viewModel.cartItemList.value[indexPath.row]
+                viewModel.cartItemList.value.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                viewModel.deleteCartItem(idBook: item.book?.id ?? "")
+                
+            } else {
+                let section = viewModel.cartUserList.value[indexPath.section]
+                let item = section.items[indexPath.row]
+                viewModel.cartUserList.value[indexPath.section].items.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                
+                if(viewModel.cartUserList.value[indexPath.section].items.isEmpty){
+                    viewModel.cartUserList.value.remove(at: indexPath.section)
+                    tableView.deleteSections(IndexSet(integer: indexPath.section), with: .automatic)
+                }
+                viewModel.deleteCartItem(idBook: item.book?.id ?? "", username: section.owner?.username ?? "")
+            }
             updateCart()
         }
     }

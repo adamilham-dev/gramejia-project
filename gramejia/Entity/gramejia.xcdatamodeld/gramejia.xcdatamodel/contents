@@ -22,11 +22,13 @@
     </entity>
     <entity name="CartEntity" representedClassName="CartEntity" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="updateDate" optional="YES" attributeType="String"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CartItemEntity" inverseName="cart" inverseEntity="CartItemEntity"/>
         <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CustomerEntity" inverseName="cart" inverseEntity="CustomerEntity"/>
     </entity>
     <entity name="CartItemEntity" representedClassName="CartItemEntity" syncable="YES" codeGenerationType="class">
         <attribute name="quantity" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="updateDate" optional="YES" attributeType="String"/>
         <relationship name="book" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BookEntity" inverseName="cartItems" inverseEntity="BookEntity"/>
         <relationship name="cart" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CartEntity" inverseName="items" inverseEntity="CartEntity"/>
     </entity>

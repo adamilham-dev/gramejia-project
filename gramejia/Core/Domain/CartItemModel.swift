@@ -10,4 +10,5 @@ import Foundation
 struct CartItemModel {
     let book: BookModel?
     let quantity: Int64
+    var updatedDate: String
 }

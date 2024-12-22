@@ -19,7 +19,7 @@ class DetailBookViewModel: BaseViewModel {
     func addBookToCart(idBook: String, quantity: Int64) {
         isLoading.send(true)
         
-        self.detailBookUseCase.addBookToCart(username: username, idBook: idBook, quantity: quantity)
+        self.detailBookUseCase.addBookToCart(username: username, idBook: idBook, quantity: quantity, updatedDate: Date().ISO8601Format())
             .receive(on: RunLoop.main)
             .sink(receiveCompletion: { [weak self] completion in
                 switch(completion) {

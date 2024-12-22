@@ -14,7 +14,21 @@ final class CartMapper {
             bookModel = BookMapper.bookEntityToDomain(bookEntity)
         }
         return CartItemModel(
-            book: bookModel, quantity: entity.quantity
+            book: bookModel, quantity: entity.quantity, updatedDate: entity.updateDate ?? Date().ISO8601Format()
+        )
+    }
+    
+    static func cartEntityToDomain(_ entity: CartEntity) -> CartModel {
+        let items = entity.items as? Set<CartItemEntity> ?? []
+        
+        return CartModel(
+            id: entity.id ?? "",
+            updateDate: entity.updateDate ?? "",
+            owner: UserProfileModel(
+                name: entity.owner?.name ?? "",
+                username: entity.owner?.username ?? "",
+                password: entity.owner?.password ?? ""),
+            items: items.map({ cartItemEntityToDomain($0) })
         )
     }
     

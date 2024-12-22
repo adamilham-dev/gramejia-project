@@ -13,6 +13,8 @@ class CartViewModel: BaseViewModel {
     private var transactionUseCase: TransactionUseCaseProtocol = Injection().provideTransactionUseCase()
     
     let cartItemList = CurrentValueSubject<[CartItemModel], Never>([])
+    let cartUserList = CurrentValueSubject<[CartModel], Never>([])
+    
     let customerBalance = CurrentValueSubject<Double, Never>(0)
     let isTransactionAdded = CurrentValueSubject<Bool, Never>(false)
     let isCartItemDeleted = CurrentValueSubject<Bool, Never>(false)
@@ -21,7 +23,6 @@ class CartViewModel: BaseViewModel {
     let isSuccessUpdateStockBook = CurrentValueSubject<Bool, Never>(false)
     let username: String = UserDefaultsManager.shared.get(forKey: .currentUsername) ?? ""
     let userLevel: String = UserDefaultsManager.shared.get(forKey: .userLevel) ?? "customer"
-    
     
     func getCarts(){
         isLoading.send(true)
@@ -42,7 +43,7 @@ class CartViewModel: BaseViewModel {
                 })
                 .store(in: &cancellables)
         } else {
-            cartUseCase.getCartList()
+            cartUseCase.getAllUserCart()
                 .receive(on: RunLoop.main)
                 .sink(receiveCompletion: { [weak self] completion in
                     self?.isLoading.send(false)
@@ -53,11 +54,10 @@ class CartViewModel: BaseViewModel {
                         self?.error.send(error)
                     }
                 }, receiveValue: { [weak self] books in
-                    self?.cartItemList.send(books)
+                    self?.cartUserList.send(books.filter({ !$0.items.isEmpty }))
                 })
                 .store(in: &cancellables)
         }
-        
     }
     
     func getCustomer() {
@@ -104,7 +104,7 @@ class CartViewModel: BaseViewModel {
             .store(in: &cancellables)
     }
     
-    func deleteCartItem(idBook: String) {
+    func deleteCartItem(idBook: String, username: String = UserDefaultsManager.shared.get(forKey: .currentUsername) ?? "") {
         isLoading.send(true)
         
         self.cartUseCase.deleteCartBookItem(username: username, idBook: idBook)

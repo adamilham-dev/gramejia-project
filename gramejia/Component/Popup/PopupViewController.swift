@@ -90,6 +90,7 @@ class PopupViewController: UIViewController {
         case .ended:
             let velocity = gesture.velocity(in: self.view)
             if translation.y > 100 || velocity.y > 500 {
+                mainContainerView.center = CGPoint(x: originalPosition.x, y: originalPosition.y + translation.y)
                 dismissPopup()
             } else {
                 UIView.animate(withDuration: 0.3) {
@@ -103,7 +104,7 @@ class PopupViewController: UIViewController {
     
     private func dismissPopup() {
         UIView.animate(withDuration: 0.3, animations: {
-            self.mainContainerView.frame.origin.y = self.view.frame.height
+            self.mainContainerView.isHidden = true
         }) { _ in
             self.delegate?.onDismissed()
             self.dismiss(animated: true, completion: nil)

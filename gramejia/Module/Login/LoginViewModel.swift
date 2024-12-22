@@ -79,7 +79,7 @@ class LoginViewModel: BaseViewModel {
                         UserDefaultsManager.shared.set(value: customer.name, forKey: .currentUserFullname)
                         UserDefaultsManager.shared.set(value: "customer", forKey: .userLevel)
                     } else {
-                        self?.isUserLoggedIn.send(false)
+                        self?.error.send(DatabaseError.dataNotFound)
                     }
                 })
                 .store(in: &self.cancellables)

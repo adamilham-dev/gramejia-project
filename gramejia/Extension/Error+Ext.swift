@@ -12,3 +12,9 @@ enum DatabaseError: LocalizedError {
     case invalidDatabase
     case dataAlreadyExist
 }
+
+
+enum CustomError: LocalizedError {
+    case wrongCredential
+}
+

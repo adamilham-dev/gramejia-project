@@ -13,13 +13,15 @@ protocol CartRepositoryProtocol {
     
     func getCartItemList() -> AnyPublisher<[CartItemModel], Error>
     
-    func addBookToCart(username: String, idBook: String, quantity: Int64) -> AnyPublisher<Bool, Error>
+    func addBookToCart(username: String, idBook: String, quantity: Int64, updatedDate: String) -> AnyPublisher<Bool, Error>
     
     func getCartBookItem(username: String, idBook: String) -> AnyPublisher<CartItemModel?, Error>
     
     func deleteCartBookItem(username: String, idBook: String) -> AnyPublisher<Bool, Error>
     
     func deleteCartUser(username: String) -> AnyPublisher<Bool, Error>
+    
+    func getAllUserCart() -> AnyPublisher<[CartModel], Error>
     
     func updateBookStock(username: String, cartItems: [CartItemModel]) -> AnyPublisher<Bool, Error>
 }
@@ -56,8 +58,8 @@ extension CartRepository: CartRepositoryProtocol {
             }).eraseToAnyPublisher()
     }
     
-    func addBookToCart(username: String, idBook: String, quantity: Int64) -> AnyPublisher<Bool, Error> {
-        return self.coreDataManager.addBookToCart(username: username, idBook: idBook, quantity: quantity)
+    func addBookToCart(username: String, idBook: String, quantity: Int64, updatedDate: String) -> AnyPublisher<Bool, Error> {
+        return self.coreDataManager.addBookToCart(username: username, idBook: idBook, quantity: quantity, updatedDate: updatedDate)
             .eraseToAnyPublisher()
     }
     
@@ -68,20 +70,29 @@ extension CartRepository: CartRepositoryProtocol {
     }
     
     func getCartItemList() -> AnyPublisher<[CartItemModel], Error> {
-        return self.coreDataManager.fetch(CartItemEntity.self)
+        let sortDescriptor = [NSSortDescriptor(key: "updateDate", ascending: false)]
+        return self.coreDataManager.fetch(CartItemEntity.self, sortDescriptor: sortDescriptor)
             .map { $0.map { CartMapper.cartItemEntityToDomain($0) } }
             .eraseToAnyPublisher()
     }
     
+    func getAllUserCart() -> AnyPublisher<[CartModel], Error> {
+        let sortDescriptor = [NSSortDescriptor(key: "updateDate", ascending: false)]
+        return self.coreDataManager.fetch(CartEntity.self, sortDescriptor: sortDescriptor)
+            .map({ $0.map { CartMapper.cartEntityToDomain($0) } })
+            .eraseToAnyPublisher()
+    }
+    
     func updateBookStock(username: String, cartItems: [CartItemModel]) -> AnyPublisher<Bool, Error> {
-        return self.coreDataManager.updateStockBook(username: username) { context, cartItemEntities in
+        return self.coreDataManager.updateStockBook(username: username) { context, customer, cartEntity, cartItemEntities in
             for item in cartItems {
                 if let entity = cartItemEntities.first(where: { $0.book?.id == item.book?.id }) {
                     let newStock = (entity.book?.stock ?? 0) - item.quantity
                     entity.book?.stock = newStock
-                    context.delete(entity)
                 }
             }
+            context.delete(cartEntity)
+            customer.cart = nil
         }
     }
 }
