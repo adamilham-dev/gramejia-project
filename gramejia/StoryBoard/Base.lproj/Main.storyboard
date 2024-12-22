@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oTD-gJ-3N3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Gsd-3r-CSl">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
@@ -20,12 +20,45 @@
         </array>
     </customFonts>
     <scenes>
+        <!--Splash View Controller-->
+        <scene sceneID="hba-va-NlC">
+            <objects>
+                <viewController id="Gsd-3r-CSl" customClass="SplashViewController" customModule="gramejia" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Mfd-7P-KfC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Sdg-7H-ew0">
+                                <rect key="frame" x="96.666666666666686" y="326" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="313-dJ-QGN"/>
+                                    <constraint firstAttribute="height" constant="200" id="EOe-dL-bLF"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="0Go-Ob-vZh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Sdg-7H-ew0" firstAttribute="centerY" secondItem="Mfd-7P-KfC" secondAttribute="centerY" id="Mzd-1T-vnX"/>
+                            <constraint firstItem="Sdg-7H-ew0" firstAttribute="centerX" secondItem="Mfd-7P-KfC" secondAttribute="centerX" id="oxI-E0-dg1"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="appIconImageView" destination="Sdg-7H-ew0" id="5fn-IZ-doe"/>
+                        <segue destination="oTD-gJ-3N3" kind="presentation" identifier="gotoLogin" modalPresentationStyle="fullScreen" id="K7J-g1-I6H"/>
+                        <segue destination="HEl-yz-aWg" kind="presentation" identifier="gotoMain" modalPresentationStyle="fullScreen" id="lov-Tu-mvn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oQ9-i9-sfN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2216" y="393"/>
+        </scene>
         <!--Main Navigation Controller-->
         <scene sceneID="qhN-eF-XKG">
             <objects>
                 <navigationController storyboardIdentifier="MainNavigationController" id="oTD-gJ-3N3" customClass="MainNavigationController" customModule="gramejia" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ljN-vL-Npw">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -1621,9 +1654,11 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="lov-Tu-mvn"/>
         <segue reference="MiL-B4-cyt"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="AppIcon" width="128" height="128"/>
         <image name="banknote.fill" catalog="system" width="128" height="78"/>
         <image name="cart" catalog="system" width="128" height="102"/>
         <image name="cart.fill" catalog="system" width="128" height="102"/>

@@ -83,6 +83,7 @@
 		7E6681812D16EDE00093013B /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6681802D16EDE00093013B /* EmptyView.swift */; };
 		7E6681852D16EEF40093013B /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E6681842D16EEF40093013B /* EmptyView.xib */; };
 		7E6681942D17A80F0093013B /* CartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6681932D17A80F0093013B /* CartModel.swift */; };
+		7E6681972D17EC940093013B /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6681962D17EC940093013B /* SplashViewController.swift */; };
 		7E6ADAD32D0424E000BE222F /* GeneralTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6ADAD22D0424E000BE222F /* GeneralTextView.swift */; };
 		7E6ADAD52D0424FC00BE222F /* GeneralTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E6ADAD42D0424FC00BE222F /* GeneralTextView.xib */; };
 		7E6FF4852D0D679E007340FB /* ProductCounterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E6FF4842D0D679E007340FB /* ProductCounterView.xib */; };
@@ -209,6 +210,7 @@
 		7E6681802D16EDE00093013B /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		7E6681842D16EEF40093013B /* EmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
 		7E6681932D17A80F0093013B /* CartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartModel.swift; sourceTree = "<group>"; };
+		7E6681962D17EC940093013B /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		7E6ADAD22D0424E000BE222F /* GeneralTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTextView.swift; sourceTree = "<group>"; };
 		7E6ADAD42D0424FC00BE222F /* GeneralTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralTextView.xib; sourceTree = "<group>"; };
 		7E6FF4842D0D679E007340FB /* ProductCounterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCounterView.xib; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 		7E10D92C2CF9AD9E00B11046 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				7E6681952D17EC750093013B /* Splash */,
 				7E84174D2D16A74A00072AB7 /* Topup */,
 				7EB100552D126AF700257511 /* Transaction */,
 				7E38786F2D0F13E900789955 /* Cart */,
@@ -597,6 +600,14 @@
 				7E6681842D16EEF40093013B /* EmptyView.xib */,
 			);
 			path = Empty;
+			sourceTree = "<group>";
+		};
+		7E6681952D17EC750093013B /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				7E6681962D17EC940093013B /* SplashViewController.swift */,
+			);
+			path = Splash;
 			sourceTree = "<group>";
 		};
 		7E6ADAD12D04229900BE222F /* Textview */ = {
@@ -957,6 +968,7 @@
 				7E23D8972CF9963500710336 /* SceneDelegate.swift in Sources */,
 				7E10D9522CFC41AA00B11046 /* LoginUseCase.swift in Sources */,
 				7E38787E2D0F4C4E00789955 /* CartItemModel.swift in Sources */,
+				7E6681972D17EC940093013B /* SplashViewController.swift in Sources */,
 				7E3878712D0F191700789955 /* CartViewController.swift in Sources */,
 				7E4DA5F92CFF5D8500C5D7AC /* BaseViewModel.swift in Sources */,
 				7E7F8B3F2CFEB55D00B61544 /* PopupViewDelegate.swift in Sources */,

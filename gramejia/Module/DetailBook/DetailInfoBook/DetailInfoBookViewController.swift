@@ -36,14 +36,13 @@ class DetailInfoBookViewController: UIViewController {
     
     private func setBookToView() {
         if let book = self.bookModel {
+            isbnLabel.text = book.id
             titleLabel.text = book.title
             authorLabel.text = book.author
             priceLabel.text = book.price.toRupiah()
             publisherLabel.text = book.publisher
             publishedDateLabel.text = book.publishedDate.formatISODate()
             synopsisLabel.text = book.synopsis
-        } else {
-            
         }
     }
 }

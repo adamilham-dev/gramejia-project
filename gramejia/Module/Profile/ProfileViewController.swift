@@ -86,25 +86,28 @@ class ProfileViewController: BaseViewController<ProfileViewModel> {
     
     private func setupNavigation() {
         navigationController?.navigationBar.tintColor = .mainAccent
-        
         let logoutButton = UIBarButtonItem(
             image: UIImage(systemName: "rectangle.portrait.and.arrow.right"),
             style: .plain,
             target: self,
             action: #selector(logoutButtonTapped)
         )
-        
-        let deleteButton = UIBarButtonItem(
-            image: UIImage(systemName: "trash"),
-            style: .plain,
-            target: self,
-            action: #selector(deleteAccountTapped)
-        )
-        
-        deleteButton.tintColor = .mainAccent
-        
         logoutButton.tintColor = .black
-        navigationItem.rightBarButtonItems = [logoutButton ,deleteButton]
+        
+        if(viewModel.typeUser == "customer") {
+            let deleteButton = UIBarButtonItem(
+                image: UIImage(systemName: "trash"),
+                style: .plain,
+                target: self,
+                action: #selector(deleteAccountTapped)
+            )
+            
+            deleteButton.tintColor = .mainAccent
+            navigationItem.rightBarButtonItems = [logoutButton ,deleteButton]
+        } else {
+            navigationItem.rightBarButtonItem = logoutButton
+        }
+    
         self.title = "Profile"
     }
     

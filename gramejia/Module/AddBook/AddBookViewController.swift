@@ -73,6 +73,8 @@ class AddBookViewController: BaseViewController<AddBookViewModel>, UIImagePicker
             imageField.setImage(image: UIImage(data: imageData))
         }
         
+        synopsisField.placeholderLabel.isHidden = !book.synopsis.isEmpty
+        
         for key in formValidity.keys {
             formValidity[key] = true
         }
@@ -177,6 +179,8 @@ class AddBookViewController: BaseViewController<AddBookViewModel>, UIImagePicker
         publishedDateField.setTextFieldProperty(leftSystemImage: "calendar", placeholder: "Input the published date")
         priceField.setTextFieldProperty(leftSystemImage: "dollarsign", placeholder: "Input the price")
         stockField.setTextFieldProperty(leftSystemImage: "books.vertical", placeholder: "Input the total stock")
+        
+        isbnField.mainTextField.keyboardType = .numberPad
         
         imageField.delegate = self
         isbnField.delegate = self
@@ -346,6 +350,10 @@ extension AddBookViewController: GeneralTextFieldViewDelegate, GeneralTextViewDe
         let currentText = textField.text ?? ""
         let updatedText = (currentText as NSString).replacingCharacters(in: range, with: string)
         if(textField == isbnField.mainTextField) {
+            if(updatedText.count > 13) {
+                setStateMainButton()
+                return false
+            }
             formValidity["isbn"] = isbnField.validateDigits(inputText: updatedText, minDigits: 13, maxDigits: 13)
         } else if(textField == titleField.mainTextField) {
             formValidity["title"] = titleField.validateTitle(inputText: updatedText)

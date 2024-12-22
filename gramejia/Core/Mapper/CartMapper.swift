@@ -28,7 +28,7 @@ final class CartMapper {
                 name: entity.owner?.name ?? "",
                 username: entity.owner?.username ?? "",
                 password: entity.owner?.password ?? ""),
-            items: items.map({ cartItemEntityToDomain($0) })
+            items: items.map({ cartItemEntityToDomain($0) }).sorted(by: { $0.updatedDate < $1.updatedDate })
         )
     }
     
