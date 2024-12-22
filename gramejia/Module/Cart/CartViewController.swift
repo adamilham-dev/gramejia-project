@@ -218,8 +218,10 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.selectedCartItem = viewModel.cartItemList.value[indexPath.row]
-        performSegue(withIdentifier: "gotoDetailBook", sender: nil)
+        if(viewModel.userLevel == "customer") {
+            self.selectedCartItem = viewModel.cartItemList.value[indexPath.row]
+            performSegue(withIdentifier: "gotoDetailBook", sender: nil)
+        }
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {

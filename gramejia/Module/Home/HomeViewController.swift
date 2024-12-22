@@ -10,6 +10,7 @@ import UIKit
 
 class HomeViewController: BaseViewController<HomeViewModel> {
     
+    @IBOutlet weak var emptyView: EmptyView!
     @IBOutlet weak var mainCollectionView: UICollectionView!
     
     private var selectedBook: BookModel?
@@ -76,10 +77,21 @@ class HomeViewController: BaseViewController<HomeViewModel> {
     private func bindDataViewModel() {
         viewModel?.bookList
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                self?.mainCollectionView.reloadData()
+            .sink { [weak self] list in
+                self?.updateView(isEmpty: list.isEmpty)
             }
             .store(in: &cancellables)
+    }
+    
+    private func updateView(isEmpty: Bool) {
+        if(isEmpty) {
+            emptyView.isHidden = false
+            mainCollectionView.isHidden = true
+        } else {
+            emptyView.isHidden = true
+            mainCollectionView.reloadData()
+            mainCollectionView.isHidden = false
+        }
     }
     
     @objc func addBookNavItemTapped() {

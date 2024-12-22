@@ -1516,6 +1516,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="di8-Ja-fpK" userLabel="EmptyView" customClass="EmptyView" customModule="gramejia" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="393" height="759"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QWF-Gc-2ky" userLabel="MainCollectionView">
                                 <rect key="frame" x="0.0" y="44" width="393" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1531,15 +1535,20 @@
                         <viewLayoutGuide key="safeArea" id="MSl-NN-W9L"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="di8-Ja-fpK" firstAttribute="top" secondItem="MSl-NN-W9L" secondAttribute="top" id="6xg-Kn-h5f"/>
                             <constraint firstItem="QWF-Gc-2ky" firstAttribute="top" secondItem="MSl-NN-W9L" secondAttribute="top" id="MTn-yu-vKw"/>
                             <constraint firstAttribute="bottom" secondItem="QWF-Gc-2ky" secondAttribute="bottom" id="eWY-sb-Y06"/>
+                            <constraint firstItem="MSl-NN-W9L" firstAttribute="bottom" secondItem="di8-Ja-fpK" secondAttribute="bottom" id="fGH-NM-MZB"/>
                             <constraint firstItem="QWF-Gc-2ky" firstAttribute="leading" secondItem="MSl-NN-W9L" secondAttribute="leading" id="h5P-EB-F3a"/>
+                            <constraint firstItem="MSl-NN-W9L" firstAttribute="trailing" secondItem="di8-Ja-fpK" secondAttribute="trailing" id="rzb-wX-UDi"/>
+                            <constraint firstItem="di8-Ja-fpK" firstAttribute="leading" secondItem="MSl-NN-W9L" secondAttribute="leading" id="waK-I5-kcO"/>
                             <constraint firstItem="MSl-NN-W9L" firstAttribute="trailing" secondItem="QWF-Gc-2ky" secondAttribute="trailing" id="x3x-pe-H4M"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" id="sSf-7O-TSz"/>
                     <navigationItem key="navigationItem" id="JMC-wO-kRx"/>
                     <connections>
+                        <outlet property="emptyView" destination="di8-Ja-fpK" id="2OM-iG-I5L"/>
                         <outlet property="mainCollectionView" destination="QWF-Gc-2ky" id="dbb-xB-KCG"/>
                         <segue destination="Vq7-yy-yzs" kind="show" identifier="gotoAddBook" id="He3-1z-Wvv"/>
                         <segue destination="AKT-Y3-ibD" kind="show" identifier="gotoDetailBook" id="MiL-B4-cyt"/>
@@ -1589,7 +1598,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="l4b-s0-2vQ"/>
+        <segue reference="MiL-B4-cyt"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="banknote.fill" catalog="system" width="128" height="78"/>
