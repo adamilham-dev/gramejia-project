@@ -31,7 +31,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let loginVC = storyboard.instantiateViewController(withIdentifier: "MainNavigationController")
             window?.rootViewController = loginVC
         }
-
+        if #available(iOS 13.0, *) {
+            window?.overrideUserInterfaceStyle = .light
+        }
         window?.makeKeyAndVisible()
     }
 
