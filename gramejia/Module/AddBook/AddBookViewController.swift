@@ -18,9 +18,9 @@ class AddBookViewController: BaseViewController<AddBookViewModel>, UIImagePicker
     @IBOutlet weak var publishedDateField: GeneralTextFieldView!
     @IBOutlet weak var priceField: GeneralTextFieldView!
     @IBOutlet weak var stockField: GeneralTextFieldView!
-    
     @IBOutlet weak var submitButton: MainActionButton!
     
+    var bookModel: BookModel? = nil
     
     var formValidity = [
         "isbn": false,
@@ -43,6 +43,7 @@ class AddBookViewController: BaseViewController<AddBookViewModel>, UIImagePicker
         
         setupView()
         bindDataViewModel()
+        setBookToView()
     }
     
     private func setupView() {
@@ -50,15 +51,66 @@ class AddBookViewController: BaseViewController<AddBookViewModel>, UIImagePicker
         mainScrollView.showsVerticalScrollIndicator = false
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
         setupFields()
         
+        
+        submitButton.setTitle(bookModel == nil ? "Submit" : "Update", for: .normal)
         submitButton.isEnabled = false
+    }
+    
+    private func setBookToView() {
+        guard let book = bookModel else { return }
+        
+        isbnField.mainTextField.text = book.id
+        titleField.mainTextField.text = book.title
+        synopsisField.mainTextView.text = book.synopsis
+        authorField.mainTextField.text = book.author
+        publisherField.mainTextField.text = book.publisher
+        publishedDateField.mainTextField.text = book.publishedDate.formatISO8601ToDate()?.formatToString()
+        priceField.mainTextField.text = String(book.price)
+        stockField.mainTextField.text = String(book.stock)
+        if let imageData = Data(base64Encoded: book.coverImage ?? "") {
+            imageField.setImage(image: UIImage(data: imageData))
+        }
+        
+        synopsisField.placeholderLabel.isHidden = !book.synopsis.isEmpty
+        
+        for key in formValidity.keys {
+            formValidity[key] = true
+        }
+        
+        setStateMainButton()
     }
     
     private func setupNavigation() {
         navigationController?.navigationBar.tintColor = .mainAccent
-        title = "Add Book"
+        
+        if(bookModel == nil) {
+            title = "Add Book"
+        } else {
+            title = "Detail Book"
+            let rightBarButton = UIBarButtonItem(
+                image: UIImage(systemName: "trash.fill"),
+                style: .plain,
+                target: self,
+                action: #selector(deleteBookTapped)
+            )
+            
+            rightBarButton.tintColor = .mainAccent
+            navigationItem.rightBarButtonItem = rightBarButton
+        }
+    }
+    
+    @objc private func deleteBookTapped(){
+        let alert = UIAlertController(title: "Are you sure to delete this book?", message: "This action cannot be undone", preferredStyle: .alert)
+        let continueButton = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+            self?.viewModel.deleteBook(idBook: self?.bookModel?.id ?? "")
+        }
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(continueButton)
+        alert.addAction(cancelButton)
+        self.present(alert, animated: true)
     }
     
     private func bindDataViewModel() {
@@ -68,6 +120,27 @@ class AddBookViewController: BaseViewController<AddBookViewModel>, UIImagePicker
                 if response {
                     self?.resetForm()
                     self?.showSnackbar(message: "Successfully Add Book")
+                }
+            }
+            .store(in: &cancellables)
+        
+        viewModel?.isSuccessUpdateBook
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] response in
+                if response {
+                    self?.resetForm()
+                    self?.showSnackbar(message: "Successfully Update Book")
+                }
+            }
+            .store(in: &cancellables)
+        
+        viewModel?.isSuccessDeleteBook
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] response in
+                if response {
+                    self?.resetForm()
+                    self?.showSnackbar(message: "Successfully delete Book")
+                    self?.navigationController?.popViewController(animated: true)
                 }
             }
             .store(in: &cancellables)
@@ -107,6 +180,8 @@ class AddBookViewController: BaseViewController<AddBookViewModel>, UIImagePicker
         priceField.setTextFieldProperty(leftSystemImage: "dollarsign", placeholder: "Input the price")
         stockField.setTextFieldProperty(leftSystemImage: "books.vertical", placeholder: "Input the total stock")
         
+        isbnField.mainTextField.keyboardType = .numberPad
+        
         imageField.delegate = self
         isbnField.delegate = self
         titleField.delegate = self
@@ -144,10 +219,7 @@ class AddBookViewController: BaseViewController<AddBookViewModel>, UIImagePicker
     
     @objc func dateChange(datePicker: UIDatePicker) {
         let selectedDate = datePicker.date
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .long
-        let formattedDate = dateFormatter.string(from: selectedDate)
-        publishedDateField.mainTextField.text = formattedDate
+        publishedDateField.mainTextField.text = selectedDate.formatToString()
         formValidity["publishedDate"] = true
         setStateMainButton()
     }
@@ -166,7 +238,11 @@ class AddBookViewController: BaseViewController<AddBookViewModel>, UIImagePicker
         
         let book = BookModel(id: isbn, author: author, coverImage: image, price: price, publishedDate: publishedDate, publisher: publisher, stock: stock, synopsis: synopsis, title: title, updatedDate: Date().ISO8601Format())
         
-        viewModel.addBook(book: book)
+        if(bookModel == nil) {
+            viewModel.addBook(book: book)
+        } else {
+            viewModel.updateBook(book: book)
+        }
     }
     
     private func setupDatePicker() {
@@ -274,6 +350,10 @@ extension AddBookViewController: GeneralTextFieldViewDelegate, GeneralTextViewDe
         let currentText = textField.text ?? ""
         let updatedText = (currentText as NSString).replacingCharacters(in: range, with: string)
         if(textField == isbnField.mainTextField) {
+            if(updatedText.count > 13) {
+                setStateMainButton()
+                return false
+            }
             formValidity["isbn"] = isbnField.validateDigits(inputText: updatedText, minDigits: 13, maxDigits: 13)
         } else if(textField == titleField.mainTextField) {
             formValidity["title"] = titleField.validateTitle(inputText: updatedText)
@@ -304,10 +384,12 @@ extension AddBookViewController: GeneralTextFieldViewDelegate, GeneralTextViewDe
     
     func textViewRootTapped(_ textView: UITextView) {
         imageField.setIsActive(false)
-        
     }
     
     func textFieldRootTapped(_ textField: UITextField) {
+        if(textField == publishedDateField.mainTextField) {
+            textField.text = Date().formatToString()
+        }
         imageField.setIsActive(false)
     }
 }

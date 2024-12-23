@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BookModel: Identifiable {
+struct BookModel: Identifiable, Codable {
     let id: String
     let author: String
     let coverImage: String?

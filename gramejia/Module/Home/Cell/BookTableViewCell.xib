@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Nunito-Bold.ttf">
+            <string>Nunito-Bold</string>
+        </array>
+        <array key="Nunito-Regular.ttf">
+            <string>Nunito-Regular</string>
+        </array>
+        <array key="Nunito-SemiBold.ttf">
+            <string>Nunito-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="137" id="KGk-i7-Jjw" customClass="BookTableViewCell" customModule="gramejia" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="439" height="137"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="439" height="137"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eraser.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="d9l-J6-jjK" userLabel="BookImage">
+                        <rect key="frame" x="8" y="8.6666666666666643" width="120" height="98.666666666666686"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="100" id="IBC-Tg-Hbj"/>
+                            <constraint firstAttribute="width" constant="120" id="dPS-nn-d9c"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Ybb-tb-HL8" userLabel="InfoStack">
+                        <rect key="frame" x="136" y="15.333333333333336" width="295" height="85.666666666666657"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pzd-wo-Lbl">
+                                <rect key="frame" x="0.0" y="0.0" width="295" height="27.333333333333332"/>
+                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ho-vA-zm6">
+                                <rect key="frame" x="0.0" y="35.333333333333329" width="295" height="22"/>
+                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="16"/>
+                                <color key="textColor" name="MainAccentColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="rk9-jy-zAc" userLabel="StockStack">
+                                <rect key="frame" x="0.0" y="65.333333333333343" width="295" height="20.333333333333329"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="books.vertical" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="vxm-h9-Fb4">
+                                        <rect key="frame" x="0.0" y="-0.3333333333333357" width="24.666666666666668" height="20.666666666666668"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Stock" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CeF-2L-XFk">
+                                        <rect key="frame" x="28.666666666666657" y="1.6666666666666572" width="266.33333333333337" height="16.666666666666668"/>
+                                        <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="d9l-J6-jjK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="9dG-BF-BP1"/>
+                    <constraint firstAttribute="trailing" secondItem="Ybb-tb-HL8" secondAttribute="trailing" constant="8" id="LnB-iu-lTE"/>
+                    <constraint firstItem="d9l-J6-jjK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Ner-Vj-aFp"/>
+                    <constraint firstItem="Ybb-tb-HL8" firstAttribute="leading" secondItem="d9l-J6-jjK" secondAttribute="trailing" constant="8" id="V8H-1U-NHs"/>
+                    <constraint firstAttribute="bottom" secondItem="d9l-J6-jjK" secondAttribute="bottom" constant="8" id="eJC-sj-PXb"/>
+                    <constraint firstItem="Ybb-tb-HL8" firstAttribute="centerY" secondItem="d9l-J6-jjK" secondAttribute="centerY" id="zEF-9v-epd"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="contentImageView" destination="d9l-J6-jjK" id="fWY-OF-4Ds"/>
+                <outlet property="priceLabel" destination="6ho-vA-zm6" id="MO5-Is-ufk"/>
+                <outlet property="stockLabel" destination="CeF-2L-XFk" id="h2a-0S-7Fl"/>
+                <outlet property="titleLabel" destination="pzd-wo-Lbl" id="u6j-Ee-VQ0"/>
+            </connections>
+            <point key="canvasLocation" x="81.679389312977094" y="-22.183098591549296"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="books.vertical" catalog="system" width="128" height="107"/>
+        <image name="eraser.fill" catalog="system" width="128" height="119"/>
+        <namedColor name="MainAccentColor">
+            <color red="0.94499999284744263" green="0.25499999523162842" blue="0.27500000596046448" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

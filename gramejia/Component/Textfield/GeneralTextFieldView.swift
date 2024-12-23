@@ -48,6 +48,7 @@ class GeneralTextFieldView: UIView {
         mainTextField.delegate = self
         stylingView()
         setActions()
+        addDoneButtonToKeyboard()
     }
     
     open func stylingView() {
@@ -120,6 +121,21 @@ class GeneralTextFieldView: UIView {
         self.errorLabel.isHidden = true
         self.errorLabel.text = nil
     }
+    
+    func addDoneButtonToKeyboard() {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(dismissKeyboard))
+        toolbar.items = [flexibleSpace, doneButton]
+
+        mainTextField.inputAccessoryView = toolbar
+    }
+    
+    @objc func dismissKeyboard() {
+        mainTextField.resignFirstResponder()
+    }
 }
 
 
@@ -190,6 +206,19 @@ extension GeneralTextFieldView {
         guard let currentPassword = secondTextField.mainTextField.text else { return false }
         
         let result = currentPassword == inputText
+        
+        if(!result) {
+            textField.setError(description: "Password not match")
+            return false
+        }
+        textField.removeError()
+        return result
+    }
+    
+    func validateConfirmationPassword(passwordText: String, inputText: String) -> Bool {
+        let textField = self
+        
+        let result = passwordText == inputText
         
         if(!result) {
             textField.setError(description: "Password not match")
