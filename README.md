@@ -65,8 +65,8 @@ Gramejia is an iOS application that allows users to browse, purchase, and manage
 ### 1. Clone the Repository
 
 ```bash
-$ git clone https://github.com/adamilham-dev/bookstore-app.git
-$ cd bookstore-app
+$ git clone https://github.com/adamilham-dev/gramejia-project.git
+$ cd my-bookstore-app
 ```
 
 ### 2. Set Up CoreData
